@@ -6,39 +6,40 @@ module.exports = (sequelize, DataTypes) => {
       firstName: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       lastName: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       phoneNumber: {
         type: DataTypes.INTEGER,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       email: DataTypes.STRING,
       campus: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          isEmail: true
+          // notNull: true
         }
       },
       password: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true,
+          // notNull: true,
           min: 6
         }
       },
       confirmpassword: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true,
+          // notNull: true,
           min: 6
         }
       },
@@ -48,6 +49,7 @@ module.exports = (sequelize, DataTypes) => {
   );
   Professor.associate = function(models) {
     // associations can be defined here
+    Professor.hasOne(models.Course, {});
   };
   return Professor;
 };

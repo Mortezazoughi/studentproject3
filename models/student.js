@@ -6,45 +6,45 @@ module.exports = (sequelize, DataTypes) => {
       firstName: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       lastName: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       phoneNumber: {
         type: DataTypes.INTEGER,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       email: {
         type: DataTypes.STRING,
         validate: {
-          isEmail: true,
-          notNull: true
+          isEmail: true
+          // notNull: true
         }
       },
       campus: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       password: {
         type: DataTypes.STRING,
         validate: {
-          notNUll: true,
+          // notNUll: true,
           min: 6
         }
       },
       confirmpassword: {
         type: DataTypes.STRING,
         validate: {
-          notNUll: true,
+          // notNUll: true,
           min: 6
         }
       }
@@ -53,6 +53,17 @@ module.exports = (sequelize, DataTypes) => {
   );
   Student.associate = function(models) {
     // associations can be defined here
+    Student.hasMany(models.StudentCourse, {
+      onDelete: "cascade"
+    });
   };
   return Student;
 };
+
+// User.hasMany(models.Course, {
+//   as: 'user',
+//   foreignKey: {
+//     fieldName: 'userId',
+//     allowNull: false,
+//   },
+// });

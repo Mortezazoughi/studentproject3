@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
       courseName: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       startdate: {
@@ -24,25 +24,25 @@ module.exports = (sequelize, DataTypes) => {
       availableseats: {
         type: DataTypes.INTEGER,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       level: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
       prereq: {
         type: DataTypes.STRING,
         validate: {
-          notNull: true
+          // notNull: true
         }
       },
-      prof_id: {
+      professor_id: {
         type: DataTypes.INTEGER,
         validate: {
-          notNull: true
+          // notNull: true
         }
       }
     },
@@ -50,6 +50,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Course.associate = function(models) {
     // associations can be defined here
+    Course.hasMany(models.StudentCourse, {
+      onDelete: "cascade"
+    });
+
+    Course.hasOne(models.Professor);
   };
   return Course;
 };
