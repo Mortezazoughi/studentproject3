@@ -2,23 +2,26 @@ const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 8080;
 const path = require("path");
-// share static files
-app.use("/static", express.static(path.join(__dirname, "public")));
-
-// import routes
+const bodyParser = require("body-parser");
 const userRoute = require("./routes/studentRoute");
-app.use(userRoute);
+const db = require("./models");
 
-// Parse application body as JSON
+// // share static files
+// app.use("/static", express.static(path.join(__dirname, "public")));
+
+// configure the app to use bodyParser()
 app.use(
-  express.urlencoded({
+  bodyParser.urlencoded({
     extended: true
   })
 );
-app.use(express.json());
+app.use(bodyParser.json());
 
-// setup db connection
-const db = require("./models");
+// // import routes
+// const userRoute = require("./routes/studentRoute");
+// app.use(userRoute);
+
+// setup db connection and express router connection
 db.sequelize
   .authenticate()
   .then(() => {
@@ -28,3 +31,6 @@ db.sequelize
   .catch(err => {
     console.error("Unable to connect to the database:", err);
   });
+// import routes
+
+app.use(userRoute);
