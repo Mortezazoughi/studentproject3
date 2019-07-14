@@ -18,6 +18,9 @@ router.post("/newprof", async (req, res) => {
 // create a new course ...
 // ****** Need to figure out how to check if it already exists*****
 router.post("/createcourse", async (req, res) => {
+  const { courseName } = req.body;
+
+  //check if course already exists
   let results;
   try {
     results = await db.Course.create(req.body);
@@ -26,15 +29,14 @@ router.post("/createcourse", async (req, res) => {
     res.sendStatus(404).redirect("/newprof");
   }
 });
-
 // update an existing course
 // *** FIGURE OUT HOW TO PREVENT DUPLICATES****
-router.put("/updatecourse/:name", async (req, res) => {
+router.put("/updatecourse/:id", async (req, res) => {
   let results;
   try {
     results = await db.Course.update(req.body, {
       where: {
-        courseName: req.params.name
+        id: req.params.id
       }
     });
     res.send(results);
@@ -49,5 +51,24 @@ router.put("/updatecourse/:name", async (req, res) => {
 // Edit their own profile
 // View all student records
 // Add grades to students
+
+// ***** FIND OR CREATE****** Convert to async await
+router.post("/createcoursez", (req, res) => {
+  db.Course.count({
+    where: { courseName: req.body.courseName }
+  }).then(count => {
+    if (count) {
+      console.log("already exists");
+      return res.sendStatus(403);
+    } else {
+      console.log("in else");
+      db.Course.create(req.body)
+        .then(data => {
+          res.send(data);
+        })
+        .catch(error => res.sendStatus(500));
+    }
+  });
+});
 
 module.exports = router;
