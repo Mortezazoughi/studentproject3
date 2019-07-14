@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
           // notNull: true
         }
       },
-      professor_id: {
+      prof_id: {
         type: DataTypes.INTEGER,
         validate: {
           // notNull: true
@@ -50,11 +50,11 @@ module.exports = (sequelize, DataTypes) => {
   );
   Course.associate = function(models) {
     // associations can be defined here
-    Course.hasMany(models.StudentCourse, {
-      onDelete: "cascade"
-    });
+    // Course.hasMany(models.StudentCourse, {
+    //   onDelete: "cascade"
+    // });
 
-    Course.hasOne(models.Professor);
+    Course.hasOne(models.Professor, { foreignKey: "prof_id" });
   };
   return Course;
 };

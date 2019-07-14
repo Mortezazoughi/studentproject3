@@ -30,7 +30,15 @@ router.post(
 
 // 2. SignIn
 // 3. Register for a course
-// 4. Search for courses
+// 4. Search for all courses
+// router.get("/searchcourses", studentController.searchcourses);
+// /search for course by title
+// router.get("/search:title", studentController.search);
+router.get("/searchcourses", studentController.searchallcourses);
+
 // 5. Edit their profile
+
+// working but needs improvement
+router.put("/updatestudent/", studentController.updatestudent);
 
 module.exports = router;

@@ -49,7 +49,9 @@ module.exports = (sequelize, DataTypes) => {
   );
   Professor.associate = function(models) {
     // associations can be defined here
-    Professor.hasOne(models.Course, {});
+    Professor.hasOne(models.Course, {
+      onDelete: "cascade"
+    });
   };
   return Professor;
 };

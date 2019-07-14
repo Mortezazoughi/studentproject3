@@ -4,6 +4,7 @@ const PORT = process.env.PORT || 8080;
 const path = require("path");
 const bodyParser = require("body-parser");
 const userRoute = require("./routes/studentRoute");
+const profRoute = require("./routes/professorRoute");
 const db = require("./models");
 
 // // share static files
@@ -33,4 +34,4 @@ db.sequelize
   });
 // import routes
 
-app.use(userRoute);
+app.use(userRoute, profRoute);
