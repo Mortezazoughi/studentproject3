@@ -71,4 +71,32 @@ router.post("/createcoursez", (req, res) => {
   });
 });
 
+// ****PLAYING WITH NESTED QUERIES WORKING TWO TABLES *****
+router.get("/getmycourse", (req, res) => {
+  //   db.Professor.findAll({
+  //     include: [{ models: Course, where: { courseName: "courseone" } }]
+  //   })
+  //     .then(ProfCourse => console.log(ProfCourse))
+  //     .catch(error => console.log(error));
+  db.Professor.findAll({
+    include: [{ model: db.Course, where: { id: 1 } }]
+  })
+    .then(ProfCourse => res.send(ProfCourse))
+    .catch(error => console.log(error));
+});
+
+// ***** THREE LEVELS DEEP******
+router.get("/getmyblah", (req, res) => {
+  //   db.Professor.findAll({
+  //     include: [{ models: Course, where: { courseName: "courseone" } }]
+  //   })
+  //     .then(ProfCourse => console.log(ProfCourse))
+  //     .catch(error => console.log(error));
+  db.Professor.findAll({
+    include: [{ model: db.Course, include: [{ model: db.StudentCourse }] }]
+  })
+    .then(ProfCourse => res.send(ProfCourse))
+    .catch(error => console.log(error));
+});
+
 module.exports = router;

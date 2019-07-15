@@ -47,13 +47,19 @@ module.exports = (sequelize, DataTypes) => {
           // notNUll: true,
           min: 6
         }
+      },
+      prof_id: {
+        type: DataTypes.STRING,
+        Validate: {}
       }
     },
     {}
   );
   Student.associate = function(models) {
     // associations can be defined here
+
     Student.hasMany(models.StudentCourse, {
+      foreignKey: "student_id",
       onDelete: "cascade"
     });
   };
