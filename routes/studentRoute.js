@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const db = require("../models");
 const { validationResult } = require("express-validator");
-const studentController = require("../controller/sudentController");
+const studentController = require("../controller/studentController");
 const expressValidator = require("express-validator");
 const validationChain = require("../routes/validationChain");
 

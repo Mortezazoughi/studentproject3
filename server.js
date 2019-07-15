@@ -7,6 +7,7 @@ const userRoute = require("./routes/studentRoute");
 const profRoute = require("./routes/professorRoute");
 const db = require("./models");
 
+
 // // share static files
 // app.use("/static", express.static(path.join(__dirname, "public")));
 
@@ -17,10 +18,6 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-
-// // import routes
-// const userRoute = require("./routes/studentRoute");
-// app.use(userRoute);
 
 // setup db connection and express router connection
 db.sequelize
@@ -33,5 +30,6 @@ db.sequelize
     console.error("Unable to connect to the database:", err);
   });
 // import routes
-
 app.use(userRoute, profRoute);
+
+// Testing basic authx

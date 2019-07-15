@@ -1,6 +1,7 @@
 const db = require("../models");
 const express = require("express");
 const router = express.Router();
+const authorizationMiddleware = require("./authentication");
 
 //creates the prof. we dont need this route
 router.post("/newprof", async (req, res) => {
