@@ -95,10 +95,21 @@ const studentController = {
   searchallcourses: async (req, res) => {
     let result;
     try {
-      result = await db.Student.findAll({});
+      result = await db.Course.findAll({});
       res.json(result);
     } catch (error) {
       console.log(error);
+    }
+  },
+  registerforclass: async (req, res) => {
+    let results;
+    try {
+      results = await db.StudentCourse.create(req.body);
+      console.log(results);
+
+      res.send(results);
+    } catch (error) {
+      res.send(error);
     }
   }
 };

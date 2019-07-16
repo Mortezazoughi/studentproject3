@@ -30,6 +30,7 @@ router.post(
 
 // 2. SignIn
 // 3. Register for a course
+router.post("/registerforclass", studentController.registerforclass);
 // 4. Search for all courses
 // router.get("/searchcourses", studentController.searchcourses);
 // /search for course by title
