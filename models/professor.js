@@ -5,8 +5,8 @@ module.exports = (sequelize, DataTypes) => {
     {
       firstName: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-          allowNull: false,
           len: {
             args: 2,
             msg: "First Name must have a minimum of two characters"
@@ -15,8 +15,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       lastName: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-          allowNull: false,
           len: {
             args: 2,
             msg: "Last Name must have a minimum of two characters"
@@ -30,11 +30,9 @@ module.exports = (sequelize, DataTypes) => {
           // notNull: true
         }
       },
-      email: DataTypes.STRING,
-      campus: {
+      email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true,
         validate: {
           isEmail: {
             msg: "Email must be valid"
@@ -45,10 +43,15 @@ module.exports = (sequelize, DataTypes) => {
           }
         }
       },
+      campus: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true
+      },
       password: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-          allowNull: false,
           len: {
             arg: 6
           }
@@ -56,8 +59,8 @@ module.exports = (sequelize, DataTypes) => {
       },
       confirmpassword: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
-          allowNull: false,
           len: {
             arg: 6
           }

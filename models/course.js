@@ -3,35 +3,43 @@ module.exports = (sequelize, DataTypes) => {
   const Course = sequelize.define("Course", {
     courseName: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        // notNull: true
+        len: {
+          arg: 3
+        }
       }
     },
     startdate: {
+      allowNull: false,
       type: DataTypes.DATE,
       validates: {
         isDate: true
       }
     },
     enddate: {
+      allowNull: false,
       type: DataTypes.DATE,
       validates: {
         isDate: true
       }
     },
     availableseats: {
+      allowNull: false,
       type: DataTypes.INTEGER,
       validate: {
         // notNull: true
       }
     },
     level: {
+      allowNull: false,
       type: DataTypes.STRING,
       validate: {
         // notNull: true
       }
     },
     prereq: {
+      allowNull: false,
       type: DataTypes.STRING,
       validate: {
         // notNull: true
@@ -45,22 +53,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
   Course.associate = function(models) {
-    // associations can be defined here
-    // Course.hasMany(models.StudentCourse, {
-    //   onDelete: "cascade"
-    // });
-    //   , {
-    //   foriegnKey: "prof_id"
-    //   // onDelete: "cascade"
-    // });
-    // models.Professor.be(Course, {
-    // onDelete: "cascade";
-    // constraints: false,
-    // scope: {
-    //   commentable: 'image'
-    // }
-
-    // });
     Course.belongsTo(models.Professor, {
       foreignKey: "prof_id"
     });

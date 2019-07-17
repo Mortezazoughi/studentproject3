@@ -5,6 +5,7 @@ const { validationResult } = require("express-validator");
 const studentController = require("../controller/studentController");
 const expressValidator = require("express-validator");
 const validationChain = require("../routes/validationChain");
+const { studentauthMiddleware } = require("./authentication");
 
 //Handles all the errors that came back from valiaton chain and displays them on the screen
 const errrorMiddleware = (req, res, next) => {
@@ -19,27 +20,31 @@ const errrorMiddleware = (req, res, next) => {
 
 // things that a student can do
 // 1. Signup
+router.post("/studentSignup", studentController.studentSignup);
 
 // student controller holds the actual routes as methods
-router.post(
-  "/signup",
-  validationChain,
-  errrorMiddleware,
-  studentController.signup
-);
 
 // 2. SignIn
-// 3. Register for a course
-router.post("/registerforclass", studentController.registerforclass);
+// 3. Register for a course **** WIP**** check with brains
+router.post(
+  "/registerforclass/:name",
+  studentauthMiddleware,
+  studentController.registerforclass
+);
 // 4. Search for all courses
-// router.get("/searchcourses", studentController.searchcourses);
-// /search for course by title
-// router.get("/search:title", studentController.search);
-router.get("/searchcourses", studentController.searchallcourses);
+router.get("/searchallcourses", studentController.searchallcourses);
 
 // 5. Edit their profile
+// working but needs improvement middleware is breaking
+router.put(
+  "/updatestudent/",
+  // studentauthMiddleware,
+  studentController.updatestudent
+);
+// search for courses by name
+router.get("/searchtitle/:name", studentController.searchtitle);
 
-// working but needs improvement
-router.put("/updatestudent/", studentController.updatestudent);
+//search for courses by professor
+router.get("/searchprof/:prof", studentController.searchprof);
 
 module.exports = router;
