@@ -47,10 +47,6 @@ module.exports = (sequelize, DataTypes) => {
           // notNUll: true,
           min: 6
         }
-      },
-      prof_id: {
-        type: DataTypes.STRING,
-        Validate: {}
       }
     },
     {}

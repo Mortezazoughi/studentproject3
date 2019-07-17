@@ -42,12 +42,14 @@ const studentController = {
             password: hashedpassword,
             confirmpassword: hashedconfirmpassword
           });
-          res.send(result);
+          res.json(result);
         } catch (error) {
           console.log("Somthing is wrong");
           console.log(error);
 
-          res.sendStatus(403);
+          res
+            .sendStatus(403)
+            .json({ error: "bad request", message: "please blah" });
         }
       } else {
         console.log("person Already exists");
@@ -86,7 +88,7 @@ const studentController = {
     let result;
     try {
       result = await db.Course.findAll();
-      res.send(result);
+      res.json(result);
     } catch (error) {
       console.log(error);
     }
@@ -130,10 +132,16 @@ const studentController = {
   searchprof: async (req, res) => {
     let result;
     try {
+      const id = req.params.id;
       result = await db.Course.findAll({
-        where: {
-          prof_id: req.params.prof
-        }
+        include: [
+          {
+            model: db.Professor,
+            attributes: {
+              include: ["firstName"]
+            }
+          }
+        ]
       });
       res.json(result);
     } catch (error) {

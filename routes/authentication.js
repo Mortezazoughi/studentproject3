@@ -49,25 +49,22 @@ const profauthorizationMiddleware = async (req, res, next) => {
   }
 };
 const studentauthMiddleware = async (req, res, next) => {
-  let user;
   const usercredentials = basicAuth(req);
   console.log(usercredentials);
 
   if (usercredentials) {
     // check db to confirm that the email exists
-    console.log("**********here*******");
-    const stud = await db.Student.findAll({
+    let stud = await db.Student.findOne({
       where: {
         email: usercredentials.name
       }
     });
-    console.log("here*********", stud);
     if (stud) {
       let match;
       try {
-        match = await bcrypt.compareSync(
+        match = bcrypt.compareSync(
           usercredentials.pass,
-          user[0].dataValues.password
+          stud.dataValues.password
         );
         console.log(match);
       } catch (err) {

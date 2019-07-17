@@ -62,7 +62,7 @@ const professorController = {
   },
  
   //Create new course
-  createcourse: async (req, res) => {
+  createcourse:  async (req, res) => {
     const { courseName } = req.body;
     //check if course already exists
     const coursecheck = await db.Course.count({

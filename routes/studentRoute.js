@@ -37,14 +37,14 @@ router.get("/searchallcourses", studentController.searchallcourses);
 // 5. Edit their profile
 // working but needs improvement middleware is breaking
 router.put(
-  "/updatestudent/",
-  // studentauthMiddleware,
+  "/updatestudent",
+  studentauthMiddleware,
   studentController.updatestudent
 );
 // search for courses by name
 router.get("/searchtitle/:name", studentController.searchtitle);
 
 //search for courses by professor
-router.get("/searchprof/:prof", studentController.searchprof);
+router.get("/searchprof/:id", studentController.searchprof);
 
 module.exports = router;

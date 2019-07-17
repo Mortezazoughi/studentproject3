@@ -40,6 +40,7 @@ router.put("/updateprofprofile", professorController.updateprofprofile);
 // ******View all student records **** WIP select all students in a course by a prof
 router.get(
   "/allstudentsregistered/:id/:sid",
+
   profauthorizationMiddleware,
   professorController.allstudentsregistered
 );
