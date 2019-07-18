@@ -4,17 +4,18 @@ const db = require("../models");
 const jwt = require("jsonwebtoken");
 
 const studentController = require("../controller/studentController");
-const expressValidator = require("express-validator");
+// const expressValidator = require("express-validator");
 const { validationResult } = require("express-validator");
-const StudentvalidationChain = require("../routes/validationChain");
+const { StudentvalidationChain } = require("../routes/validationChain");
 const { studentauthMiddleware } = require("./authentication");
+const verifyToken = require("../routes/jwtAuth");
 
 //Handles all the errors that came back from validation chain and displays them on the screen
+
 const errorMiddleware = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    const errormessages = errors.array().map(err => err.msg);
-    res.status(400).json({ errors: errormessages });
+    return res.status(422).json({ errors: errors.array() });
   } else {
     next();
   }
@@ -30,7 +31,7 @@ router.post("/studentSignup", studentController.studentSignup);
 // 3. Register for a course **** WIP**** check with brains
 router.post(
   "/registerforclass/:name",
-  // StudentvalidationChain,
+  StudentvalidationChain,
   errorMiddleware,
   studentauthMiddleware,
   studentController.registerforclass
@@ -42,6 +43,8 @@ router.get("/searchallcourses", studentController.searchallcourses);
 // working but needs improvement middleware is breaking
 router.put(
   "/updatestudent",
+  StudentvalidationChain,
+  errorMiddleware,
   studentauthMiddleware,
   studentController.updatestudent
 );
@@ -53,20 +56,28 @@ router.get("/searchprof/:id", studentController.searchprof);
 
 //play route with jwt
 
-router.post("/api/post", (req, res) => {
-  res.json({
-    message: "Post Created"
+router.post("/api/post", verifyToken, (req, res) => {
+  jwt.verify(req.token, "secretkey", (err, authData) => {
+    if (err) {
+      res.sendStatus(403);
+    } else {
+      res.json({
+        message: "Post Created",
+        authData
+      });
+    }
   });
 });
-router.post("/api/login", (req, res) => {
+// How do I bring user in?
+router.post("/api/login", studentauthMiddleware, (req, res) => {
   //mock user
   const user = {
     id: 1,
     username: "ron",
     email: "ron@test.com"
   };
-  jwt.sign({ user: user }, "secretkey", (err, token) => {
-    res.json({ token: token });
+  jwt.sign({ user }, "secretkey", { expiresIn: "2hrs" }, (err, token) => {
+    res.json({ token });
   });
 });
 router.get("/api", (req, res) => {
@@ -74,4 +85,5 @@ router.get("/api", (req, res) => {
     message: "welcome to API"
   });
 });
+
 module.exports = router;

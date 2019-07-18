@@ -27,7 +27,6 @@ const profauthorizationMiddleware = async (req, res, next) => {
     //if user email exists proceed
     if (user) {
       console.log(user);
-      res.sendStatus(200);
 
       //compare input password to stored password
       const savedpasword = user.dataValues.password;
@@ -40,6 +39,8 @@ const profauthorizationMiddleware = async (req, res, next) => {
       //if username and password match proceed to next
       if (match) {
         // res.sendStatus(200);
+        console.log(match);
+
         next();
       } else {
         res.sendStatus(404);
@@ -55,7 +56,6 @@ const profauthorizationMiddleware = async (req, res, next) => {
     res.sendStatus(404);
   }
 };
-
 const studentauthMiddleware = async (req, res, next) => {
   //grabs the user authentication details from client/postman
   const usercredentials = basicAuth(req);
@@ -79,9 +79,6 @@ const studentauthMiddleware = async (req, res, next) => {
     }
     //if user email exists proceed
     if (user) {
-      console.log(user);
-      res.sendStatus(200);
-
       //compare input password to stored password
       const savedpasword = user.dataValues.password;
       let match;
@@ -90,6 +87,7 @@ const studentauthMiddleware = async (req, res, next) => {
       } catch (error) {
         res.sendStatus(500);
       }
+      console.log("**email");
       //if username and password match proceed to next
       if (match) {
         // res.sendStatus(200);
@@ -105,10 +103,9 @@ const studentauthMiddleware = async (req, res, next) => {
     //if name and password are empty
     const message = "Both Username and password are required";
     // res.sendStatus(404).json({ message });
-    res.sendStatus(404);
+    res.sendStatus(403);
   }
 };
-
 module.exports = {
   profauthorizationMiddleware,
   studentauthMiddleware

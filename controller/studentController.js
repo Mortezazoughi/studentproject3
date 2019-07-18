@@ -1,7 +1,6 @@
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const db = require("../models");
-// const validationChain = require("../routes/validationChain");
 const studentController = {
   studentSignup: async (req, res) => {
     // console.log(req.body);
@@ -44,7 +43,6 @@ const studentController = {
           });
           res.sendStatus(200).json({ message: results });
         } catch (error) {
-        
           res.sendStatus(403).json({
             error: "forbidden",
             message: "Your request was not processed"
@@ -52,23 +50,22 @@ const studentController = {
         }
       } else {
         console.log("person Already exists");
-        res.sendStatus(403)
+        res.sendStatus(403);
       }
     } else {
       console.log("passwords dont match");
       res.sendStatus(403);
     }
   },
-
   updatestudent: async (req, res) => {
     const { email } = req.body;
-    const student = await db.Student.count({
+    const student = await db.Student.findOne({
       where: {
         email: email
       }
     });
 
-    if (student == 1) {
+    if (student) {
       let result;
       try {
         result = await db.Student.update(req.body, {
@@ -76,10 +73,10 @@ const studentController = {
             email: req.body.email
           }
         });
-        res.send(result);
+        res.json(result);
       } catch (error) {
         console.log(error);
-        res.send(error);
+        res.json(error);
       }
     }
   },
