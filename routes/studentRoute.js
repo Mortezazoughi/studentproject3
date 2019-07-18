@@ -1,14 +1,16 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../models");
-const { validationResult } = require("express-validator");
+const jwt = require("jsonwebtoken");
+
 const studentController = require("../controller/studentController");
 const expressValidator = require("express-validator");
-const validationChain = require("../routes/validationChain");
+const { validationResult } = require("express-validator");
+const StudentvalidationChain = require("../routes/validationChain");
 const { studentauthMiddleware } = require("./authentication");
 
-//Handles all the errors that came back from valiaton chain and displays them on the screen
-const errrorMiddleware = (req, res, next) => {
+//Handles all the errors that came back from validation chain and displays them on the screen
+const errorMiddleware = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
     const errormessages = errors.array().map(err => err.msg);
@@ -28,6 +30,8 @@ router.post("/studentSignup", studentController.studentSignup);
 // 3. Register for a course **** WIP**** check with brains
 router.post(
   "/registerforclass/:name",
+  // StudentvalidationChain,
+  errorMiddleware,
   studentauthMiddleware,
   studentController.registerforclass
 );
@@ -47,4 +51,27 @@ router.get("/searchtitle/:name", studentController.searchtitle);
 //search for courses by professor
 router.get("/searchprof/:id", studentController.searchprof);
 
+//play route with jwt
+
+router.post("/api/post", (req, res) => {
+  res.json({
+    message: "Post Created"
+  });
+});
+router.post("/api/login", (req, res) => {
+  //mock user
+  const user = {
+    id: 1,
+    username: "ron",
+    email: "ron@test.com"
+  };
+  jwt.sign({ user: user }, "secretkey", (err, token) => {
+    res.json({ token: token });
+  });
+});
+router.get("/api", (req, res) => {
+  res.json({
+    message: "welcome to API"
+  });
+});
 module.exports = router;

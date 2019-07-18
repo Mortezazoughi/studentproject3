@@ -4,6 +4,7 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
+const StudentvalidationChain = require("../routes/validationChain");
 
 //check if the user exists in the database before performing said actions
 const { profauthorizationMiddleware } = require("./authentication");
@@ -40,7 +41,6 @@ router.put("/updateprofprofile", professorController.updateprofprofile);
 // ******View all student records **** WIP select all students in a course by a prof
 router.get(
   "/allstudentsregistered/:id/:sid",
-
   profauthorizationMiddleware,
   professorController.allstudentsregistered
 );

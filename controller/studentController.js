@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const db = require("../models");
-const validationChain = require("../routes/validationChain");
+// const validationChain = require("../routes/validationChain");
 const studentController = {
   studentSignup: async (req, res) => {
     // console.log(req.body);
@@ -42,18 +42,17 @@ const studentController = {
             password: hashedpassword,
             confirmpassword: hashedconfirmpassword
           });
-          res.json(result);
+          res.sendStatus(200).json({ message: results });
         } catch (error) {
-          console.log("Somthing is wrong");
-          console.log(error);
-
-          res
-            .sendStatus(403)
-            .json({ error: "bad request", message: "please blah" });
+        
+          res.sendStatus(403).json({
+            error: "forbidden",
+            message: "Your request was not processed"
+          });
         }
       } else {
         console.log("person Already exists");
-        res.sendStatus(403);
+        res.sendStatus(403)
       }
     } else {
       console.log("passwords dont match");

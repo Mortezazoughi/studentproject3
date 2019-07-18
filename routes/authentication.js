@@ -4,90 +4,107 @@ const bcrypt = require("bcryptjs");
 const db = require("../models");
 
 const profauthorizationMiddleware = async (req, res, next) => {
-  let user;
+  //grabs the user authentication details from client/postman
   const usercredentials = basicAuth(req);
-  console.log(usercredentials);
+  const { name, pass } = usercredentials;
+  const enteredpassword = pass;
+  //checks to ensure that name and password fields are not empty
+  if (name && enteredpassword) {
+    console.log(usercredentials);
 
-  if (usercredentials) {
-    // check db to confirm that the email exists
-    user = await db.Professor.findAll({
-      where: {
-        email: usercredentials.name
-      }
-    });
-
+    //compare user entered password vs db password
+    let user;
+    try {
+      user = await db.Professor.findOne({
+        where: {
+          email: name
+        }
+      });
+    } catch (error) {
+      //if server error
+      res.sendStatus(500);
+    }
+    //if user email exists proceed
     if (user) {
+      console.log(user);
+      res.sendStatus(200);
+
+      //compare input password to stored password
+      const savedpasword = user.dataValues.password;
       let match;
       try {
-        match = await bcrypt.compareSync(
-          usercredentials.pass,
-          user[0].dataValues.password
-        );
-        console.log(match);
-      } catch (err) {
-        console.log("error with match", err);
+        match = await bcrypt.compareSync(enteredpassword, savedpasword);
+      } catch (error) {
+        res.sendStatus(500);
       }
-      console.log("the match is", match);
-
+      //if username and password match proceed to next
       if (match) {
-        console.log("after Sucessful Match");
-
+        // res.sendStatus(200);
         next();
       } else {
-        console.log("error after match");
-
-        // const message = `Invalid password for user ${user.email}`;
-        res.sendStatus(401);
+        res.sendStatus(404);
       }
     } else {
-      console.log("***USER DOES NOT EXIST*****");
+      //if user does not exist
       res.sendStatus(404);
     }
   } else {
-    console.log("****EMAIL DOES NOT EXIST");
+    //if name and password are empty
+    const message = "Both Username and password are required";
+    // res.sendStatus(404).json({ message });
     res.sendStatus(404);
   }
 };
-const studentauthMiddleware = async (req, res, next) => {
-  const usercredentials = basicAuth(req);
-  console.log(usercredentials);
 
-  if (usercredentials) {
-    // check db to confirm that the email exists
-    let stud = await db.Student.findOne({
-      where: {
-        email: usercredentials.name
-      }
-    });
-    if (stud) {
+const studentauthMiddleware = async (req, res, next) => {
+  //grabs the user authentication details from client/postman
+  const usercredentials = basicAuth(req);
+  const { name, pass } = usercredentials;
+  const enteredpassword = pass;
+  //checks to ensure that name and password fields are not empty
+  if (name && enteredpassword) {
+    console.log(usercredentials);
+
+    //compare user entered password vs db password
+    let user;
+    try {
+      user = await db.Student.findOne({
+        where: {
+          email: name
+        }
+      });
+    } catch (error) {
+      //if server error
+      res.sendStatus(500);
+    }
+    //if user email exists proceed
+    if (user) {
+      console.log(user);
+      res.sendStatus(200);
+
+      //compare input password to stored password
+      const savedpasword = user.dataValues.password;
       let match;
       try {
-        match = bcrypt.compareSync(
-          usercredentials.pass,
-          stud.dataValues.password
-        );
-        console.log(match);
-      } catch (err) {
-        console.log("error with match", err);
+        match = await bcrypt.compareSync(enteredpassword, savedpasword);
+      } catch (error) {
+        res.sendStatus(500);
       }
-      console.log("the match is", match);
-
+      //if username and password match proceed to next
       if (match) {
-        console.log("after Sucessful Match");
-
+        // res.sendStatus(200);
         next();
       } else {
-        console.log("error after match");
-
-        // const message = `Invalid password for user ${user.email}`;
-        res.sendStatus(401);
+        res.sendStatus(404);
       }
     } else {
-      console.log("***USER DOES NOT EXIST*****");
+      //if user does not exist
       res.sendStatus(404);
     }
   } else {
-    console.log("****EMAIL DOES NOT EXIST");
+    //if name and password are empty
+    const message = "Both Username and password are required";
+    // res.sendStatus(404).json({ message });
     res.sendStatus(404);
   }
 };

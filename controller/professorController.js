@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const db = require("../models");
-const validationChain = require("../routes/validationChain");
+const StudentvalidationChain = require("../routes/validationChain");
 
 const professorController = {
   //new professor signup

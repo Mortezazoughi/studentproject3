@@ -1,13 +1,18 @@
 const { check } = require("express-validator");
-const User = require("../models");
-validationChain = [
+const { Student, Professor } = require("../models");
+StudentvalidationChain = [
   check("firstName")
     .not()
     .isEmpty()
     .withMessage("First name cannot be blank")
     .isLength({ min: 2 })
     .withMessage("First name must be atleast two Charaters long"),
-
+  check("lastName")
+    .not()
+    .isEmpty()
+    .withMessage("First name cannot be blank")
+    .isLength({ min: 2 })
+    .withMessage("First name must be atleast two Charaters long"),
   check("email")
     .not()
     .isEmpty()
@@ -15,17 +20,17 @@ validationChain = [
     .isEmail()
     .withMessage("Email format is incorrect"),
 
-  check("phone")
-  // .not()
-  // .isEmpty()
-  // .withMessage("phone number cannot be blank")
-  // .isInt()
-  // .withMessage("phone number must be integers between 0-9")
+  check("phoneNumber")
+    .not()
+    .isEmpty()
+    .withMessage("phone number cannot be blank")
+    .isInt()
+    .withMessage("phone number must be integers between 0-9"),
 
-  //   check("comparepassword")
-  //   .custom((value,{req})=>{
-  //       if(value !== )
-  //   })
+  check("campus")
+    .not()
+    .isEmpty()
+    .withMessage("Campus cannot be blank please select a location")
 ];
 
-module.exports = validationChain;
+module.exports = { StudentvalidationChain };
