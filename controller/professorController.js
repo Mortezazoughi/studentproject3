@@ -1,7 +1,7 @@
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const db = require("../models");
-const StudentvalidationChain = require("../routes/validationChain");
+const professorValidationChain = require("../routes/validationChain");
 
 const professorController = {
   //new professor signup
@@ -60,9 +60,9 @@ const professorController = {
       res.sendStatus(403);
     }
   },
- 
+
   //Create new course
-  createcourse:  async (req, res) => {
+  createcourse: async (req, res) => {
     const { courseName } = req.body;
     //check if course already exists
     const coursecheck = await db.Course.count({

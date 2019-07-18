@@ -11,7 +11,7 @@ const { studentauthMiddleware } = require("./authentication");
 const verifyToken = require("../routes/jwtAuth");
 
 //Handles all the errors that came back from validation chain and displays them on the screen
-
+//wrapped the errors in a middleware function
 const errorMiddleware = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -23,7 +23,12 @@ const errorMiddleware = (req, res, next) => {
 
 // things that a student can do
 // 1. Signup
-router.post("/studentSignup", studentController.studentSignup);
+router.post(
+  "/studentSignup",
+  StudentvalidationChain,
+  errorMiddleware,
+  studentController.studentSignup
+);
 
 // student controller holds the actual routes as methods
 

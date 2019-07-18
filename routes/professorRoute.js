@@ -4,13 +4,27 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const saltRounds = 10;
-const StudentvalidationChain = require("../routes/validationChain");
+const { validationResult } = require("express-validator");
+const { professorValidationChain } = require("../routes/validationChain");
+
+//handle validation chain errors
+errorsMiddleware = (req, res, next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(422).json({ errors: errors.array() });
+  } else [next()];
+};
 
 //check if the user exists in the database before performing said actions
 const { profauthorizationMiddleware } = require("./authentication");
 
 //creates the prof.
-router.post("/profsignup", professorController.profsignup);
+router.post(
+  "/profsignup",
+  professorValidationChain,
+  errorsMiddleware,
+  professorController.profsignup
+);
 
 // Sign in
 // ****  SIGNIN is handled by authorization middleware
@@ -18,12 +32,16 @@ router.post("/profsignup", professorController.profsignup);
 // create a new course Should not create duplicates ...
 router.post(
   "/createcourse",
+  professorValidationChain,
+  errorsMiddleware,
   profauthorizationMiddleware,
   professorController.createcourse
 );
 // update an existing course
 router.put(
   "/updatecourse/:id",
+  errorsMiddleware,
+  professorValidationChain,
   profauthorizationMiddleware,
   professorController.updatecourse
 );
@@ -37,7 +55,12 @@ router.get(
   professorController.getmycourse
 );
 // Edit their own profile
-router.put("/updateprofprofile", professorController.updateprofprofile);
+router.put(
+  "/updateprofprofile",
+  errorsMiddleware,
+  professorValidationChain,
+  professorController.updateprofprofile
+);
 // ******View all student records **** WIP select all students in a course by a prof
 router.get(
   "/allstudentsregistered/:id/:sid",
