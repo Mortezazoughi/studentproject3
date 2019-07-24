@@ -32,33 +32,33 @@ router.post(
 // create a new course Should not create duplicates ...
 router.post(
   "/createcourse",
-  professorValidationChain,
-  errorsMiddleware,
-  profauthorizationMiddleware,
+  // professorValidationChain,
+  // errorsMiddleware,
+  // profauthorizationMiddleware,
   professorController.createcourse
 );
 // update an existing course
 router.put(
-  "/updatecourse/:id",
-  errorsMiddleware,
-  professorValidationChain,
-  profauthorizationMiddleware,
+  "/updatecourse/:name",
+  // errorsMiddleware,
+  // professorValidationChain,
+  // profauthorizationMiddleware,
   professorController.updatecourse
 );
 
 // delete an existing course
-router.delete("/deleteroute/:id", professorController.deleteroute);
+router.delete("/deleteroute/:name", professorController.deleteroute);
 //Search for all courses taught by prof :
 router.get(
   "/getmycourse/:id",
-  profauthorizationMiddleware,
+  // profauthorizationMiddleware,
   professorController.getmycourse
 );
 // Edit their own profile
 router.put(
   "/updateprofprofile",
-  errorsMiddleware,
-  professorValidationChain,
+  //  professorValidationChain,
+  //   errorsMiddleware,
   professorController.updateprofprofile
 );
 // ******View all student records **** WIP select all students in a course by a prof

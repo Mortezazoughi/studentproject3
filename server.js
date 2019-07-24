@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const userRoute = require("./routes/studentRoute");
 const profRoute = require("./routes/professorRoute");
 const db = require("./models");
-
+var cors = require("cors");
 
 // // share static files
 // app.use("/static", express.static(path.join(__dirname, "public")));
@@ -18,6 +18,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(cors());
 
 // setup db connection and express router connection
 db.sequelize
@@ -29,6 +30,7 @@ db.sequelize
   .catch(err => {
     console.error("Unable to connect to the database:", err);
   });
+
 // import routes
 app.use(userRoute, profRoute);
 

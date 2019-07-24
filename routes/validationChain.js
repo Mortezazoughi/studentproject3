@@ -55,6 +55,20 @@ professorValidationChain = [
     .isInt()
     .withMessage("phone number must be integers between 0-9"),
 
+  check("password")
+    .not()
+    .isEmpty()
+    .withMessage("Password cannot be blank")
+    .isLength({ min: 6 })
+    .withMessage("Password must be atleast six Charaters long"),
+
+  check("confirmpassword")
+    .not()
+    .isEmpty()
+    .withMessage("Password cannot be blank")
+    .isLength({ min: 6 })
+    .withMessage("Password must be atleast six Charaters long"),
+
   check("email")
     .not()
     .isEmpty()

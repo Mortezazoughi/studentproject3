@@ -33,12 +33,21 @@ router.post(
 // student controller holds the actual routes as methods
 
 // 2. SignIn
+router.post(
+  "/signIn",
+  // StudentvalidationChain,
+  // errorMiddleware,
+  studentauthMiddleware,
+  studentController.signIn
+);
+
 // 3. Register for a course **** WIP**** check with brains
 router.post(
   "/registerforclass/:name",
-  StudentvalidationChain,
-  errorMiddleware,
-  studentauthMiddleware,
+  // studentauthMiddleware,
+  // verifyToken,
+  // StudentvalidationChain,
+  // errorMiddleware,
   studentController.registerforclass
 );
 // 4. Search for all courses
@@ -48,9 +57,10 @@ router.get("/searchallcourses", studentController.searchallcourses);
 // working but needs improvement middleware is breaking
 router.put(
   "/updatestudent",
-  StudentvalidationChain,
-  errorMiddleware,
-  studentauthMiddleware,
+
+  verifyToken,
+  // StudentvalidationChain,
+  // errorMiddleware,
   studentController.updatestudent
 );
 // search for courses by name
@@ -61,20 +71,9 @@ router.get("/searchprof/:id", studentController.searchprof);
 
 //play route with jwt
 
-router.post("/api/post", verifyToken, (req, res) => {
-  jwt.verify(req.token, "secretkey", (err, authData) => {
-    if (err) {
-      res.sendStatus(403);
-    } else {
-      res.json({
-        message: "Post Created",
-        authData
-      });
-    }
-  });
-});
+router.post("/api/post", verifyToken, (req, res) => {});
 // How do I bring user in?
-router.post("/api/login", studentauthMiddleware, (req, res) => {
+router.post("/api/login", (req, res) => {
   //mock user
   const user = {
     id: 1,
@@ -85,10 +84,4 @@ router.post("/api/login", studentauthMiddleware, (req, res) => {
     res.json({ token });
   });
 });
-router.get("/api", (req, res) => {
-  res.json({
-    message: "welcome to API"
-  });
-});
-
 module.exports = router;

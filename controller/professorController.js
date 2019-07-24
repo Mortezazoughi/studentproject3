@@ -17,8 +17,9 @@ const professorController = {
     } = req.body;
 
     // compare input passwords
+
     if (password === confirmpassword) {
-      checkforProf = await db.Professor.count({
+      checkforProf = await db.Professor.findOne({
         where: {
           email: email
         }
@@ -26,7 +27,7 @@ const professorController = {
 
       //check if professor already exists in the database
       //If does not exist go ahead and create a new prof
-      if (checkforProf === 0) {
+      if (!checkforProf) {
         let results;
         //hash password and confirmpassword before storing to db
         const hashedpassword = bcrypt.hashSync(password, saltRounds);
@@ -36,28 +37,25 @@ const professorController = {
         );
         try {
           results = await db.Professor.create({
-            firstName: firstName,
-            lastName: lastName,
-            phoneNumber: phoneNumber,
-            email: email,
+            firstName,
+            lastName,
+            phoneNumber,
+            email,
             password: hashedpassword,
             confirmpassword: hashedconfirmpassword,
-            campus: campus
+            campus
           });
           res.send(results);
         } catch (error) {
-          console.log("Somthing is wrong");
-          console.log(error);
-
-          res.sendStatus(403);
+          res.status(500).json({ message: "Something went wrong on our side" });
         }
       } else {
         console.log("person Already exists");
-        res.sendStatus(403);
+        res.status(403).json({ message: "Person Already exists" });
       }
     } else {
       console.log("passwords dont match");
-      res.sendStatus(403);
+      res.status(403).json({ message: "Passwords dont match" });
     }
   },
 
@@ -75,51 +73,67 @@ const professorController = {
       let results;
       try {
         results = await db.Course.create(req.body);
-        console.log("***INSIDE CREATE COURSE", results);
-        res.sendStatus(200);
+        //******ADD LOGIC TO REDIRECT TO THE PAGE */
+        res.status(201).json({ message: "Course created successfully" });
         return;
       } catch (error) {
-        res.sendStatus(500);
+        res
+          .status(500)
+          .json({ message: "Something went wrong with the request" });
         return;
       }
     } else {
       //if course exists
-      res.sendStatus(403);
+      res.status(403).json({ message: "Course already exists." });
     }
   },
+  // Not getting my couses
   updatecourse: async (req, res) => {
     const { courseName } = req.body;
     //check if course already exists
-    const coursecheck = await db.Course.count({
+
+    const coursecheck = await db.Course.findOne({
       where: {
-        courseName
+        courseName: req.params.name
       }
     });
     //If course does not exist
-    if (coursecheck === 0) {
+    if (coursecheck) {
       let results;
       try {
         results = await db.Course.update(req.body, {
           where: {
-            id: req.params.id
+            courseName: req.params.name
           }
         });
-        res.send(results);
+        res.status(201).json({ message: "Course succesfully updated" });
       } catch (error) {
-        res.sendStatus(404).redirect("/newprof");
+        res.status(500).json({ message: "Something went wrong " });
       }
     } else {
       //if course exists
-      console.log("*****DOES NOT");
-      res.sendStatus(403);
+      res.status(403).json({ message: "Course does not exist." });
+      return;
     }
   },
-  getmycourse: (req, res) => {
-    db.Professor.findAll({
-      include: [{ model: db.Course, where: { id: req.params.id } }]
-    })
-      .then(ProfCourse => res.send(ProfCourse))
-      .catch(error => console.log(error));
+  //get all my courses as a prof
+  getmycourse: async (req, res) => {
+    let results;
+
+    try {
+      results = await db.Course.findAll({
+        // include: [
+        //   { model: db.Course,
+        //     where:
+        //     { id: req.params.id }
+        //   }]
+
+        where: { prof_id: req.params.id }
+      });
+      res.send(results);
+    } catch (error) {
+      res.status(500).json({ message: "Something went wrong" });
+    }
   },
   updateprofprofile: async (req, res) => {
     let results;
@@ -131,10 +145,10 @@ const professorController = {
       });
       res.send(results);
     } catch (error) {
-      res.redirect("/");
+      res.status(500).json({ message: "Something went wrong" });
     }
   },
-  allstudentsregistered: async (req, res, next) => {
+  allstudentsregistered: async (req, res) => {
     let results;
     try {
       results = await db.StudentCourse.findAll({
@@ -145,18 +159,19 @@ const professorController = {
       res.send(error);
     }
   },
+  // *** COMEBACK TO THIS***
   deleteroute: async (req, res) => {
     let results;
     try {
-      results = db.Course.destroy({
+      results = await db.Course.destroy({
         where: {
-          id: req.params.id
+          courseName: req.params.name
         }
       });
       console.log("record deleted");
-      res.sendStatus(200);
+      res.status(200).json({ message: "course deleted" });
     } catch (error) {
-      res.sendStatus(500);
+      res.status(500);
     }
   }
 };
