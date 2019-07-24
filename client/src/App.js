@@ -3,8 +3,8 @@ import Navbar from "../src/components/Navbar/Navbar";
 import CourseRegister from "../src/components/CourseRegister/CourseRegister";
 import ProfSignin from "../src/components/ProfSignin/ProfSignin";
 import ProfSignup from "./components/ProfSignup/ProfSignup";
-import StudentSignin from "./components/StudentSignin/StudentSignin";
-import StudentSignup from "./components/StudentSignup/StudenSignup";
+import StudentSignin from "./components/StudentSignin";
+import StudentSignup from "./components/StudentSignup";
 import Grid from "@material-ui/core/Grid";
 
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";

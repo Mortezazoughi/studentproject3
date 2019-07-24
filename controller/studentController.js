@@ -4,7 +4,6 @@ const db = require("../models");
 const jwt = require("jsonwebtoken");
 const studentController = {
   studentSignup: async (req, res) => {
-    // console.log(req.body);
     const {
       firstName,
       lastName,
@@ -12,50 +11,49 @@ const studentController = {
       email,
       campus,
       password,
-      confirmpassword
+      confirmPassword
     } = req.body;
     // compare input passwords
-    if (password === confirmpassword) {
-      checkforStudent = await db.Student.count({
-        where: {
-          email: email
-        }
-      });
-      //check if professor already exists in the database
-      //If does not exist go ahead and create a new prof
-      if (checkforStudent === 0) {
-        let results;
-        //hash password and confirmpassword before storing to db
-        const hashedpassword = bcrypt.hashSync(password, saltRounds);
-        const hashedconfirmpassword = bcrypt.hashSync(
-          confirmpassword,
-          saltRounds
-        );
-        //writing to the student table
-        try {
-          result = await db.Student.create({
-            firstName,
-            lastName,
-            phoneNumber,
-            email,
-            campus,
-            password: hashedpassword,
-            confirmpassword: hashedconfirmpassword
-          });
-          res.send(result);
-        } catch (error) {
-          res.status(403).json({
-            error: "forbidden",
-            message: "Your request was not processed"
-          });
-          return;
-        }
-      } else {
-        res.status(403).json({ message: "person Already exists" });
-        return;
-      }
-    } else {
+    if (password != confirmPassword) {
+      console.log("dont match");
       res.status(403).json({ message: "passwords dont match" });
+      return;
+    }
+    //check if student already exists in the database
+    //If does not exist go ahead and create a new prof
+    checkforStudent = await db.Student.findOne({
+      where: {
+        email: email
+      }
+    });
+    if (checkforStudent) {
+      res.status(403).json({ message: "person Already exists" });
+      return;
+    }
+    //hash password and confirmpassword before storing to db
+    const hashedpassword = bcrypt.hashSync(password, saltRounds);
+    const hashedconfirmPassword = bcrypt.hashSync(confirmPassword, saltRounds);
+    //writing to the student table
+    let result;
+    try {
+      result = await db.Student.create({
+        firstName,
+        lastName,
+        phoneNumber,
+        email,
+        campus,
+        password: hashedpassword,
+        confirmPassword: hashedconfirmPassword
+      });
+      res.status(200).json({
+        message: "Student has been created",
+        message: result
+      });
+    } catch (error) {
+      res.status(403).json({
+        error: "forbidden",
+        message: "Your request was not processed"
+      });
       return;
     }
   },
@@ -78,20 +76,22 @@ const studentController = {
       }
     });
 
-    if (student) {
-      let result;
-      try {
-        result = await db.Student.update(req.body, {
-          where: {
-            email: req.body.email
-          }
-        });
-        res.json(result);
-      } catch (error) {
-        console.log(error);
-        res.status(404).json({ message: "User not found" });
-        return;
-      }
+    if (!student) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+    let result;
+    try {
+      result = await db.Student.update(req.body, {
+        where: {
+          email: req.body.email
+        }
+      });
+      res.status(200).json(result);
+    } catch (error) {
+      console.log(error);
+      res.status(500).json({ message: error });
+      return;
     }
   },
   searchallcourses: async (req, res) => {

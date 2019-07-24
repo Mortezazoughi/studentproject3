@@ -4,7 +4,7 @@ const db = require("../models");
 const jwt = require("jsonwebtoken");
 
 const studentController = require("../controller/studentController");
-// const expressValidator = require("express-validator");
+const expressValidator = require("express-validator");
 const { validationResult } = require("express-validator");
 const { StudentvalidationChain } = require("../routes/validationChain");
 const { studentauthMiddleware } = require("./authentication");
@@ -69,19 +69,4 @@ router.get("/searchtitle/:name", studentController.searchtitle);
 //search for courses by professor
 router.get("/searchprof/:id", studentController.searchprof);
 
-//play route with jwt
-
-router.post("/api/post", verifyToken, (req, res) => {});
-// How do I bring user in?
-router.post("/api/login", (req, res) => {
-  //mock user
-  const user = {
-    id: 1,
-    username: "ron",
-    email: "ron@test.com"
-  };
-  jwt.sign({ user }, "secretkey", { expiresIn: "2hrs" }, (err, token) => {
-    res.json({ token });
-  });
-});
 module.exports = router;

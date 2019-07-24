@@ -1,6 +1,23 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
-import { log } from "util";
+
+// function StudentSignin() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+
+//   React.useEffect(() => {
+//     const fetchTodos = async () => {
+//       await axios.get('todos')
+//     }
+//   });
+//   return (
+//     <form>
+//       <input value={email} onChange={event => setEmail(event.target.value)} />
+//       <input value={password} onChange={event => setPassword(event.target.value)} />
+//     </form>
+//   );
+// }
+
 class StudentSignin extends Component {
   state = {
     email: "",

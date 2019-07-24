@@ -10,9 +10,9 @@ StudentvalidationChain = [
   check("lastName")
     .not()
     .isEmpty()
-    .withMessage("First name cannot be blank")
+    .withMessage("Last name cannot be blank")
     .isLength({ min: 2 })
-    .withMessage("First name must be atleast two Charaters long"),
+    .withMessage("Last name must be atleast two Charaters long"),
   check("email")
     .not()
     .isEmpty()
@@ -23,9 +23,21 @@ StudentvalidationChain = [
   check("phoneNumber")
     .not()
     .isEmpty()
-    .withMessage("phone number cannot be blank")
+    .withMessage("***phone number cannot be blank")
     .isInt()
-    .withMessage("phone number must be integers between 0-9"),
+    .withMessage("***phone number must be integers between 0-9"),
+  check("password")
+    .not()
+    .isEmpty()
+    .withMessage("password cannot be blank")
+    .isLength({ min: 6 })
+    .withMessage("Password must have atleast 6 characters"),
+  check("confirmPassword")
+    .not()
+    .isEmpty()
+    .withMessage("Confirm Password cannot be blank")
+    .isLength({ min: 6 })
+    .withMessage("Confirm Password must have atleast 6 characters"),
 
   check("campus")
     .not()
@@ -105,4 +117,7 @@ CourseValidationChain = [
     .withMessage("Course Pre requsites cannot be blank")
   // chain('prof_id')
 ];
+
+// SignInValidation
+
 module.exports = { StudentvalidationChain, professorValidationChain };
