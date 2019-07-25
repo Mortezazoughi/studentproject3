@@ -17,8 +17,6 @@ class SearchProf extends Component {
     API.searchallcourses()
       .then(res => {
         console.log(res.data);
-        let whatever = res.data;
-        console.log(whatever[1].courseName);
         this.setState({ AllCourses: res.data });
       })
       .catch(err => console.log(err));
@@ -26,19 +24,13 @@ class SearchProf extends Component {
   render() {
     return (
       <div>
-        {/* <label>Search for All Courses : </label>
-        <input
-          value={this.state.searchAllCourses}
-          name="searchAllCourses"
-          placeholder=" Search  all courses"
-          onChange={this.handleChange}
-          type="text"
-          list="courses"
-        /> */}
-        {this.state.AllCourses.map(eachcourse => (
-          <div> {eachcourse.CourseName}</div>
-        ))}
         <button onClick={this.searchallcourses}>Search For All Courses</button>
+        {this.state.AllCourses.map(eachcourse => (
+          <div>
+            <p>{eachcourse.courseName}</p>
+          </div>
+        ))}
+        {/* <AlltheStuff /> */}
       </div>
     );
   }

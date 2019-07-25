@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 class StudentProfile extends Component {
   state = {
@@ -13,6 +13,7 @@ class StudentProfile extends Component {
         this.setState({
           student: data.body
         });
+        console.log(data.body);
       })
       .catch(err => console.log(err));
   }
@@ -20,11 +21,12 @@ class StudentProfile extends Component {
   render() {
     return (
       <div>
-        {/* {this.state.student.map(studentinfo=>(
-        //  firstName: {studentinfo.fname}
-
-
-      ))} */}
+        {this.state.student.map(details => (
+          <div>
+            <p>Blah</p>
+            <p>{details.firstName} </p>
+          </div>
+        ))}
         <p>test</p>
       </div>
     );

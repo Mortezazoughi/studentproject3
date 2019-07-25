@@ -7,8 +7,7 @@ import StudentSignin from "./components/StudentSignin";
 import StudentSignup from "./components/StudentSignup";
 import SearchAllCourses from "./components/SearchAllCourses";
 import Grid from "@material-ui/core/Grid";
-import Profile from "../src/components/SearchAllCourses/play";
-
+import StudentProfile from "./components/StudentProfile";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
@@ -39,6 +38,9 @@ function App() {
             <li>
               <Link to="/SearchAllCourses"> Search All Courses</Link>
             </li>
+            <li>
+              <Link to="/SearchAllCourses"> Student Profile</Link>
+            </li>
             <hr />
             {/* <Route exact path="/" component={Home} /> */}
             <Route path="/profsignup" component={ProfSignup} />
@@ -46,7 +48,7 @@ function App() {
             <Route path="/studentsignin" component={StudentSignin} />
             <Route path="/studentsignup" component={StudentSignup} />
             <Route path="/courseregister" component={CourseRegister} />
-            <Route path="/SearchAllCourses" component={SearchAllCourses} />
+            <Route path="/StudentProfile" component={StudentProfile} />
             {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />
@@ -54,7 +56,6 @@ function App() {
         <StudentSignup /> */}
           </ul>
         </div>
-   
       </Router>
       <Grid container spacing={1} />
     </div>
