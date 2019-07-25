@@ -19,7 +19,11 @@ verifyToken = (req, res, next) => {
     jwt.verify(req.token, "secretkey", (err, authData) => {
       if (err) {
         console.log("inside JWT", err);
-        res.sendStatus(500);
+        res
+          .status(500)
+          .json({
+            message: "Your token is invalid, please sign In once again"
+          });
         return;
       }
       next();
