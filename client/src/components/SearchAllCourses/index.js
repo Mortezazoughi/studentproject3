@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 
-class SearchProf extends Component {
+class SearchAllCourses extends Component {
   state = {
     AllCourses: [],
     searchAllCourses: ""
@@ -27,13 +27,17 @@ class SearchProf extends Component {
         <button onClick={this.searchallcourses}>Search For All Courses</button>
         {this.state.AllCourses.map(eachcourse => (
           <div>
-            <p>{eachcourse.courseName}</p>
+            <p>
+              {eachcourse.courseName}
+              {eachcourse.level}
+            </p>
           </div>
         ))}
         {/* <AlltheStuff /> */}
+        <p>Here</p>
       </div>
     );
   }
 }
 
-export default SearchProf;
+export default SearchAllCourses;

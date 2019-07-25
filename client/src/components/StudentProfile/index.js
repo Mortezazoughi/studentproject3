@@ -25,9 +25,10 @@ class StudentProfile extends Component {
           <div>
             <p>Blah</p>
             <p>{details.firstName} </p>
+            <p>testz</p>
           </div>
         ))}
-        <p>test</p>
+        <p>testz</p>
       </div>
     );
   }

@@ -180,6 +180,7 @@ const studentController = {
     }
   },
   searchtitle: async (req, res) => {
+    console.log(req, "REQ");
     let result;
     try {
       result = await db.Course.findAll({

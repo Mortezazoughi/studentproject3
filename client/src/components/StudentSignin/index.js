@@ -1,4 +1,5 @@
 import React, { Component, useState } from "react";
+import { Redirect } from "react-router-dom";
 import axios from "axios";
 
 // function StudentSignin() {
@@ -40,6 +41,7 @@ class StudentSignin extends Component {
     })
       .then(res => {
         console.log(res.data);
+        // <Redirect to="/StudentProfile" />
       })
       .catch(err => console.log(err));
   };
