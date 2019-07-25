@@ -1,4 +1,3 @@
-
 import React from "react";
 import Navbar from "../src/components/Navbar/Navbar";
 import CourseRegister from "../src/components/CourseRegister/CourseRegister";
@@ -8,8 +7,9 @@ import StudentSignin from "./components/StudentSignin";
 import StudentSignup from "./components/StudentSignup";
 import SearchAllCourses from "./components/SearchAllCourses";
 import Grid from "@material-ui/core/Grid";
-import Profile from "../src/components/SearchAllCourses/play";
-
+import StudentProfile from "./components/StudentProfile";
+import SearchTitle from "./components/SearchTitle";
+import CreateCourse from "./components/CreateCourse";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
@@ -40,6 +40,18 @@ function App() {
             <li>
               <Link to="/SearchAllCourses"> Search All Courses</Link>
             </li>
+            <li>
+              <Link to="/StudentProfile"> Student Profile</Link>
+            </li>
+            <li>
+              <Link to="/SearchTitle"> Search Title</Link>
+            </li>
+            <li>
+              <Link to="/CreateCourse"> Create Course</Link>
+            </li>
+            <li>
+              <Link to="/StudentProfile"> Student Profile</Link>
+            </li>
             <hr />
             {/* <Route exact path="/" component={Home} /> */}
             <Route path="/profsignup" component={ProfSignup} />
@@ -48,6 +60,9 @@ function App() {
             <Route path="/studentsignup" component={StudentSignup} />
             <Route path="/courseregister" component={CourseRegister} />
             <Route path="/SearchAllCourses" component={SearchAllCourses} />
+            <Route path="/SearchTitle" component={SearchTitle} />
+            <Route path="/CreateCourse" component={CreateCourse} />
+            <Route path="/StudentProfile" component={StudentProfile} />
             {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />
@@ -55,12 +70,10 @@ function App() {
         <StudentSignup /> */}
           </ul>
         </div>
-   
       </Router>
       <Grid container spacing={1} />
     </div>
   );
-
 }
 
 export default App;
