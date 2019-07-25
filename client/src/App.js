@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "../src/components/Navbar/Navbar";
 import CourseRegister from "../src/components/CourseRegister/CourseRegister";
@@ -60,6 +61,7 @@ function App() {
       <Grid container spacing={1} />
     </div>
   );
+
 }
 
 export default App;
