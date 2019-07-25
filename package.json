@@ -1,10 +1,12 @@
 {
+
   "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "dependencies": {
     "@material-ui/core": "^4.2.1",
+    "material-ui": "^0.20.2",  
     "basic-auth": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -20,6 +22,14 @@
     "sequelize": "^5.10.0",
     "sequelize-cli": "^5.5.0"
   },
+"repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mortezazoughi/studentproject3.git"
+  },
+"bugs": {
+    "url": "https://github.com/Mortezazoughi/studentproject3/issues"
+  },
+"homepage": "https://github.com/Mortezazoughi/studentproject3#readme",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -30,4 +40,5 @@
   "keywords": [],
   "author": "",
   "license": "ISC"
+
 }
