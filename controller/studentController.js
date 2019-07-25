@@ -52,7 +52,8 @@ const studentController = {
     } catch (error) {
       res.status(403).json({
         error: "forbidden",
-        message: "Your request was not processed"
+        message: "Your request was not processed",
+        message: error
       });
       return;
     }

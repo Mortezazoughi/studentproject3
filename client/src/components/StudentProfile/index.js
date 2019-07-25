@@ -5,29 +5,29 @@ class StudentProfile extends Component {
     student: []
   };
 
-  componentDidMount() {
-    const url = "http://localhost:8080/getStudent";
-    axios
-      .get(url)
-      .then(data => {
-        this.setState({
-          student: data.body
-        });
-        console.log(data.body);
-      })
-      .catch(err => console.log(err));
-  }
+  // componentDidMount() {
+  //   const url = "http://localhost:8080/getStudent";
+  //   axios
+  //     .get(url)
+  //     .then(data => {
+  //       this.setState({
+  //         student: data.body
+  //       });
+  //       console.log(data.body);
+  //     })
+  //     .catch(err => console.log(err));
+  // }
 
   render() {
     return (
       <div>
-        {this.state.student.map(details => (
+        {/* {this.state.student.map(details => (
           <div>
             <p>Blah</p>
             <p>{details.firstName} </p>
             <p>testz</p>
           </div>
-        ))}
+        ))} */}
         <p>testz</p>
       </div>
     );

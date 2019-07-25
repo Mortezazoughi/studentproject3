@@ -48,7 +48,6 @@ class SearchTitle extends Component {
         <div className="row">
           <div className="col">
             <div>
-              <p>Test </p>
               {this.state.result.map((resultobj, index) => (
                 <CourseDet
                   key={index}
@@ -61,7 +60,6 @@ class SearchTitle extends Component {
                   Instructor={resultobj.prof_id}
                 />
               ))}
-              <p>Here</p>
             </div>
           </div>
         </div>

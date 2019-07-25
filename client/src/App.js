@@ -9,6 +9,7 @@ import SearchAllCourses from "./components/SearchAllCourses";
 import Grid from "@material-ui/core/Grid";
 import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
+import CreateCourse from "./components/CreateCourse";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 function App() {
@@ -45,6 +46,12 @@ function App() {
             <li>
               <Link to="/SearchTitle"> Search Title</Link>
             </li>
+            <li>
+              <Link to="/CreateCourse"> Create Course</Link>
+            </li>
+            <li>
+              <Link to="/StudentProfile"> Student Profile</Link>
+            </li>
             <hr />
             {/* <Route exact path="/" component={Home} /> */}
             <Route path="/profsignup" component={ProfSignup} />
@@ -54,6 +61,8 @@ function App() {
             <Route path="/courseregister" component={CourseRegister} />
             <Route path="/SearchAllCourses" component={SearchAllCourses} />
             <Route path="/SearchTitle" component={SearchTitle} />
+            <Route path="/CreateCourse" component={CreateCourse} />
+            <Route path="/StudentProfile" component={StudentProfile} />
             {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />
