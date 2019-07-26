@@ -6,7 +6,7 @@ class StudentProfile extends Component {
   };
 
   // componentDidMount() {
-  //   const url = "http://localhost:8080/getStudent";
+  //   const url = "http://localhost:8080/getStudent:{}";
   //   axios
   //     .get(url)
   //     .then(data => {

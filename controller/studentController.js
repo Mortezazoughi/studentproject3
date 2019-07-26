@@ -66,6 +66,7 @@ const studentController = {
         return;
       }
       res.json({ token });
+
       return;
     });
   },
@@ -222,6 +223,20 @@ const studentController = {
         }
       });
       res.send(result);
+    } catch (error) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
+  },
+  studentinfo: async (req, res) => {
+    let results;
+    try {
+      results = await db.Student.findOne({
+        where: {
+          id: req.params.id
+        }
+      });
+      res.send(results);
     } catch (error) {
       res.status(404).json({ message: "User not found" });
       return;
