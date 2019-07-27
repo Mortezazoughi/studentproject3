@@ -7,23 +7,6 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 >>>>>>> master
 
-// function StudentSignin() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   React.useEffect(() => {
-//     const fetchTodos = async () => {
-//       await axios.get('todos')
-//     }
-//   });
-//   return (
-//     <form>
-//       <input value={email} onChange={event => setEmail(event.target.value)} />
-//       <input value={password} onChange={event => setPassword(event.target.value)} />
-//     </form>
-//   );
-// }
-
 class StudentSignin extends Component {
   state = {
     email: '',
@@ -45,8 +28,14 @@ class StudentSignin extends Component {
       }
     })
       .then(res => {
+<<<<<<< HEAD
         console.log(res.data);
         // <Redirect to="/StudentProfile" />
+=======
+        localStorage.setItem("token", res.data.token);
+
+        // <Redirect to="/StudentProfile" />;
+>>>>>>> b700fb429ac2537241340ec0bb7d7c3b65c6fb2a
       })
       .catch(err => console.log(err));
   };
