@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import Navbar from '../src/components/Navbar/Navbar';
 import CourseRegister from '../src/components/CourseRegister/CourseRegister';
@@ -13,6 +14,21 @@ import StudentSign from './components/StudentSign.js';
 import CourseTitles from './components/CourseRegisteration.js';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+=======
+import React from "react";
+import Navbar from "../src/components/Navbar/Navbar";
+import CourseRegister from "../src/components/CourseRegister/CourseRegister";
+import ProfSignin from "../src/components/ProfSignin/ProfSignin";
+import ProfSignup from "./components/ProfSignup/ProfSignup";
+import StudentSignin from "./components/StudentSignin";
+import StudentSignup from "./components/StudentSignup";
+import SearchAllCourses from "./components/SearchAllCourses";
+import Grid from "@material-ui/core/Grid";
+import StudentProfile from "./components/StudentProfile";
+import SearchTitle from "./components/SearchTitle";
+import CreateCourse from "./components/CreateCourse";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+>>>>>>> master
 
 function App() {
   return (
@@ -43,6 +59,18 @@ function App() {
             <li>
               <Link to="/SearchAllCourses"> Search All Courses</Link>
             </li>
+            <li>
+              <Link to="/StudentProfile"> Student Profile</Link>
+            </li>
+            <li>
+              <Link to="/SearchTitle"> Search Title</Link>
+            </li>
+            <li>
+              <Link to="/CreateCourse"> Create Course</Link>
+            </li>
+            <li>
+              <Link to="/StudentProfile"> Student Profile</Link>
+            </li>
             <hr />
             {/* <Route exact path="/" component={Home} /> */}
             <Route path="/profsignup" component={ProfSignup} />
@@ -51,6 +79,7 @@ function App() {
             <Route path="/studentsignup" component={StudentSignup} />
             <Route path="/courseregister" component={CourseRegister} />
             <Route path="/SearchAllCourses" component={SearchAllCourses} />
+<<<<<<< HEAD
             <div>
               <TestModal />
             </div>
@@ -60,6 +89,11 @@ function App() {
             <div>
               <CourseTitles />
             </div>
+=======
+            <Route path="/SearchTitle" component={SearchTitle} />
+            <Route path="/CreateCourse" component={CreateCourse} />
+            <Route path="/StudentProfile" component={StudentProfile} />
+>>>>>>> master
             {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />

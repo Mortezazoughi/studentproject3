@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import React, { Component, useState } from 'react';
 import axios from 'axios';
+=======
+import React, { Component, useState } from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
+>>>>>>> master
 
 // function StudentSignin() {
 //   const [email, setEmail] = useState("");
@@ -40,6 +46,7 @@ class StudentSignin extends Component {
     })
       .then(res => {
         console.log(res.data);
+        // <Redirect to="/StudentProfile" />
       })
       .catch(err => console.log(err));
   };

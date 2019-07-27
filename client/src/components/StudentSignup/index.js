@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom";
 // import { Json } from "sequelize/types/lib/utils";
 import axios from "axios";
 class StudentSignup extends Component {
@@ -9,11 +10,11 @@ class StudentSignup extends Component {
     email: "",
     password: "",
     confirmPassword: "",
-    campus: ""
+    campus: "",
+    toDashboard: false
   };
   handleSubmit = e => {
     e.preventDefault();
-    console.log(this.state.firstName);
     const URL = "http://localhost:8080/studentSignup";
     axios({
       method: "POST",
@@ -28,7 +29,12 @@ class StudentSignup extends Component {
         campus: this.state.campus
       }
     })
-      .then(res => console.log(res.data))
+      .then(res => {
+        this.setState({
+          status: res.status,
+          toDashboard: true
+        });
+      })
       .catch(err => {
         // res.status(500).json({ message: "Server errors".err });
         console.log(err);
@@ -41,7 +47,11 @@ class StudentSignup extends Component {
       [name]: value
     });
   };
+
   render() {
+    if (this.state.toDashboard === true) {
+      return <Redirect to="/StudentProfile" />;
+    }
     return (
       <form onSubmit={this.handleSubmit}>
         <label>First Name: </label>
