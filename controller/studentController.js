@@ -59,16 +59,20 @@ const studentController = {
     }
   },
   signIn: async (req, res) => {
-    const { user } = req.body;
-    jwt.sign({ user }, "secretkey", { expiresIn: "2hrs" }, (err, token) => {
-      if (err) {
-        res.sendStatus(500);
+    jwt.sign(
+      { userId: req.user.id },
+      "secretkey",
+      { expiresIn: "2hrs" },
+      (err, token) => {
+        if (err) {
+          res.sendStatus(500);
+          return;
+        }
+        res.json({ token });
+
         return;
       }
-      res.json({ token });
-
-      return;
-    });
+    );
   },
   updatestudent: async (req, res) => {
     const { email } = req.body;

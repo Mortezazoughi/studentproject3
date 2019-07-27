@@ -1,9 +1,10 @@
-import React, { Component } from "react";
+import React, { Component, Children } from "react";
 import { Redirect } from "react-router-dom";
 import Student from "./Student";
 import Errors from "../Errors";
 // import { Json } from "sequelize/types/lib/utils";
 import axios from "axios";
+// const StudentProfileInfo = React.createContext();
 class StudentSignup extends Component {
   state = {
     firstName: "",
@@ -16,6 +17,11 @@ class StudentSignup extends Component {
     toDashboard: false,
     errors: ""
   };
+  //   <StudentProfileInfo.Provider value= {{this.state.email}}>
+
+  //   <StudentInfo />
+  //   {Children}
+  // </StudentProfileInfo.Provider>
   handleSubmit = async e => {
     e.preventDefault();
     let results;
@@ -53,29 +59,26 @@ class StudentSignup extends Component {
       [name]: value
     });
   };
-
   render() {
     console.log("error state", this.state);
     console.log("error BLAH ", this.state.errors);
     console.log(this.state.toDashboard);
     if (this.state.toDashboard === true) {
       console.log("inside to Dashboard");
-      return <Redirect to={{
-        pathname:"/StudentProfile",
-        state: {
-    
-          email: this.state.email,
-          
-        } 
-      }}
-            />;
+      return (
+        // <Redirect to="/StudentProfile" />
+        <Redirect
+          to={{
+            pathname: "/StudentProfile",
+            state: {
+              email: this.state.email
+            }
+          }}
+        />
+      );
     }
     return (
       <div>
-        {/* {this.state.errors ?
-          {this.state.errors.map(error =>(
-            <Error />
-          ))} : null} */}
         <Student
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}

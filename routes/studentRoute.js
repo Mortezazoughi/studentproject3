@@ -69,5 +69,5 @@ router.get("/searchtitle/:name", studentController.searchtitle);
 //search for courses by professor
 router.get("/searchprof/:id", studentController.searchprof);
 
-router.get("/studentinfo/:id", studentController.studentinfo)
+router.get("/studentinfo/:id", verifyToken, studentController.studentinfo);
 module.exports = router;
