@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
 import CreateCourse from "./components/CreateCourse";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 function App() {
   return (
@@ -53,21 +53,17 @@ function App() {
               <Link to="/StudentProfile"> Student Profile</Link>
             </li>
             <hr />
-            {/* <Route exact path="/" component={Home} /> */}
-            <Route path="/profsignup" component={ProfSignup} />
-            <Route path="/profsignin" component={ProfSignin} />
-            <Route path="/studentsignin" component={StudentSignin} />
-            <Route path="/studentsignup" component={StudentSignup} />
-            <Route path="/courseregister" component={CourseRegister} />
-            <Route path="/SearchAllCourses" component={SearchAllCourses} />
-            <Route path="/SearchTitle" component={SearchTitle} />
-            <Route path="/CreateCourse" component={CreateCourse} />
-            <Route path="/StudentProfile" component={StudentProfile} />
-            {/* <CourseRegister />
-        <ProfSignin />
-        <ProfSignup />
-        <StudentSignin />
-        <StudentSignup /> */}
+            <Switch>
+              <Route path="/profsignup" component={ProfSignup} />
+              <Route path="/profsignin" component={ProfSignin} />
+              <Route path="/studentsignin" component={StudentSignin} />
+              <Route path="/studentsignup" component={StudentSignup} />
+              <Route path="/courseregister" component={CourseRegister} />
+              <Route path="/SearchAllCourses" component={SearchAllCourses} />
+              <Route path="/SearchTitle" component={SearchTitle} />
+              <Route path="/CreateCourse" component={CreateCourse} />
+              <Route path="/StudentProfile" component={StudentProfile} />
+            </Switch>
           </ul>
         </div>
       </Router>
