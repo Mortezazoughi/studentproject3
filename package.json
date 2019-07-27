@@ -1,12 +1,10 @@
 {
-
   "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "dependencies": {
     "@material-ui/core": "^4.2.1",
-    "material-ui": "^0.20.2",  
     "basic-auth": "^2.0.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -18,27 +16,29 @@
     "express-session": "^1.16.2",
     "express-validator": "^6.1.1",
     "jsonwebtoken": "^8.5.1",
+    "material-ui": "^0.20.2",
     "mysql2": "^1.6.5",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^0.87.3",
     "sequelize": "^5.10.0",
     "sequelize-cli": "^5.5.0"
   },
-"repository": {
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/Mortezazoughi/studentproject3.git"
   },
-"bugs": {
+  "bugs": {
     "url": "https://github.com/Mortezazoughi/studentproject3/issues"
   },
-"homepage": "https://github.com/Mortezazoughi/studentproject3#readme",
+  "homepage": "https://github.com/Mortezazoughi/studentproject3#readme",
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "concurrently 'npm run client' 'nodemon server.js'",
+    "dev": "concurrently \"npm run client\" \"nodemon server.js\"",
     "start": "node server.js",
     "client": "npm start --prefix client"
   },
   "keywords": [],
   "author": "",
   "license": "ISC"
-
 }

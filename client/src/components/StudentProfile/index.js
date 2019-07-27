@@ -6,6 +6,7 @@ class StudentProfile extends Component {
   state = {
     student: {}
   };
+
   componentDidMount() {
     let usertoken = localStorage.getItem("token");
     var decoded = jwt.decode(usertoken);
@@ -29,11 +30,14 @@ class StudentProfile extends Component {
       .catch(err => console.log(err));
   }
 
+
   render() {
     // console.log(this.props);
     return (
       <div>
+
         <p> email{this.state.student.email}</p>
+
 
         <p>testz</p>
       </div>

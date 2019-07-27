@@ -1,7 +1,9 @@
+
 import React, { Component, Children } from "react";
 import { Redirect } from "react-router-dom";
 import Student from "./Student";
 import Errors from "../Errors";
+
 // import { Json } from "sequelize/types/lib/utils";
 import axios from "axios";
 // const StudentProfileInfo = React.createContext();
@@ -14,8 +16,10 @@ class StudentSignup extends Component {
     password: "",
     confirmPassword: "",
     campus: "",
+
     toDashboard: false,
     errors: ""
+
   };
   //   <StudentProfileInfo.Provider value= {{this.state.email}}>
 
@@ -24,6 +28,7 @@ class StudentSignup extends Component {
   // </StudentProfileInfo.Provider>
   handleSubmit = async e => {
     e.preventDefault();
+
     let results;
     try {
       const URL = "http://localhost:8080/studentSignup";
@@ -49,6 +54,7 @@ class StudentSignup extends Component {
       console.log(error);
       this.setState({
         errors: error
+
       });
     }
   };
@@ -59,7 +65,9 @@ class StudentSignup extends Component {
       [name]: value
     });
   };
+
   render() {
+
     console.log("error state", this.state);
     console.log("error BLAH ", this.state.errors);
     console.log(this.state.toDashboard);
@@ -74,6 +82,7 @@ class StudentSignup extends Component {
               email: this.state.email
             }
           }}
+
         />
       );
     }
