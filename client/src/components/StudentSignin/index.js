@@ -1,28 +1,8 @@
-<<<<<<< HEAD
-import React, { Component, useState } from 'react';
-import axios from 'axios';
-=======
+
 import React, { Component, useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
->>>>>>> master
 
-// function StudentSignin() {
-//   const [email, setEmail] = useState("");
-//   const [password, setPassword] = useState("");
-
-//   React.useEffect(() => {
-//     const fetchTodos = async () => {
-//       await axios.get('todos')
-//     }
-//   });
-//   return (
-//     <form>
-//       <input value={email} onChange={event => setEmail(event.target.value)} />
-//       <input value={password} onChange={event => setPassword(event.target.value)} />
-//     </form>
-//   );
-// }
 
 class StudentSignin extends Component {
   state = {
@@ -45,8 +25,10 @@ class StudentSignin extends Component {
       }
     })
       .then(res => {
-        console.log(res.data);
-        // <Redirect to="/StudentProfile" />
+        localStorage.setItem("token", res.data.token);
+
+        // <Redirect to="/StudentProfile" />;
+
       })
       .catch(err => console.log(err));
   };

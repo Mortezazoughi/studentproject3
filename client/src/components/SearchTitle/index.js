@@ -10,8 +10,14 @@ class SearchTitle extends Component {
   };
   searchCourseTitle = async () => {
     try {
+
+     
       const url = `http://localhost:8080/searchtitle/${this.state.search}`;
-      const response = await Axios.get(url);
+      const response = await Axios.get(
+        url
+        //  headers: { 'content-type': 'application/x-www-form-urlencoded' }
+      );
+
       console.log();
       this.setState({
         result: response.data

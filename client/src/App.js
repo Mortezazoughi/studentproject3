@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import React from 'react';
 import Navbar from '../src/components/Navbar/Navbar';
 import CourseRegister from '../src/components/CourseRegister/CourseRegister';
@@ -14,7 +14,7 @@ import StudentSign from './components/StudentSign.js';
 import CourseTitles from './components/CourseRegisteration.js';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-=======
+
 import React from "react";
 import Navbar from "../src/components/Navbar/Navbar";
 import CourseRegister from "../src/components/CourseRegister/CourseRegister";
@@ -27,8 +27,9 @@ import Grid from "@material-ui/core/Grid";
 import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
 import CreateCourse from "./components/CreateCourse";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
->>>>>>> master
+
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 
 function App() {
   return (
@@ -72,14 +73,7 @@ function App() {
               <Link to="/StudentProfile"> Student Profile</Link>
             </li>
             <hr />
-            {/* <Route exact path="/" component={Home} /> */}
-            <Route path="/profsignup" component={ProfSignup} />
-            <Route path="/profsignin" component={ProfSignin} />
-            <Route path="/studentsignin" component={StudentSignin} />
-            <Route path="/studentsignup" component={StudentSignup} />
-            <Route path="/courseregister" component={CourseRegister} />
-            <Route path="/SearchAllCourses" component={SearchAllCourses} />
-<<<<<<< HEAD
+
             <div>
               <TestModal />
             </div>
@@ -89,16 +83,25 @@ function App() {
             <div>
               <CourseTitles />
             </div>
-=======
-            <Route path="/SearchTitle" component={SearchTitle} />
-            <Route path="/CreateCourse" component={CreateCourse} />
-            <Route path="/StudentProfile" component={StudentProfile} />
->>>>>>> master
+
             {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />
         <StudentSignin />
         <StudentSignup /> */}
+
+            <Switch>
+              <Route path="/profsignup" component={ProfSignup} />
+              <Route path="/profsignin" component={ProfSignin} />
+              <Route path="/studentsignin" component={StudentSignin} />
+              <Route path="/studentsignup" component={StudentSignup} />
+              <Route path="/courseregister" component={CourseRegister} />
+              <Route path="/SearchAllCourses" component={SearchAllCourses} />
+              <Route path="/SearchTitle" component={SearchTitle} />
+              <Route path="/CreateCourse" component={CreateCourse} />
+              <Route path="/StudentProfile" component={StudentProfile} />
+            </Switch>
+
           </ul>
         </div>
       </Router>
