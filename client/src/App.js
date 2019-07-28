@@ -1,4 +1,3 @@
-
 import React from 'react';
 import Navbar from '../src/components/Navbar/Navbar';
 import CourseRegister from '../src/components/CourseRegister/CourseRegister';
@@ -8,28 +7,11 @@ import StudentSignin from './components/StudentSignin';
 import StudentSignup from './components/StudentSignup';
 import SearchAllCourses from './components/SearchAllCourses';
 import Grid from '@material-ui/core/Grid';
-import Profile from '../src/components/SearchAllCourses/play';
-import TestModal from './components/TestModal.js';
-import StudentSign from './components/StudentSign.js';
-import CourseTitles from './components/CourseRegisteration.js';
+import StudentProfile from './components/StudentProfile';
+import SearchTitle from './components/SearchTitle';
+import CreateCourse from './components/CreateCourse';
 
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
-import React from "react";
-import Navbar from "../src/components/Navbar/Navbar";
-import CourseRegister from "../src/components/CourseRegister/CourseRegister";
-import ProfSignin from "../src/components/ProfSignin/ProfSignin";
-import ProfSignup from "./components/ProfSignup/ProfSignup";
-import StudentSignin from "./components/StudentSignin";
-import StudentSignup from "./components/StudentSignup";
-import SearchAllCourses from "./components/SearchAllCourses";
-import Grid from "@material-ui/core/Grid";
-import StudentProfile from "./components/StudentProfile";
-import SearchTitle from "./components/SearchTitle";
-import CreateCourse from "./components/CreateCourse";
-
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 function App() {
   return (
@@ -74,16 +56,6 @@ function App() {
             </li>
             <hr />
 
-            <div>
-              <TestModal />
-            </div>
-            <div>
-              <StudentSign />
-            </div>
-            <div>
-              <CourseTitles />
-            </div>
-
             {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />
@@ -101,7 +73,6 @@ function App() {
               <Route path="/CreateCourse" component={CreateCourse} />
               <Route path="/StudentProfile" component={StudentProfile} />
             </Switch>
-
           </ul>
         </div>
       </Router>
