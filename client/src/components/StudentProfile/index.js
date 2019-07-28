@@ -7,6 +7,7 @@ class StudentProfile extends Component {
   state = {
     student: {}
   };
+
   // componentDidMount() {
   //   let usertoken = localStorage.getItem("token");
   //   var decoded = jwt.decode(usertoken);
@@ -16,6 +17,7 @@ class StudentProfile extends Component {
   //       Authorization: "Bearer " + usertoken
   //     }
   //   };
+
 
   //   console.log({ usertoken });
   //   const url = `http://localhost:8080/studentinfo/${decoded.userId}`;
@@ -49,15 +51,18 @@ class StudentProfile extends Component {
       });
   }
 
+
   render() {
     return (
       <div>
+
         <p>
           Name {this.state.student.firstName} {this.state.student.lastName}
         </p>
 
         <p> email{this.state.student.email}</p>
         <p> phone {this.state.student.phoneNumber}</p>
+
       </div>
     );
   }
