@@ -43,7 +43,7 @@ router.post(
 
 // 3. Register for a course **** WIP**** check with brains
 router.post(
-  "/registerforclass/:name",
+  "/registerforclass/:c_id/:s_id",
   // studentauthMiddleware,
   // verifyToken,
   // StudentvalidationChain,
@@ -69,5 +69,10 @@ router.get("/searchtitle/:name", studentController.searchtitle);
 //search for courses by professor
 router.get("/searchprof/:id", studentController.searchprof);
 
-router.get("/studentinfo/:id", verifyToken, studentController.studentinfo);
+router.get(
+  "/studentinfo/:id",
+
+  // verifyToken,
+  studentController.studentinfo
+);
 module.exports = router;

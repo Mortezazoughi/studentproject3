@@ -6,8 +6,12 @@ import axios from "axios";
 
 class StudentSignin extends Component {
   state = {
-    email: '',
-    password: ''
+
+    email: "",
+    password: "",
+    id: "",
+    toDashboard: false
+
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -25,14 +29,33 @@ class StudentSignin extends Component {
       }
     })
       .then(res => {
-        localStorage.setItem("token", res.data.token);
 
-        // <Redirect to="/StudentProfile" />;
+        // console.log("I am data", res.data);
+        // localStorage.setItem("token", res.data.token);
+        localStorage.setItem("id", res.data);
+        this.setState({
+          toDashboard: true
+        });
 
       })
       .catch(err => console.log(err));
   };
+
   render() {
+    if (this.state.toDashboard === true) {
+      console.log("inside to Dashboard");
+      return (
+        // <Redirect to="/StudentProfile" />
+        <Redirect
+          to={{
+            pathname: "/StudentProfile",
+            state: {
+              email: this.state.email
+            }
+          }}
+        />
+      );
+    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>

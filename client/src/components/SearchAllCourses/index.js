@@ -6,20 +6,29 @@ class SearchAllCourses extends Component {
     AllCourses: [],
     searchAllCourses: ""
   };
-  handleChange = e => {
-    const { name, value } = e.target;
-    this.setState({
-      [name]: value
-    });
-    console.log(this.state.searchAllCourses);
-  };
-  searchallcourses = e => {
+
+  // searchallcourses = e => {
+  //   API.searchallcourses()
+  //     .then(res => {
+  //       console.log(res.data);
+  //       this.setState({ AllCourses: res.data });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
+  componentDidMount() {
     API.searchallcourses()
       .then(res => {
         console.log(res.data);
         this.setState({ AllCourses: res.data });
       })
       .catch(err => console.log(err));
+  }
+  handleChange = e => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
+    console.log(this.state.searchAllCourses);
   };
   render() {
     return (

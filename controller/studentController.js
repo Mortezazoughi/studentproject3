@@ -59,21 +59,26 @@ const studentController = {
     }
   },
   signIn: async (req, res) => {
-    jwt.sign(
-      { userId: req.user.id },
-      "secretkey",
-      { expiresIn: "2hrs" },
-      (err, token) => {
-        if (err) {
-          res.sendStatus(500);
-          return;
-        }
-        res.json({ token });
+    console.log(req.user.id);
+    userId = req.user.id;
+    res.json(userId);
+    // jwt.sign(
+    //   { userId: req.user.id },
+    //   "secretkey",
+    //   { expiresIn: "2hrs" },
+    //   (err, token) => {
+    //     if (err) {
+    //       res.sendStatus(500);
+    //       return;
+    //     }
 
-        return;
-      }
-    );
+    //     res.json({ token });
+
+    //     return;
+    //   }
+    // );
   },
+
   updatestudent: async (req, res) => {
     const { email } = req.body;
     const student = await db.Student.findOne({
@@ -115,27 +120,31 @@ const studentController = {
     //if it does check the count of sits
     // signup
     const { courseName } = req.body;
-    // search for course
+
     const checkcourse = await db.Course.findOne({
       where: {
-        courseName: req.params.name
+        id: req.params.c_id
       }
     });
-    console.log(checkcourse.dataValues.availableseats);
+
     let classAvailable = checkcourse.dataValues.availableseats;
     const course_id = checkcourse.dataValues.id;
-    // console.log(course_id);
-    //check if there are available seats
+    console.log(course_id);
+    // check if there are available seats
+
     if (!classAvailable) {
       res.status(403).json({ message: "class is full" });
       return;
     }
+
     //check if student is already registered
     let studentcheck;
+
     try {
       studentcheck = await db.StudentCourse.findOne({
         where: {
-          student_id: req.body.student_id
+          student_id: req.params.s_id,
+          course_id: req.params.c_id
         }
       });
     } catch (error) {
@@ -144,21 +153,21 @@ const studentController = {
       res.status(500).json({ message: "Server error" });
       return;
     }
-    console.log(studentcheck);
-
     if (studentcheck) {
       res
         .status(403)
         .json({ message: "You are already registered for this class" });
       return;
     }
-
     let results;
+
     try {
-      results = await db.StudentCourse.create(req.body);
+      results = await db.StudentCourse.create({
+        course_id: req.params.c_id,
+        student_id: req.params.s_id
+      });
       // console.log(results);
       res.send(results);
-      return;
     } catch (error) {
       res.status(404).json({ message: "User not found" });
       return;
@@ -168,20 +177,19 @@ const studentController = {
     classAvailable -= 1;
     console.log("available After seats", classAvailable);
 
-    let updateseatcount;
     try {
-      updateseatcount = await db.Course.update(
+      const updateseatcount = await db.Course.update(
         { availableseats: classAvailable },
         {
           where: {
-            courseName: req.params.name
+            id: req.params.c_id
           }
         }
       );
-      res.status.json({ message: "Registered" });
+      res.status(201);
       return;
     } catch (error) {
-      res.status(404).json({ message: "User not found" });
+      res.status(500);
       return;
     }
   },

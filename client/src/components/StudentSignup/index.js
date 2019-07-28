@@ -45,9 +45,14 @@ class StudentSignup extends Component {
           campus: this.state.campus
         }
       });
+      console.log("my localstorage", results.data.message.id);
+      localStorage.setItem("id", results.data.message.id);
+
+      console.log("localStorage id ", localStorage);
       this.setState({
         toDashboard: true
       });
+
       return results;
     } catch (error) {
       console.log("inside erros", error);
@@ -68,9 +73,6 @@ class StudentSignup extends Component {
 
   render() {
 
-    console.log("error state", this.state);
-    console.log("error BLAH ", this.state.errors);
-    console.log(this.state.toDashboard);
     if (this.state.toDashboard === true) {
       console.log("inside to Dashboard");
       return (
