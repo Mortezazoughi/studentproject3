@@ -1,6 +1,22 @@
 import React, { Component, useState } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+
+// function StudentSignin() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
+
+//   React.useEffect(() => {
+//     const fetchTodos = async () => {
+//       await axios.get('todos')
+//     }
+//   });
+//   return (
+//     <form>
+//       <input value={email} onChange={event => setEmail(event.target.value)} />
+//       <input value={password} onChange={event => setPassword(event.target.value)} />
+//     </form>
+//   );
+// }
 
 class StudentSignin extends Component {
   state = {
@@ -23,9 +39,7 @@ class StudentSignin extends Component {
       }
     })
       .then(res => {
-        localStorage.setItem('token', res.data.token);
-
-        // <Redirect to="/StudentProfile" />;
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   };
