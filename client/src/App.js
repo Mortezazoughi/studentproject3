@@ -10,6 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
 import CreateCourse from "./components/CreateCourse";
+import SignOut from "./components/SignOut";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 function App() {
@@ -50,7 +51,7 @@ function App() {
               <Link to="/CreateCourse"> Create Course</Link>
             </li>
             <li>
-              <Link to="/StudentProfile"> Student Profile</Link>
+              <Link to="/SignOut"> Sign Out</Link>
             </li>
             <hr />
             <Switch>
@@ -63,6 +64,7 @@ function App() {
               <Route path="/SearchTitle" component={SearchTitle} />
               <Route path="/CreateCourse" component={CreateCourse} />
               <Route path="/StudentProfile" component={StudentProfile} />
+              <Route path="/SignOut" component={SignOut} />
             </Switch>
           </ul>
         </div>

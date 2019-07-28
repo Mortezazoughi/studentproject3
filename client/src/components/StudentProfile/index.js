@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import axios from "axios";
 import jwt from "jsonwebtoken";
 import Axios from "axios";
 // function StudentProfile(props) {}
@@ -29,24 +28,19 @@ class StudentProfile extends Component {
   //     })
   //     .catch(err => console.log(err));
   // }
-  componentDidMount() {
+  async componentDidMount() {
     const userid = localStorage.getItem("id");
-    // console.log(userid);
-    const URL = `http://localhost:8080/studentinfo/${userid}`;
-    Axios({
-      url: URL,
-      method: "GET"
-    })
-      .then(res => {
-        // console.log("i am here");
-        console.log(res.data);
-        this.setState({
-          student: res.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+
+    let results;
+    try {
+      results = await Axios.get(`http://localhost:8080/studentinfo/${userid}`);
+    } catch (err) {
+      console.log(err);
+    }
+
+    this.setState({
+      student: results.data
+    });
   }
 
   render() {
