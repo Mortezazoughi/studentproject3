@@ -177,33 +177,19 @@ const studentController = {
     classAvailable -= 1;
     console.log("available After seats", classAvailable);
 
-    // try {
-    //   const result = await Project.update(
-    //     { title: "a very different title now" },
-    //     { where: { _id: 1 } }
-    //   );
-    //   handleResult(result);
-    // } catch (err) {
-    //   handleError(err);
-    // }
-
-    // let updateseatcount;
     try {
       const updateseatcount = await db.Course.update(
         { availableseats: classAvailable },
         {
           where: {
-            courseName: req.params.name
+            id: req.params.c_id
           }
         }
       );
-      console.log("***** INSIDE TRY********", updateseatcount);
-      res.json({ body: updateseatcount });
+      res.status(201);
       return;
     } catch (error) {
-      console.log("***** INSIDE Catch********");
       res.status(500);
-      // .json({ message: "Server error" });
       return;
     }
   },
