@@ -1,46 +1,31 @@
-import React, { Component } from "react";
+import React, { Component, Redirect } from "react";
 import jwt from "jsonwebtoken";
 import Axios from "axios";
 // function StudentProfile(props) {}
 class StudentProfile extends Component {
   state = {
-    student: {}
+    student: {},
+    toSignIn: false
   };
-  // componentDidMount() {
-  //   let usertoken = localStorage.getItem("token");
-  //   var decoded = jwt.decode(usertoken);
-  //   console.log("decoded", decoded);
-  //   let config = {
-  //     headers: {
-  //       Authorization: "Bearer " + usertoken
-  //     }
-  //   };
 
-  //   console.log({ usertoken });
-  //   const url = `http://localhost:8080/studentinfo/${decoded.userId}`;
-  //   axios
-  //     .get(url, config)
-  //     .then(data => {
-  //       this.setState({
-  //         student: data.data
-  //       });
-  //       console.log(data.data);
-  //     })
-  //     .catch(err => console.log(err));
-  // }
-  async componentDidMount() {
+  componentDidMount() {
     const userid = localStorage.getItem("id");
-
-    let results;
-    try {
-      results = await Axios.get(`http://localhost:8080/studentinfo/${userid}`);
-    } catch (err) {
-      console.log(err);
-    }
-
-    this.setState({
-      student: results.data
-    });
+    // console.log(userid);
+    const URL = `http://localhost:8080/studentinfo/${userid}`;
+    Axios({
+      url: URL,
+      method: "GET"
+    })
+      .then(res => {
+        // console.log("i am here");
+        console.log(res.data);
+        this.setState({
+          student: res.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {

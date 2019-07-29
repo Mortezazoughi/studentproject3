@@ -15,7 +15,9 @@ const verifyToken = require("../routes/jwtAuth");
 const errorMiddleware = (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
-    return res.status(422).json({ errors: errors.array() });
+    const errormessages = errors.array().map(error => error.msg);
+    console.log(errormessages);
+    res.status(422).json({ error: errormessages });
   } else {
     next();
   }
