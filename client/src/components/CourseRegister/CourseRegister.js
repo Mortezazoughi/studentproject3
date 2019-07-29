@@ -3,7 +3,8 @@ import RegisterForm from "./RegisterForm";
 import Axios from "axios";
 class CourseRegister extends Component {
   state = {
-    availableCourses: []
+    availableCourses: [],
+    errors: []
   };
 
   async componentWillMount() {
@@ -13,9 +14,10 @@ class CourseRegister extends Component {
       results = await Axios({
         url: URL,
         method: "GET"
-      });
+      }).catch(err => console.log("ERRROSS", err));
     } catch (error) {
-      console.log(error);
+      console.log({ error: error });
+      this.setState({ errors: error });
     }
     // console.log("logged outpur", results.data);
     this.setState({
@@ -35,9 +37,9 @@ class CourseRegister extends Component {
         data: {
           course_id: this.state.course_id
         }
-      });
+      }).catch(err => console.log("erors from client", err));
     } catch (error) {
-      console.log("inside erros", error);
+      console.log("inside errorsz", error);
       console.log(error);
       this.setState({
         errors: error
@@ -60,13 +62,9 @@ class CourseRegister extends Component {
           course_id: c_id
         }
       });
-
-      console.log("******** RESULTS FROM REGISTRATION**********", results);
-      
       return results;
     } catch (error) {
-      console.log("***** FAILED******");
-      console.log("error in register", error);
+      console.log({ error: error });
     }
   };
   renderTableData = () => {
@@ -89,7 +87,7 @@ class CourseRegister extends Component {
     ));
   };
   render() {
-    console.log("inside render", this.state.availableCourses);
+    console.log("inside render", this.state.errors);
     return (
       <div>
         <div>

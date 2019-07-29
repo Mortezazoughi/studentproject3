@@ -1,36 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
+import React, { Component, Redirect } from "react";
 import jwt from "jsonwebtoken";
 import Axios from "axios";
 // function StudentProfile(props) {}
 class StudentProfile extends Component {
   state = {
-    student: {}
+    student: {},
+    toSignIn: false
   };
 
-  // componentDidMount() {
-  //   let usertoken = localStorage.getItem("token");
-  //   var decoded = jwt.decode(usertoken);
-  //   console.log("decoded", decoded);
-  //   let config = {
-  //     headers: {
-  //       Authorization: "Bearer " + usertoken
-  //     }
-  //   };
-
-
-  //   console.log({ usertoken });
-  //   const url = `http://localhost:8080/studentinfo/${decoded.userId}`;
-  //   axios
-  //     .get(url, config)
-  //     .then(data => {
-  //       this.setState({
-  //         student: data.data
-  //       });
-  //       console.log(data.data);
-  //     })
-  //     .catch(err => console.log(err));
-  // }
   componentDidMount() {
     const userid = localStorage.getItem("id");
     // console.log(userid);

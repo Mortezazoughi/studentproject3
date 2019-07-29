@@ -43,7 +43,7 @@ class StudentSignin extends Component {
 
   render() {
     if (this.state.toDashboard === true) {
-      console.log("inside to Dashboard");
+
       return (
         // <Redirect to="/StudentProfile" />
         <Redirect

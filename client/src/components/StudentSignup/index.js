@@ -2,9 +2,7 @@
 import React, { Component, Children } from "react";
 import { Redirect } from "react-router-dom";
 import Student from "./Student";
-import Errors from "../Errors";
 
-// import { Json } from "sequelize/types/lib/utils";
 import axios from "axios";
 // const StudentProfileInfo = React.createContext();
 class StudentSignup extends Component {
@@ -18,14 +16,11 @@ class StudentSignup extends Component {
     campus: "",
 
     toDashboard: false,
-    errors: ""
+
+    errors: []
 
   };
-  //   <StudentProfileInfo.Provider value= {{this.state.email}}>
 
-  //   <StudentInfo />
-  //   {Children}
-  // </StudentProfileInfo.Provider>
   handleSubmit = async e => {
     e.preventDefault();
 
@@ -45,20 +40,18 @@ class StudentSignup extends Component {
           campus: this.state.campus
         }
       });
-      console.log("my localstorage", results.data.message.id);
-      localStorage.setItem("id", results.data.message.id);
 
-      console.log("localStorage id ", localStorage);
+      localStorage.setItem("id", results.data.message.id);
       this.setState({
         toDashboard: true
       });
 
       return results;
     } catch (error) {
-      console.log("inside erros", error);
-      console.log(error);
+      // populate the errors array so that we can display the errors on the screen
       this.setState({
-        errors: error
+
+        errors: error.response.data.error
 
       });
     }
@@ -90,6 +83,9 @@ class StudentSignup extends Component {
     }
     return (
       <div>
+        {this.state.errors.map(error => (
+          <p>{error}</p>
+        ))}
         <Student
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
