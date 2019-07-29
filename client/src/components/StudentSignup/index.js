@@ -1,6 +1,8 @@
+
 import React, { Component, Children } from "react";
 import { Redirect } from "react-router-dom";
 import Student from "./Student";
+
 import axios from "axios";
 // const StudentProfileInfo = React.createContext();
 class StudentSignup extends Component {
@@ -12,12 +14,16 @@ class StudentSignup extends Component {
     password: "",
     confirmPassword: "",
     campus: "",
+
     toDashboard: false,
+
     errors: []
+
   };
 
   handleSubmit = async e => {
     e.preventDefault();
+
     let results;
     try {
       const URL = "http://localhost:8080/studentSignup";
@@ -44,7 +50,9 @@ class StudentSignup extends Component {
     } catch (error) {
       // populate the errors array so that we can display the errors on the screen
       this.setState({
+
         errors: error.response.data.error
+
       });
     }
   };
@@ -55,7 +63,9 @@ class StudentSignup extends Component {
       [name]: value
     });
   };
+
   render() {
+
     if (this.state.toDashboard === true) {
       console.log("inside to Dashboard");
       return (
@@ -67,6 +77,7 @@ class StudentSignup extends Component {
               email: this.state.email
             }
           }}
+
         />
       );
     }

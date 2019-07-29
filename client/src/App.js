@@ -1,3 +1,4 @@
+
 import React from "react";
 import Navbar from "../src/components/Navbar/Navbar";
 import CourseRegister from "../src/components/CourseRegister/CourseRegister";
@@ -13,6 +14,7 @@ import CreateCourse from "./components/CreateCourse";
 import SignOut from "./components/SignOut";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+
 function App() {
   return (
     <div className="App">
@@ -21,6 +23,7 @@ function App() {
         <div>
           <Navbar />
         </div>
+
         <div>
           <ul>
             <li>
@@ -54,6 +57,13 @@ function App() {
               <Link to="/SignOut"> Sign Out</Link>
             </li>
             <hr />
+
+            {/* <CourseRegister />
+        <ProfSignin />
+        <ProfSignup />
+        <StudentSignin />
+        <StudentSignup /> */}
+
             <Switch>
               <Route path="/profsignup" component={ProfSignup} />
               <Route path="/profsignin" component={ProfSignin} />

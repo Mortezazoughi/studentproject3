@@ -28,15 +28,18 @@ class StudentProfile extends Component {
       });
   }
 
+
   render() {
     return (
       <div>
+
         <p>
           Name {this.state.student.firstName} {this.state.student.lastName}
         </p>
 
         <p> email{this.state.student.email}</p>
         <p> phone {this.state.student.phoneNumber}</p>
+
       </div>
     );
   }

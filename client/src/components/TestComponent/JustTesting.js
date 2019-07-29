@@ -1,17 +1,27 @@
+import React, { Component, useState } from 'react';
+import axios from 'axios';
 
-import React, { Component, useState } from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
+// function StudentSignin() {
+//   const [email, setEmail] = useState("");
+//   const [password, setPassword] = useState("");
 
+//   React.useEffect(() => {
+//     const fetchTodos = async () => {
+//       await axios.get('todos')
+//     }
+//   });
+//   return (
+//     <form>
+//       <input value={email} onChange={event => setEmail(event.target.value)} />
+//       <input value={password} onChange={event => setPassword(event.target.value)} />
+//     </form>
+//   );
+// }
 
 class StudentSignin extends Component {
   state = {
-
-    email: "",
-    password: "",
-    id: "",
-    toDashboard: false
-
+    email: '',
+    password: ''
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -29,33 +39,11 @@ class StudentSignin extends Component {
       }
     })
       .then(res => {
-
-        // console.log("I am data", res.data);
-        // localStorage.setItem("token", res.data.token);
-        localStorage.setItem("id", res.data);
-        this.setState({
-          toDashboard: true
-        });
-
+        console.log(res.data);
       })
       .catch(err => console.log(err));
   };
-
   render() {
-    if (this.state.toDashboard === true) {
-
-      return (
-        // <Redirect to="/StudentProfile" />
-        <Redirect
-          to={{
-            pathname: "/StudentProfile",
-            state: {
-              email: this.state.email
-            }
-          }}
-        />
-      );
-    }
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
