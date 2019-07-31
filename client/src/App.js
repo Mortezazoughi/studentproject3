@@ -1,28 +1,4 @@
-<<<<<<< HEAD
-import React, { Component } from "react";
-import Navbar from "../src/components/Navbar/Navbar";
-import CourseRegister from "../src/components/CourseRegister/CourseRegister";
-import ProfSignin from "../src/components/ProfSignin/ProfSignin";
-import ProfSignup from "./components/ProfSignup/ProfSignup";
-import StudentSignin from "./components/StudentSignin";
-import StudentSignup from "./components/StudentSignup";
-import SearchAllCourses from "./components/SearchAllCourses";
-import Grid from "@material-ui/core/Grid";
-import StudentProfile from "./components/StudentProfile";
-import SearchTitle from "./components/SearchTitle";
-import CreateCourse from "./components/CreateCourse";
-import SignOut from "./components/SignOut";
-import {Auth, PrivateRoute} from "./components/Auth";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  withRouter,
-  Redirect
-} from "react-router-dom";
-=======
-import React from 'react';
+import React,{Component} from 'react';
 import Navbar from '../src/components/Navbar/Navbar';
 import CourseRegister from '../src/components/CourseRegister/CourseRegister';
 import ProfSignin from '../src/components/ProfSignin/ProfSignin';
@@ -39,7 +15,6 @@ import MainPage from './components/Pages/MainPage.js';
 import StudentPage from './components/Pages/StudentPage.js';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
->>>>>>> master
 
 function App() {
   return (
@@ -90,23 +65,6 @@ function App() {
             </li>
             <hr />
             <Switch>
-<<<<<<< HEAD
-              <Route path="/profsignup" component={ProfSignup} />
-              <Route path="/profsignin" component={ProfSignin} />
-              <Route path="/studentsignin" component={StudentSignin} />
-              <Route path="/studentsignup" component={StudentSignup} />
-              <Route path="/courseregister" component={CourseRegister} />
-              <Route
-                PrivateRoute
-                path="/SearchAllCourses"
-                component={SearchAllCourses}
-              />
-              <Route path="/SearchTitle" component={SearchTitle} />
-              <Route path="/CreateCourse" component={CreateCourse} />
-              <Route path="/StudentProfile" component={StudentProfile} />
-              <Route path="/SignOut" component={SignOut} />
-              {/* <PrivateRoute path="/protected" component={Protected} /> */}
-=======
               <Route exact path="/profsignup" component={ProfSignup} />
               <Route exact path="/profsignin" component={ProfSignin} />
               <Route exact path="/studentsignin" component={StudentSignin} />
@@ -123,7 +81,6 @@ function App() {
               <Route exact path="/SignOut" component={SignOut} />
               <Route exact path="/MainPage" component={MainPage} />
               <Route exact path="/StudentPage" component={StudentPage} />
->>>>>>> master
             </Switch>
           </ul>
         </div>
