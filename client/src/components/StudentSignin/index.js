@@ -1,17 +1,13 @@
-
-import React, { Component, useState } from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
-
+import React, { Component, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class StudentSignin extends Component {
   state = {
-
-    email: "",
-    password: "",
-    id: "",
+    email: '',
+    password: '',
+    id: '',
     toDashboard: false
-
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -29,26 +25,23 @@ class StudentSignin extends Component {
       }
     })
       .then(res => {
-
         // console.log("I am data", res.data);
         // localStorage.setItem("token", res.data.token);
-        localStorage.setItem("id", res.data);
+        localStorage.setItem('id', res.data);
         this.setState({
           toDashboard: true
         });
-
       })
       .catch(err => console.log(err));
   };
 
   render() {
     if (this.state.toDashboard === true) {
-
       return (
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: "/StudentProfile",
+            pathname: '/StudentProfile',
             state: {
               email: this.state.email
             }
@@ -74,6 +67,7 @@ class StudentSignin extends Component {
             placeholder="Password"
           />
           <button>submit</button>
+          <a href="/"> Already have an account</a>
         </form>
       </div>
     );
