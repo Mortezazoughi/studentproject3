@@ -1,5 +1,5 @@
 #root::before {
-  background-image: url('project_background.jpg');
+  background-image: url('university-background.jpg');
   background-size: cover;
   background-position: center;
   content: '';
@@ -10,5 +10,5 @@
   width: 100%;
   height: 100%;
   z-index: -2;
-  opacity: 0.9;
+  opacity: 0.2;
 }
