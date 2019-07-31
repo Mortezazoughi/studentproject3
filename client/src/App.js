@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { Component } from "react";
 import Navbar from "../src/components/Navbar/Navbar";
 import CourseRegister from "../src/components/CourseRegister/CourseRegister";
 import ProfSignin from "../src/components/ProfSignin/ProfSignin";
@@ -12,8 +11,15 @@ import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
 import CreateCourse from "./components/CreateCourse";
 import SignOut from "./components/SignOut";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import {Auth, PrivateRoute} from "./components/Auth";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  withRouter,
+  Redirect
+} from "react-router-dom";
 
 function App() {
   return (
@@ -57,24 +63,22 @@ function App() {
               <Link to="/SignOut"> Sign Out</Link>
             </li>
             <hr />
-
-            {/* <CourseRegister />
-        <ProfSignin />
-        <ProfSignup />
-        <StudentSignin />
-        <StudentSignup /> */}
-
             <Switch>
               <Route path="/profsignup" component={ProfSignup} />
               <Route path="/profsignin" component={ProfSignin} />
               <Route path="/studentsignin" component={StudentSignin} />
               <Route path="/studentsignup" component={StudentSignup} />
               <Route path="/courseregister" component={CourseRegister} />
-              <Route path="/SearchAllCourses" component={SearchAllCourses} />
+              <Route
+                PrivateRoute
+                path="/SearchAllCourses"
+                component={SearchAllCourses}
+              />
               <Route path="/SearchTitle" component={SearchTitle} />
               <Route path="/CreateCourse" component={CreateCourse} />
               <Route path="/StudentProfile" component={StudentProfile} />
               <Route path="/SignOut" component={SignOut} />
+              {/* <PrivateRoute path="/protected" component={Protected} /> */}
             </Switch>
           </ul>
         </div>

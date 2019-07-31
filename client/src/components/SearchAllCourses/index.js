@@ -35,8 +35,8 @@ class SearchAllCourses extends Component {
       <div>
         <button onClick={this.searchallcourses}>Search For All Courses</button>
         <select>
-          {this.state.AllCourses.map(eachcourse => (
-            <option value={eachcourse.courseName}>
+          {this.state.AllCourses.map((eachcourse, i) => (
+            <option key={eachcourse.id} value={eachcourse.courseName}>
               {eachcourse.courseName}
             </option>
           ))}
