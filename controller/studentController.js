@@ -253,6 +253,20 @@ const studentController = {
       res.status(404).json({ message: "User not found" });
       return;
     }
+  },
+  registeredcourses: async (req, res) => {
+    let results;
+    try {
+      results = await db.StudentCourse.findAll({
+        where: {
+          student_id: req.params.id
+        }
+      });
+      res.send(results);
+    } catch (error) {
+      res.status(404).json({ message: "User not found" });
+      return;
+    }
   }
 };
 module.exports = studentController;

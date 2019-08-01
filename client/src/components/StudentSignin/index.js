@@ -1,24 +1,24 @@
-import React, { Component, useState } from 'react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import React, { Component, useState } from "react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 class StudentSignin extends Component {
   state = {
-    email: '',
-    password: '',
-    id: '',
-    toDashboard: false
+    email: "",
+    password: "",
+    id: "",
+    toDashboard: false,
+    error: []
   };
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    // console.log(this.state.email);
   };
   handleSubmit = e => {
     e.preventDefault();
     axios({
-      method: 'post',
-      url: 'http://localhost:8080/signIn',
+      method: "post",
+      url: "http://localhost:8080/signIn",
       data: {
         email: this.state.email,
         pass: this.state.password
@@ -27,12 +27,18 @@ class StudentSignin extends Component {
       .then(res => {
         // console.log("I am data", res.data);
         // localStorage.setItem("token", res.data.token);
-        localStorage.setItem('id', res.data);
+        localStorage.setItem("id", res.data);
         this.setState({
           toDashboard: true
         });
       })
-      .catch(err => console.log(err));
+      .catch(error => {
+        console.log("*********ERRORS**********", error);
+        console.log({ error: error.response.data.message });
+        this.setState({
+          error: error.response.data.message
+        });
+      });
   };
 
   render() {
@@ -41,7 +47,7 @@ class StudentSignin extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: '/StudentProfile',
+            pathname: "/StudentProfile",
             state: {
               email: this.state.email
             }
@@ -51,6 +57,7 @@ class StudentSignin extends Component {
     }
     return (
       <div>
+        <h4>{this.state.error}</h4>
         <form onSubmit={this.handleSubmit}>
           <input
             value={this.state.email}

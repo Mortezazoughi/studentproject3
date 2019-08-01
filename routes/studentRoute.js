@@ -37,13 +37,11 @@ router.post(
 // 2. SignIn
 router.post(
   "/signIn",
-  // StudentvalidationChain,
-  // errorMiddleware,
   studentauthMiddleware,
   studentController.signIn
 );
 
-// 3. Register for a course **** WIP**** check with brains
+// 3. Register for a course 
 router.post(
   "/registerforclass/:c_id/:s_id",
   // studentauthMiddleware,
@@ -73,8 +71,8 @@ router.get("/searchprof/:id", studentController.searchprof);
 
 router.get(
   "/studentinfo/:id",
-
   // verifyToken,
   studentController.studentinfo
 );
+router.get("/registeredcourses/:id", studentController.registeredcourses);
 module.exports = router;
