@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import RegisterForm from "./RegisterForm";
-import Axios from "axios";
+import React, { Component } from 'react';
+import RegisterForm from './RegisterForm';
+import Axios from 'axios';
 class CourseRegister extends Component {
   state = {
     availableCourses: [],
@@ -8,13 +8,13 @@ class CourseRegister extends Component {
   };
 
   async componentWillMount() {
-    const URL = "http://localhost:8080/searchallcourses";
+    const URL = 'http://localhost:8080/searchallcourses';
     let results;
     try {
       results = await Axios({
         url: URL,
-        method: "GET"
-      }).catch(err => console.log("ERRROSS", err));
+        method: 'GET'
+      }).catch(err => console.log('ERRROSS', err));
     } catch (error) {
       console.log({ error: error });
       this.setState({ errors: error });
@@ -33,13 +33,13 @@ class CourseRegister extends Component {
       // const URL = `http://localhost:8080/${course_id}`;
       results = await Axios({
         url: URL,
-        method: "POST",
+        method: 'POST',
         data: {
           course_id: this.state.course_id
         }
-      }).catch(err => console.log("erors from client", err));
+      }).catch(err => console.log('erors from client', err));
     } catch (error) {
-      console.log("inside errorsz", error);
+      console.log('inside errorsz', error);
       console.log(error);
       this.setState({
         errors: error
@@ -47,16 +47,16 @@ class CourseRegister extends Component {
     }
   };
   registarClass = async c_id => {
-    console.log("Course ID from register button", typeof c_id);
-    const studentId = JSON.parse(localStorage.getItem("id"));
-    console.log("********* STUDENT ID from local storage ", typeof studentId);
+    console.log('Course ID from register button', typeof c_id);
+    const studentId = JSON.parse(localStorage.getItem('id'));
+    console.log('********* STUDENT ID from local storage! ', typeof studentId);
 
     let results;
     try {
       const URL = `http://localhost:8080/registerforclass/${c_id}/${studentId}`;
       results = await Axios({
         url: URL,
-        method: "POST",
+        method: 'POST',
         data: {
           student_id: studentId,
           course_id: c_id
@@ -87,7 +87,7 @@ class CourseRegister extends Component {
     ));
   };
   render() {
-    console.log("inside render", this.state.errors);
+    console.log('inside render', this.state.errors);
     return (
       <div>
         <div>
