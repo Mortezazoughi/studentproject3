@@ -49,11 +49,6 @@ function Student(props) {
           type="email"
           placeholder="joe@schmoe.com"
         />
-        <Message
-          success
-          header="Form Completed"
-          content="You're all signed up for the newsletter"
-        />
       </Form.Field>
       <Form.Field>
         <label>Campus: </label>

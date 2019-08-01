@@ -1,4 +1,5 @@
 import React, { Component, useState } from 'react';
+import { Button, Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
@@ -51,25 +52,50 @@ class StudentSignin extends Component {
     }
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            value={this.state.email}
-            onChange={this.handleChange}
-            name="email"
-            type="text"
-            placeholder="email"
-          />
-          <input
-            value={this.state.password}
-            onChange={this.handleChange}
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-          <button>submit</button>
-          <a href="/"> Already have an account</a>
-        </form>
+        <Form success onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Email</label>
+            <input
+              value={this.state.email}
+              onChange={this.handleChange}
+              name="email"
+              type="text"
+              placeholder="joe@schmoe.com"
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Password: </label>
+            <input
+              value={this.state.password}
+              onChange={this.handleChange}
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Field>
+          <Button>Submit</Button>
+        </Form>
       </div>
+      // <div>
+      //   <form onSubmit={this.handleSubmit}>
+      //     <input
+      //       value={this.state.email}
+      //       onChange={this.handleChange}
+      //       name="email"
+      //       type="text"
+      //       placeholder="email"
+      //     />
+      //     <input
+      //       value={this.state.password}
+      //       onChange={this.handleChange}
+      //       name="password"
+      //       type="password"
+      //       placeholder="Password"
+      //     />
+      //     <button>submit</button>
+      //     <a href="/"> Already have an account</a>
+      //   </form>
+      // </div>
     );
   }
 }
