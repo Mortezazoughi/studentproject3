@@ -10,8 +10,9 @@ class StudentProfile extends Component {
     toSignIn: false
   };
   componentDidMount() {
-    this.studentData();
-    this.registeredCourses();
+    // this.studentData();
+    // this.registeredCourses();
+    this.mycoursesandprof();
   }
   studentData = () => {
     const userid = localStorage.getItem("id");
@@ -29,23 +30,41 @@ class StudentProfile extends Component {
       })
       .catch(err => console.log(err));
   };
+  // registeredCourses = () => {
+  //   const userid = localStorage.getItem("id");
+  //   const URL = `http://localhost:8080/registeredcourses/${userid}`;
+  //   Axios({
+  //     url: URL,
+  //     method: "GET"
+  //   })
+  //     .then(res => {
+  //       console.log(res.data);
+  //       this.setState({
+  //         classes: res.data
+  //       });
+  //     })
+  //     .catch(err => console.log(err));
+  // };
 
-  registeredCourses = () => {
+  mycoursesandprof = () => {
     const userid = localStorage.getItem("id");
-    const URL = `http://localhost:8080/registeredcourses/${userid}`;
+    const URL = `http://localhost:8080/mycoursesandprof/${userid}`;
     Axios({
       url: URL,
       method: "GET"
     })
       .then(res => {
         console.log(res.data);
+        console.log(res.data[3].Course.courseName);
+        console.log(res.data[3].Course.level);
         this.setState({
-          registered: res.data
+          classes: res.data
         });
       })
       .catch(err => console.log(err));
   };
   render() {
+    console.log(this.state.classes);
     return (
       <div>
         <div>
@@ -58,11 +77,13 @@ class StudentProfile extends Component {
         </div>
         <div>
           <h4>Courses Registered</h4>
-          {this.state.classes.map(coursez => (
+          {this.state.classes.map(course => (
             <div>
               <tr>
                 <p>HEllo</p>
-                <td> {coursez.id}</td>
+                {/* <td>{course.Course.courseName} </td> */}
+                <td> {course.createdAt}</td>
+                <td> {course.createdAt}</td>
               </tr>
             </div>
           ))}

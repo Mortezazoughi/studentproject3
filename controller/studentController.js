@@ -209,24 +209,24 @@ const studentController = {
     }
   },
   searchprof: async (req, res) => {
-    // let result;
-    // try {
-    //   const id = req.params.id;
-    //   result = await db.Course.findAll({
-    //     include: [
-    //       {
-    //         model: db.Professor,
-    //         attributes: {
-    //           include: ["firstName"]
+    //   let result;
+    //   try {
+    //     const id = req.params.id;
+    //     result = await db.Course.findAll({
+    //       include: [
+    //         {
+    //           model: db.Professor,
+    //           attributes: {
+    //             include: ["firstName"]
+    //           }
     //         }
-    //       }
-    //     ]
-    //   });
-    //   res.json(result);
-    // } catch (error) {
-    //   console.log(error);
-    // }
-
+    //       ]
+    //     });
+    //     res.json(result);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // },
     let result;
     try {
       result = await db.Course.findAll({
@@ -267,6 +267,66 @@ const studentController = {
       res.status(404).json({ message: "User not found" });
       return;
     }
+  },
+
+  mycoursesandprof: async (req, res) => {
+    let result;
+    try {
+      console.log("***********BLAH********", req.params.id);
+      result = await db.StudentCourse.findAll({
+        where: {
+          student_id: req.params.id
+        },
+        attributes: ["course_id"],
+        include: [
+          {
+            model: db.Course,
+            attributes: ["courseName", "level"],
+            include: [
+              {
+                model: db.Professor,
+                attributes: ["firstName", "LastName"]
+              }
+            ]
+          }
+        ]
+        // ,
+        // include: [
+        //   {
+        //     model: db.Course,
+        //     include: [
+        //       {
+        //         model: db.Professor
+        //       }
+        //     ]
+        //   }
+        // ]
+      });
+      console.log(result);
+      res.json(result);
+    } catch (error) {
+      console.log(error);
+    }
   }
 };
+
+// User.findAll({
+// include: [
+//   {
+//     model: Tool,
+//     as: "Instruments",
+//     include: [
+//       {
+//         model: Teacher,
+//         where: {
+//           school: "Woodstock Music School"
+//         },
+//         required: false
+//       }
+//     ]
+//   }
+// ];
+// }).then(function(users) {
+//   /* ... */
+// });
 module.exports = studentController;

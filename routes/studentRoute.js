@@ -35,13 +35,9 @@ router.post(
 // student controller holds the actual routes as methods
 
 // 2. SignIn
-router.post(
-  "/signIn",
-  studentauthMiddleware,
-  studentController.signIn
-);
+router.post("/signIn", studentauthMiddleware, studentController.signIn);
 
-// 3. Register for a course 
+// 3. Register for a course
 router.post(
   "/registerforclass/:c_id/:s_id",
   // studentauthMiddleware,
@@ -75,4 +71,6 @@ router.get(
   studentController.studentinfo
 );
 router.get("/registeredcourses/:id", studentController.registeredcourses);
+
+router.get("/mycoursesandprof/:id", studentController.mycoursesandprof);
 module.exports = router;
