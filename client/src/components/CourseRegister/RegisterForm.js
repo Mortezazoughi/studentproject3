@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react';
 
 function RegisterForm(props) {
   return (
     <form onSubmit={props.handleSubmit}>
-      <p>Here</p>
       <label>Course Title</label>
       <input
         type="text"
