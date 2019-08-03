@@ -9,7 +9,7 @@ import SearchAllCourses from "./components/SearchAllCourses";
 import Grid from "@material-ui/core/Grid";
 import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
-import CreateCourse from "./components/CreateCourse";
+import CreateCourse from  "./components/ProfPages/CreateCourse";
 import SignOut from "./components/SignOut";
 import MainPage from "./components/Pages/MainPage.js";
 import StudentPage from "./components/Pages/StudentPage.js";

@@ -6,7 +6,6 @@ const professorValidationChain = require("../routes/validationChain");
 const professorController = {
   //new professor signup
   profsignup: async (req, res) => {
-    console.log("******BODY IS***** ", req.body);
     const {
       firstName,
       lastName,
@@ -22,7 +21,7 @@ const professorController = {
       res.status(403).json({ message: "Passwords dont match" });
       return;
     }
-    console.log("************EMAIL IS ", email);
+
     {
       checkforProf = await db.Professor.findOne({
         where: {
@@ -62,30 +61,33 @@ const professorController = {
 
   //Create new course
   createcourse: async (req, res) => {
+    // console.log(req.body);
+    console.log("******BODY IS***** ", req.body);
     const { courseName } = req.body;
     //check if course already exists
-    const coursecheck = await db.Course.count({
+    const coursecheck = await db.Course.findOne({
       where: {
         courseName
       }
     });
     //If course does not exist
-    if (coursecheck === 0) {
-      let results;
-      try {
-        results = await db.Course.create(req.body);
-        //******ADD LOGIC TO REDIRECT TO THE PAGE */
-        res.status(201).json({ message: "Course created successfully" });
-        return;
-      } catch (error) {
-        res
-          .status(500)
-          .json({ message: "Something went wrong with the request" });
-        return;
-      }
-    } else {
+    if (coursecheck) {
       //if course exists
       res.status(403).json({ message: "Course already exists." });
+    }
+
+    let results;
+    try {
+      results = await db.Course.create(req.body);
+      //******ADD LOGIC TO REDIRECT TO THE PAGE */
+      res.status(201).json({ message: "Course created successfully" });
+      return;
+    } catch (error) {
+      res
+        .status(500)
+        // .json({ message: "Something went wrong with the request", erorr });
+        .json({ message: error });
+      return;
     }
   },
   // Not getting my couses
