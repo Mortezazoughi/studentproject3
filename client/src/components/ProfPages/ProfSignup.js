@@ -41,6 +41,7 @@ function ProfSignup() {
     } catch (error) {
       console.log(error);
     }
+
     console.log(results.data.id);
     // set localStorage
     localStorage.setItem("profid", results.data.id);

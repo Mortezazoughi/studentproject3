@@ -6,56 +6,54 @@ const db = require("../models");
 
 const profauthorizationMiddleware = async (req, res, next) => {
   //grabs the user authentication details from client/postman
-  const usercredentials = basicAuth(req);
-  const { name, pass } = usercredentials;
-  const enteredpassword = pass;
+
+  const usercredentials = req.body;
+
+  const { email, password } = usercredentials;
+  const enteredpassword = password;
   //checks to ensure that name and password fields are not empty
-  if (name && enteredpassword) {
-    console.log(usercredentials);
-
-    //compare user entered password vs db password
-    let user;
-    try {
-      user = await db.Professor.findOne({
-        where: {
-          email: name
-        }
-      });
-    } catch (error) {
-      //if server error
-      res.sendStatus(500);
-    }
-    //if user email exists proceed
-    if (user) {
-      console.log(user);
-
-      //compare input password to stored password
-      const savedpasword = user.dataValues.password;
-      let match;
-      try {
-        match = await bcrypt.compareSync(enteredpassword, savedpasword);
-      } catch (error) {
-        res.sendStatus(500);
-      }
-      //if username and password match proceed to next
-      if (match) {
-        // res.sendStatus(200);
-        console.log(match);
-
-        next();
-      } else {
-        res.status(404);
-      }
-    } else {
-      //if user does not exist
-      res.status(404);
-    }
-  } else {
-    //if name and password are empty
-    const message = "Both Username and password are required";
-    // res.sendStatus(404).json({ message });
-    res.status(404);
+  if (!email || !enteredpassword) {
+    res
+      .status(404)
+      .json({ message: "Both Username and password are required" });
   }
+  // console.log(usercredentials);
+
+  //compare user entered password vs db password
+  let user;
+  try {
+    user = await db.Professor.findOne({
+      where: {
+        email: email
+      }
+    });
+  } catch (error) {
+    //if server error
+    res.status(500).json({ message: error });
+    return;
+  }
+  //if user email exists proceed
+  if (!user) {
+    res.status(404).json({ message: "Either email or password is incorrect" });
+    return;
+  }
+
+  //compare input password to stored password
+  const savedpasword = user.dataValues.password;
+  let match;
+  try {
+    match = await bcrypt.compareSync(enteredpassword, savedpasword);
+  } catch (error) {
+    res.sendStatus(500).json({ message: "We broke it on our side" });
+    return;
+  }
+  //if username and password match proceed to next
+  if (!match) {
+    res.status(404).json({ message: "Either email or password is incorrect" });
+  }
+  console.log("****BDSD***", user.dataValues.id);
+  userid = user.dataValues.id;
+  next();
 };
 const studentauthMiddleware = async (req, res, next) => {
   const { email, pass } = req.body;

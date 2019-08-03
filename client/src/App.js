@@ -9,10 +9,11 @@ import SearchAllCourses from "./components/SearchAllCourses";
 import Grid from "@material-ui/core/Grid";
 import StudentProfile from "./components/StudentProfile";
 import SearchTitle from "./components/SearchTitle";
-import CreateCourse from  "./components/ProfPages/CreateCourse";
+import CreateCourse from "./components/ProfPages/CreateCourse";
 import SignOut from "./components/SignOut";
 import MainPage from "./components/Pages/MainPage.js";
 import StudentPage from "./components/Pages/StudentPage.js";
+import RegisteredStudents from "./components/ProfPages/RegisteredStudents.js";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "semantic-ui-css/semantic.min.css";
 
@@ -63,6 +64,9 @@ function App() {
             <li>
               <Link to="/StudentPage"> Student Page</Link>
             </li>
+            <li>
+              <Link to="/RegisteredStudents"> Registered Students</Link>
+            </li>
             <hr />
             <Switch>
               <Route exact path="/profsignup" component={ProfSignup} />
@@ -70,6 +74,11 @@ function App() {
               <Route exact path="/studentsignin" component={StudentSignin} />
               <Route exact path="/studentsignup" component={StudentSignup} />
               <Route exact path="/courseregister" component={CourseRegister} />
+              <Route
+                exact
+                path="/registeredstudents"
+                component={RegisteredStudents}
+              />
               <Route
                 exact
                 path="/SearchAllCourses"

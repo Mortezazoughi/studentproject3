@@ -6,6 +6,7 @@ const professorValidationChain = require("../routes/validationChain");
 const professorController = {
   //new professor signup
   profsignup: async (req, res) => {
+    console.log(req.body);
     const {
       firstName,
       lastName,
@@ -54,11 +55,17 @@ const professorController = {
         });
         res.send(results);
       } catch (error) {
-        res.status(500).json({ message: "Something went wrong on our side" });
+        res
+          .status(500)
+          .json({ message: `Something went wrong on our side ${error}` });
       }
     }
   },
 
+  profsignin: async (req, res) => {
+    // userid is value coming from WebAuthentication.js
+    res.json({userid: userid})
+  },
   //Create new course
   createcourse: async (req, res) => {
     // console.log(req.body);
@@ -152,10 +159,34 @@ const professorController = {
     }
   },
   allstudentsregistered: async (req, res) => {
+    console.log("***** HERE*****");
+    console.log(req.body);
+    console.log(req.params.id);
     let results;
     try {
-      results = await db.StudentCourse.findAll({
-        where: { course_id: req.params.id, student_id: req.params.sid }
+      // results = await db.StudentCourse.findAll({
+      //   where: { course_id: req.params.id, student_id: req.params.sid }
+      // });
+      console.log(req.params.id);
+      results = await db.Professor.findAll({
+        where: {
+          id: req.params.id
+        },
+        include: [
+          {
+            model: db.Course,
+            include: [
+              {
+                model: db.StudentCourse,
+                include: [
+                  {
+                    model: db.Student
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       });
       res.send(results);
     } catch (error) {

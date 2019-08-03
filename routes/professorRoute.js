@@ -6,6 +6,7 @@ const bcrypt = require("bcryptjs");
 const saltRounds = 10;
 const { validationResult } = require("express-validator");
 const { professorValidationChain } = require("../routes/validationChain");
+const { profauthorizationMiddleware } = require("./authentication");
 
 //handle validation chain errors
 errorsMiddleware = (req, res, next) => {
@@ -16,7 +17,6 @@ errorsMiddleware = (req, res, next) => {
 };
 
 //check if the user exists in the database before performing said actions
-const { profauthorizationMiddleware } = require("./authentication");
 
 //creates the prof.
 router.post(
@@ -28,7 +28,11 @@ router.post(
 
 // Sign in
 // ****  SIGNIN is handled by authorization middleware
-
+router.post(
+  "/profsignin",
+  profauthorizationMiddleware,
+  professorController.profsignin
+);
 // create a new course Should not create duplicates ...
 router.post(
   "/createcourse",
@@ -63,8 +67,9 @@ router.put(
 );
 // ******View all student records **** WIP select all students in a course by a prof
 router.get(
-  "/allstudentsregistered/:id/:sid",
-  profauthorizationMiddleware,
+  // "/allstudentsregistered/:id/:sid",
+  "/allstudentsregistered/:id",
+  // profauthorizationMiddleware,
   professorController.allstudentsregistered
 );
 // Add grades to students
