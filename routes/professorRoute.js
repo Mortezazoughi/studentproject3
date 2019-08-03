@@ -21,8 +21,8 @@ const { profauthorizationMiddleware } = require("./authentication");
 //creates the prof.
 router.post(
   "/profsignup",
-  professorValidationChain,
-  errorsMiddleware,
+  // professorValidationChain,
+  // errorsMiddleware,
   professorController.profsignup
 );
 

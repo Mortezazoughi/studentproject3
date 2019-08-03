@@ -59,7 +59,6 @@ const studentController = {
     }
   },
   signIn: async (req, res) => {
-    console.log(req.user.id);
     userId = req.user.id;
     res.json(userId);
     // jwt.sign(

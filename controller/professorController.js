@@ -6,6 +6,7 @@ const professorValidationChain = require("../routes/validationChain");
 const professorController = {
   //new professor signup
   profsignup: async (req, res) => {
+    console.log("******BODY IS***** ", req.body);
     const {
       firstName,
       lastName,
@@ -17,8 +18,12 @@ const professorController = {
     } = req.body;
 
     // compare input passwords
-
-    if (password === confirmpassword) {
+    if (password != confirmpassword) {
+      res.status(403).json({ message: "Passwords dont match" });
+      return;
+    }
+    console.log("************EMAIL IS ", email);
+    {
       checkforProf = await db.Professor.findOne({
         where: {
           email: email
@@ -27,35 +32,31 @@ const professorController = {
 
       //check if professor already exists in the database
       //If does not exist go ahead and create a new prof
-      if (!checkforProf) {
-        let results;
-        //hash password and confirmpassword before storing to db
-        const hashedpassword = bcrypt.hashSync(password, saltRounds);
-        const hashedconfirmpassword = bcrypt.hashSync(
-          confirmpassword,
-          saltRounds
-        );
-        try {
-          results = await db.Professor.create({
-            firstName,
-            lastName,
-            phoneNumber,
-            email,
-            password: hashedpassword,
-            confirmpassword: hashedconfirmpassword,
-            campus
-          });
-          res.send(results);
-        } catch (error) {
-          res.status(500).json({ message: "Something went wrong on our side" });
-        }
-      } else {
-        console.log("person Already exists");
-        res.status(403).json({ message: "Person Already exists" });
+      if (checkforProf) {
+        res.status(403).json({ message: "Email already exists" });
+        return;
       }
-    } else {
-      console.log("passwords dont match");
-      res.status(403).json({ message: "Passwords dont match" });
+      let results;
+      //hash password and confirmpassword before storing to db
+      const hashedpassword = bcrypt.hashSync(password, saltRounds);
+      const hashedconfirmpassword = bcrypt.hashSync(
+        confirmpassword,
+        saltRounds
+      );
+      try {
+        results = await db.Professor.create({
+          firstName,
+          lastName,
+          phoneNumber,
+          email,
+          password: hashedpassword,
+          confirmpassword: hashedconfirmpassword,
+          campus
+        });
+        res.send(results);
+      } catch (error) {
+        res.status(500).json({ message: "Something went wrong on our side" });
+      }
     }
   },
 
