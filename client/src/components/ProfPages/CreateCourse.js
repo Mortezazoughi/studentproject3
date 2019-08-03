@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Axios from "axios";
 
 function CreateCourse() {
@@ -11,14 +11,11 @@ function CreateCourse() {
     prereq: "",
     prof_id: ""
   });
+  //grab and set prof_id from localstorage
+  useEffect(() => {
+    coursecreate.prof_id = localStorage.getItem("profid");
+  }, [coursecreate.prof_id]);
   const handlSubmit = async e => {
-    // get prof_id from local storage
-    const storedprofId = localStorage.getItem("profid");
-    //set the value of prof id
-    console.log(storedprofId);
-    // setcoursecreate({ ...coursecreate, prof_id: storedprofId });
-    console.log(coursecreate);
-    // console.log(storedprofId.prof_id);
     e.preventDefault();
 
     let results;
