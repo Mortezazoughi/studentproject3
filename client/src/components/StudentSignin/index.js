@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { Component } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';

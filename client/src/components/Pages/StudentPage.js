@@ -16,6 +16,7 @@ import StudentSignUpModal from '../Modals/StudentSignUpModal.js';
 import StudentProfileModal from '../Modals/StudentProfileModal.js';
 import StudentRegisterModal from '../Modals/StudentRegisterModal.js';
 import CampusEvents from '../Events/CampusEvents.js';
+import SLoginPage from './PupilLoginPage.js';
 
 const drawerWidth = 240;
 

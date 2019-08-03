@@ -77,7 +77,7 @@ class StudentSignup extends Component {
       );
     }
     return (
-      <div>
+      <React.Fragment>
         {this.state.errors.map(error => (
           <p>{error}</p>
         ))}
@@ -85,7 +85,7 @@ class StudentSignup extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

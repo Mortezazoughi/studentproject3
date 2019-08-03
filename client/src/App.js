@@ -13,6 +13,7 @@ import CreateCourse from './components/CreateCourse';
 import SignOut from './components/SignOut';
 import MainPage from './components/Pages/MainPage.js';
 import StudentPage from './components/Pages/StudentPage.js';
+import SLoginPage from './components/Pages/PupilLoginPage.js';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 
@@ -63,6 +64,9 @@ function App() {
             <li>
               <Link to="/StudentPage"> Student Page</Link>
             </li>
+            <li>
+              <Link to="/StudentLogin"> Student Login</Link>
+            </li>
             <hr />
 
             {/* <CourseRegister />
@@ -88,6 +92,7 @@ function App() {
               <Route exact path="/SignOut" component={SignOut} />
               <Route exact path="/MainPage" component={MainPage} />
               <Route exact path="/StudentPage" component={StudentPage} />
+              <Route exact path="/StudentLogin" component={SLoginPage} />
             </Switch>
           </ul>
         </div>

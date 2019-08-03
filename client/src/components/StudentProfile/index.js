@@ -1,6 +1,6 @@
-import React, { Component, Redirect } from "react";
-import jwt from "jsonwebtoken";
-import Axios from "axios";
+import React, { Component, Redirect } from 'react';
+import jwt from 'jsonwebtoken';
+import Axios from 'axios';
 // function StudentProfile(props) {}
 class StudentProfile extends Component {
   state = {
@@ -9,12 +9,12 @@ class StudentProfile extends Component {
   };
 
   componentDidMount() {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
     // console.log(userid);
     const URL = `http://localhost:8080/studentinfo/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
         // console.log("i am here");
@@ -28,18 +28,14 @@ class StudentProfile extends Component {
       });
   }
 
-
   render() {
     return (
       <div>
+        <p>First Name: {this.state.student.firstName}</p>
+        <p>Lirst Name: {this.state.student.lastName}</p>
 
-        <p>
-          Name {this.state.student.firstName} {this.state.student.lastName}
-        </p>
-
-        <p> email{this.state.student.email}</p>
-        <p> phone {this.state.student.phoneNumber}</p>
-
+        <p> email: {this.state.student.email}</p>
+        <p> phone: {this.state.student.phoneNumber}</p>
       </div>
     );
   }
