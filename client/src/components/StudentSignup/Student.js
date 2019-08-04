@@ -47,7 +47,7 @@ function Student(props) {
           placeholder="Enter Email"
           onChange={props.handleChange}
           type="email"
-          placeholder="joe@schmoe.com"
+          placeholder="Joe@gmail.com"
         />
       </Form.Field>
       <Form.Field>

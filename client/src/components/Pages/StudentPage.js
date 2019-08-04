@@ -119,10 +119,10 @@ export default function Studenetpage() {
         <div style={{ marginTop: '3vh' }} />
         <StudentProfileModal />
 
-        <div style={{ marginTop: '3vh' }} />
+        {/* <div style={{ marginTop: '3vh' }} />
         <StudentLoginModal />
         <div style={{ marginTop: '3vh' }} />
-        <StudentSignUpModal />
+        <StudentSignUpModal /> */}
         <div style={{ marginTop: '3vh' }} />
         <Divider />
         <div style={{ marginTop: '3vh' }} />

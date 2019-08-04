@@ -19,10 +19,10 @@ import 'semantic-ui-css/semantic.min.css';
 
 function App() {
   return (
-    <div>
-      <Grid container spacing={3} />
+    <React.Fragment>
+      {/* <Grid container spacing={3} /> */}
       <Router>
-        <div>
+        {/* <div>
           <Navbar />
         </div>
 
@@ -68,37 +68,33 @@ function App() {
               <Link to="/StudentLogin"> Student Login</Link>
             </li>
             <hr />
+          </ul>
+        </div> */}
 
-            {/* <CourseRegister />
+        {/* <CourseRegister />
         <ProfSignin />
         <ProfSignup />
         <StudentSignin />
         <StudentSignup /> */}
 
-            <Switch>
-              <Route exact path="/profsignup" component={ProfSignup} />
-              <Route exact path="/profsignin" component={ProfSignin} />
-              <Route exact path="/studentsignin" component={StudentSignin} />
-              <Route exact path="/studentsignup" component={StudentSignup} />
-              <Route exact path="/courseregister" component={CourseRegister} />
-              <Route
-                exact
-                path="/SearchAllCourses"
-                component={SearchAllCourses}
-              />
-              <Route exact path="/SearchTitle" component={SearchTitle} />
-              <Route exact path="/CreateCourse" component={CreateCourse} />
-              <Route exact path="/StudentProfile" component={StudentProfile} />
-              <Route exact path="/SignOut" component={SignOut} />
-              <Route exact path="/MainPage" component={MainPage} />
-              <Route exact path="/StudentPage" component={StudentPage} />
-              <Route exact path="/StudentLogin" component={SLoginPage} />
-            </Switch>
-          </ul>
-        </div>
+        <Switch>
+          <Route exact path="/profsignup" component={ProfSignup} />
+          <Route exact path="/profsignin" component={ProfSignin} />
+          <Route exact path="/studentsignin" component={StudentSignin} />
+          <Route exact path="/studentsignup" component={StudentSignup} />
+          <Route exact path="/courseregister" component={CourseRegister} />
+          <Route exact path="/SearchAllCourses" component={SearchAllCourses} />
+          <Route exact path="/SearchTitle" component={SearchTitle} />
+          <Route exact path="/CreateCourse" component={CreateCourse} />
+          <Route exact path="/StudentProfile" component={StudentProfile} />
+          <Route exact path="/SignOut" component={SignOut} />
+          <Route exact path="/" component={MainPage} />
+          <Route exact path="/StudentPage" component={StudentPage} />
+          <Route exact path="/StudentLogin" component={SLoginPage} />
+        </Switch>
       </Router>
-      <Grid container spacing={1} />
-    </div>
+      {/* <Grid container spacing={1} /> */}
+    </React.Fragment>
   );
 }
 

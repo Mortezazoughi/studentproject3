@@ -42,7 +42,7 @@ class StudentSignin extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: '/StudentProfile',
+            pathname: '/StudentPage',
             state: {
               email: this.state.email
             }
@@ -60,7 +60,7 @@ class StudentSignin extends Component {
               onChange={this.handleChange}
               name="email"
               type="text"
-              placeholder="joe@schmoe.com"
+              placeholder="joe@mail.com"
             />
           </Form.Field>
           <Form.Field>

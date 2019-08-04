@@ -42,30 +42,19 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'flex',
-    overflow: 'auto',
-    flexDirection: 'column',
+    display: 'inline-block',
     backgroundColor: '#aeecf7'
   },
   fixedHeight: {
     height: 240
-  },
-  ul: {
-    display: 'flex',
-    verticalAlign: 'middle',
-    fontSize: '2em',
-    fontWeight: 'normal',
-    listStyleType: 'none'
-  },
-  li: {
-    display: 'inline',
-    paddingRight: '10%'
   }
 }));
 
 function SLoginPage() {
   const [ShowForm, setShowForm] = useState(true);
-  const buttonText = ShowForm ? 'Sign Up' : 'Already Have Account';
+  const buttonText = ShowForm
+    ? 'Do Not Have An Account? '
+    : 'Already Have Account';
 
   const classes = useStyles();
 
@@ -91,18 +80,31 @@ function SLoginPage() {
 
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item xs={5}>
-              <Paper className={classes.paper}>
-                <img src={logo} alt="Logo" />
-              </Paper>
+            <Grid item sm={12}>
+              <Paper />
             </Grid>
-            <Grid item xs={7}>
-              <Paper className={classes.paper}>
-                <button onClick={() => setShowForm(!ShowForm)}>
-                  {buttonText}
-                </button>
-                {ShowForm ? <StudentSignin /> : <StudentSignup />}
-              </Paper>
+            <Paper className={classes.paper}>
+              <Grid item sm={6}>
+                <Paper className={classes.paper}>
+                  <img src={logo} alt="Logo" style={{ width: '25%' }} />
+                </Paper>
+              </Grid>
+              <Grid item sm={6}>
+                <Paper className={classes.paper}>
+                  <p>
+                    Please enter your information and click the button at the
+                    bottom of the form to submit the form.
+                  </p>
+                </Paper>
+              </Grid>
+
+              <button onClick={() => setShowForm(!ShowForm)}>
+                {buttonText}
+              </button>
+              {ShowForm ? <StudentSignin /> : <StudentSignup />}
+            </Paper>
+            <Grid item xs={2}>
+              <Paper />
             </Grid>
           </Grid>
         </Container>

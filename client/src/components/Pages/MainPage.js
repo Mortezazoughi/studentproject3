@@ -92,15 +92,15 @@ export default function MainPage() {
             Apogee University
           </Typography>
 
-          <StudentLoginModal />
+          {/* <StudentLoginModal /> */}
 
           <ul className={classes.ul}>
-            <li />
+            <li>
+              <a href="./StudentLogin">Students {'  |  '}</a>
+            </li>
 
             <li>
-              <a href="#" style={{ color: 'white' }}>
-                {' | '} Faculty
-              </a>
+              <a href="#">{' | '} Faculty</a>
             </li>
           </ul>
         </Toolbar>
@@ -112,7 +112,7 @@ export default function MainPage() {
           <Grid container spacing={3} style={{ marginTop: '5%' }}>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
-                <h1>Thisis the display for campus information</h1>
+                <h1>This is the display for campus information</h1>
               </Paper>
             </Grid>
 

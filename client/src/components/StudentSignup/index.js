@@ -48,6 +48,7 @@ class StudentSignup extends Component {
     } catch (error) {
       // populate the errors array so that we can display the errors on the screen
       console.log(error);
+      console.log(error.response.data.error);
       this.setState({
         errors: error.response.data.error
       });
@@ -68,7 +69,7 @@ class StudentSignup extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: '/StudentProfile',
+            pathname: '/StudentPage',
             state: {
               email: this.state.email
             }
