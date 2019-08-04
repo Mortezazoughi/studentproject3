@@ -27,7 +27,6 @@ function ProfSignup() {
       results = await axios({
         method: "post",
         url: URL,
-
         data: {
           firstName: profinfo.firstName,
           lastName: profinfo.lastName,
@@ -53,13 +52,6 @@ function ProfSignup() {
   };
   return (
     <div>
-      {/* <p>prof signup page</p>
-      <ProfSignUpForm
-        handleSubmit={handleSubmit}
-        profinfo={profinfo}
-        handleChange={handleChange}
-      /> */}
-
       <form onSubmit={handleSubmit}>
         <input
           type="text"

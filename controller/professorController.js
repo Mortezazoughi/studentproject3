@@ -64,7 +64,7 @@ const professorController = {
 
   profsignin: async (req, res) => {
     // userid is value coming from WebAuthentication.js
-    res.json({userid: userid})
+    res.json(userid);
   },
   //Create new course
   createcourse: async (req, res) => {
