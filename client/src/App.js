@@ -1,20 +1,21 @@
-import React from 'react';
-import Navbar from '../src/components/Navbar/Navbar';
-import CourseRegister from '../src/components/CourseRegister/CourseRegister';
-import ProfSignin from '../src/components/ProfSignin/ProfSignin';
-import ProfSignup from './components/ProfSignup/ProfSignup';
-import StudentSignin from './components/StudentSignin';
-import StudentSignup from './components/StudentSignup';
-import SearchAllCourses from './components/SearchAllCourses';
-import Grid from '@material-ui/core/Grid';
-import StudentProfile from './components/StudentProfile';
-import SearchTitle from './components/SearchTitle';
-import CreateCourse from './components/CreateCourse';
-import SignOut from './components/SignOut';
-import MainPage from './components/Pages/MainPage.js';
-import StudentPage from './components/Pages/StudentPage.js';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import 'semantic-ui-css/semantic.min.css';
+import React, { Component } from "react";
+import Navbar from "../src/components/Navbar/Navbar";
+import CourseRegister from "../src/components/CourseRegister/CourseRegister";
+import ProfSignin from "../src/components/ProfPages/ProfSignin";
+import ProfSignup from "./components/ProfPages/ProfSignup";
+import StudentSignin from "./components/StudentSignin";
+import StudentSignup from "./components/StudentSignup";
+import SearchAllCourses from "./components/SearchAllCourses";
+import Grid from "@material-ui/core/Grid";
+import StudentProfile from "./components/StudentProfile";
+import SearchTitle from "./components/SearchTitle";
+import CreateCourse from "./components/ProfPages/CreateCourse";
+import SignOut from "./components/SignOut";
+import MainPage from "./components/Pages/MainPage.js";
+import StudentPage from "./components/Pages/StudentPage.js";
+import RegisteredStudents from "./components/ProfPages/RegisteredStudents.js";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import "semantic-ui-css/semantic.min.css";
 
 function App() {
   return (
@@ -63,20 +64,21 @@ function App() {
             <li>
               <Link to="/StudentPage"> Student Page</Link>
             </li>
+            <li>
+              <Link to="/RegisteredStudents"> Registered Students</Link>
+            </li>
             <hr />
-
-            {/* <CourseRegister />
-        <ProfSignin />
-        <ProfSignup />
-        <StudentSignin />
-        <StudentSignup /> */}
-
             <Switch>
               <Route exact path="/profsignup" component={ProfSignup} />
               <Route exact path="/profsignin" component={ProfSignin} />
               <Route exact path="/studentsignin" component={StudentSignin} />
               <Route exact path="/studentsignup" component={StudentSignup} />
               <Route exact path="/courseregister" component={CourseRegister} />
+              <Route
+                exact
+                path="/registeredstudents"
+                component={RegisteredStudents}
+              />
               <Route
                 exact
                 path="/SearchAllCourses"

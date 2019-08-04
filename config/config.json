@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "7godiva7",
-    "database": "studentmanagementsystem",
+    "password": null,
+    "database": "StudentManagementSystem",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },

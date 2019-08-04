@@ -47,10 +47,7 @@ class CourseRegister extends Component {
     }
   };
   registarClass = async c_id => {
-    console.log("Course ID from register button", typeof c_id);
     const studentId = JSON.parse(localStorage.getItem("id"));
-    console.log("********* STUDENT ID from local storage ", typeof studentId);
-
     let results;
     try {
       const URL = `http://localhost:8080/registerforclass/${c_id}/${studentId}`;
@@ -64,7 +61,9 @@ class CourseRegister extends Component {
       });
       return results;
     } catch (error) {
-      console.log({ error: error });
+      this.setState({
+        errors: error.response.data.message
+      });
     }
   };
   renderTableData = () => {
@@ -72,7 +71,6 @@ class CourseRegister extends Component {
       <div key={eachCourse.id}>
         <tr>
           <td>{eachCourse.id}</td>
-          <td>{eachCourse.courseName}</td>
           <td>{eachCourse.courseName}</td>
           <td>{eachCourse.level}</td>
           <td>{eachCourse.prereq}</td>
@@ -87,11 +85,11 @@ class CourseRegister extends Component {
     ));
   };
   render() {
-    console.log("inside render", this.state.errors);
     return (
       <div>
         <div>
           <h1 id="title">Register for class</h1>
+          <h4>{this.state.errors}</h4>
           <table id="students">
             <tbody>{this.renderTableData()}</tbody>
           </table>
