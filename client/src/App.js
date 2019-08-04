@@ -1,21 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Navbar from '../src/components/Navbar/Navbar';
 import CourseRegister from '../src/components/CourseRegister/CourseRegister';
-import ProfSignin from '../src/components/ProfSignin/ProfSignin';
-import ProfSignup from './components/ProfSignup/ProfSignup';
+import ProfSignin from '../src/components/ProfPages/ProfSignin';
+import ProfSignup from './components/ProfPages/ProfSignup';
 import StudentSignin from './components/StudentSignin';
 import StudentSignup from './components/StudentSignup';
 import SearchAllCourses from './components/SearchAllCourses';
 import Grid from '@material-ui/core/Grid';
 import StudentProfile from './components/StudentProfile';
 import SearchTitle from './components/SearchTitle';
-import CreateCourse from './components/CreateCourse';
+import CreateCourse from './components/ProfPages/CreateCourse';
 import SignOut from './components/SignOut';
 import MainPage from './components/Pages/MainPage.js';
 import StudentPage from './components/Pages/StudentPage.js';
-import SLoginPage from './components/Pages/PupilLoginPage.js';
+import RegisteredStudents from './components/ProfPages/RegisteredStudents.js';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
+import SLoginPage from './components/Pages/PupilLoginPage.js';
 
 function App() {
   return (

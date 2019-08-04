@@ -8,12 +8,12 @@ class StudentSignin extends Component {
     email: '',
     password: '',
     id: '',
-    toDashboard: false
+    toDashboard: false,
+    error: []
   };
   handleChange = e => {
     const { name, value } = e.target;
     this.setState({ [name]: value });
-    // console.log(this.state.email);
   };
   handleSubmit = e => {
     e.preventDefault();
@@ -33,7 +33,13 @@ class StudentSignin extends Component {
           toDashboard: true
         });
       })
-      .catch(err => console.log(err));
+      .catch(error => {
+        console.log('*********ERRORS**********', error);
+        console.log({ error: error.response.data.message });
+        this.setState({
+          error: error.response.data.message
+        });
+      });
   };
 
   render() {

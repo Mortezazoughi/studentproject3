@@ -14,6 +14,10 @@ const API = {
   },
   searchtitle: function() {
     return axios.get("http://localhost:8080/searchtitle");
+  },
+
+  profsignup: function() {
+    return axios.get("http://localhost:8080/profsignup");
   }
 };
 

@@ -6,6 +6,7 @@ const professorValidationChain = require("../routes/validationChain");
 const professorController = {
   //new professor signup
   profsignup: async (req, res) => {
+    console.log(req.body);
     const {
       firstName,
       lastName,
@@ -17,8 +18,12 @@ const professorController = {
     } = req.body;
 
     // compare input passwords
+    if (password != confirmpassword) {
+      res.status(403).json({ message: "Passwords dont match" });
+      return;
+    }
 
-    if (password === confirmpassword) {
+    {
       checkforProf = await db.Professor.findOne({
         where: {
           email: email
@@ -27,64 +32,69 @@ const professorController = {
 
       //check if professor already exists in the database
       //If does not exist go ahead and create a new prof
-      if (!checkforProf) {
-        let results;
-        //hash password and confirmpassword before storing to db
-        const hashedpassword = bcrypt.hashSync(password, saltRounds);
-        const hashedconfirmpassword = bcrypt.hashSync(
-          confirmpassword,
-          saltRounds
-        );
-        try {
-          results = await db.Professor.create({
-            firstName,
-            lastName,
-            phoneNumber,
-            email,
-            password: hashedpassword,
-            confirmpassword: hashedconfirmpassword,
-            campus
-          });
-          res.send(results);
-        } catch (error) {
-          res.status(500).json({ message: "Something went wrong on our side" });
-        }
-      } else {
-        console.log("person Already exists");
-        res.status(403).json({ message: "Person Already exists" });
+      if (checkforProf) {
+        res.status(403).json({ message: "Email already exists" });
+        return;
       }
-    } else {
-      console.log("passwords dont match");
-      res.status(403).json({ message: "Passwords dont match" });
+      let results;
+      //hash password and confirmpassword before storing to db
+      const hashedpassword = bcrypt.hashSync(password, saltRounds);
+      const hashedconfirmpassword = bcrypt.hashSync(
+        confirmpassword,
+        saltRounds
+      );
+      try {
+        results = await db.Professor.create({
+          firstName,
+          lastName,
+          phoneNumber,
+          email,
+          password: hashedpassword,
+          confirmpassword: hashedconfirmpassword,
+          campus
+        });
+        res.send(results);
+      } catch (error) {
+        res
+          .status(500)
+          .json({ message: `Something went wrong on our side ${error}` });
+      }
     }
   },
 
+  profsignin: async (req, res) => {
+    // userid is value coming from WebAuthentication.js
+    res.json({userid: userid})
+  },
   //Create new course
   createcourse: async (req, res) => {
+    // console.log(req.body);
+    console.log("******BODY IS***** ", req.body);
     const { courseName } = req.body;
     //check if course already exists
-    const coursecheck = await db.Course.count({
+    const coursecheck = await db.Course.findOne({
       where: {
         courseName
       }
     });
     //If course does not exist
-    if (coursecheck === 0) {
-      let results;
-      try {
-        results = await db.Course.create(req.body);
-        //******ADD LOGIC TO REDIRECT TO THE PAGE */
-        res.status(201).json({ message: "Course created successfully" });
-        return;
-      } catch (error) {
-        res
-          .status(500)
-          .json({ message: "Something went wrong with the request" });
-        return;
-      }
-    } else {
+    if (coursecheck) {
       //if course exists
       res.status(403).json({ message: "Course already exists." });
+    }
+
+    let results;
+    try {
+      results = await db.Course.create(req.body);
+      //******ADD LOGIC TO REDIRECT TO THE PAGE */
+      res.status(201).json({ message: "Course created successfully" });
+      return;
+    } catch (error) {
+      res
+        .status(500)
+        // .json({ message: "Something went wrong with the request", erorr });
+        .json({ message: error });
+      return;
     }
   },
   // Not getting my couses
@@ -149,10 +159,34 @@ const professorController = {
     }
   },
   allstudentsregistered: async (req, res) => {
+    console.log("***** HERE*****");
+    console.log(req.body);
+    console.log(req.params.id);
     let results;
     try {
-      results = await db.StudentCourse.findAll({
-        where: { course_id: req.params.id, student_id: req.params.sid }
+      // results = await db.StudentCourse.findAll({
+      //   where: { course_id: req.params.id, student_id: req.params.sid }
+      // });
+      console.log(req.params.id);
+      results = await db.Professor.findAll({
+        where: {
+          id: req.params.id
+        },
+        include: [
+          {
+            model: db.Course,
+            include: [
+              {
+                model: db.StudentCourse,
+                include: [
+                  {
+                    model: db.Student
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       });
       res.send(results);
     } catch (error) {
