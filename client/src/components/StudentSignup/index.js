@@ -1,18 +1,18 @@
-import React, { Component, Children } from "react";
-import { Redirect } from "react-router-dom";
-import Student from "./Student";
+import React, { Component, Children } from 'react';
+import { Redirect } from 'react-router-dom';
+import Student from './Student';
 
-import axios from "axios";
+import axios from 'axios';
 // const StudentProfileInfo = React.createContext();
 class StudentSignup extends Component {
   state = {
-    firstName: "",
-    lastName: "",
-    phoneNumber: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    campus: "",
+    firstName: '',
+    lastName: '',
+    phoneNumber: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    campus: '',
 
     toDashboard: false,
 
@@ -24,9 +24,9 @@ class StudentSignup extends Component {
 
     let results;
     try {
-      const URL = "http://localhost:8080/studentSignup";
+      const URL = 'http://localhost:8080/studentSignup';
       results = await axios({
-        method: "POST",
+        method: 'POST',
         url: URL,
         data: {
           firstName: this.state.firstName,
@@ -39,7 +39,7 @@ class StudentSignup extends Component {
         }
       });
 
-      localStorage.setItem("id", results.data.message.id);
+      localStorage.setItem('id', results.data.message.id);
       this.setState({
         toDashboard: true
       });
@@ -48,6 +48,7 @@ class StudentSignup extends Component {
     } catch (error) {
       // populate the errors array so that we can display the errors on the screen
       console.log(error);
+      console.log(error.response.data.error);
       this.setState({
         errors: error.response.data.error
       });
@@ -67,7 +68,7 @@ class StudentSignup extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: "/StudentProfile",
+            pathname: '/StudentPage',
             state: {
               email: this.state.email
             }
@@ -76,7 +77,7 @@ class StudentSignup extends Component {
       );
     }
     return (
-      <div>
+      <React.Fragment>
         {this.state.errors.map(error => (
           <p>{error}</p>
         ))}
@@ -84,7 +85,7 @@ class StudentSignup extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
         />
-      </div>
+      </React.Fragment>
     );
   }
 }

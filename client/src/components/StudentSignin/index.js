@@ -1,12 +1,13 @@
-import React, { Component, useState } from "react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Button, Form } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class StudentSignin extends Component {
   state = {
-    email: "",
-    password: "",
-    id: "",
+    email: '',
+    password: '',
+    id: '',
     toDashboard: false,
     error: []
   };
@@ -17,8 +18,8 @@ class StudentSignin extends Component {
   handleSubmit = e => {
     e.preventDefault();
     axios({
-      method: "post",
-      url: "http://localhost:8080/signIn",
+      method: 'post',
+      url: 'http://localhost:8080/signIn',
       data: {
         email: this.state.email,
         pass: this.state.password
@@ -27,13 +28,13 @@ class StudentSignin extends Component {
       .then(res => {
         // console.log("I am data", res.data);
         // localStorage.setItem("token", res.data.token);
-        localStorage.setItem("id", res.data);
+        localStorage.setItem('id', res.data);
         this.setState({
           toDashboard: true
         });
       })
       .catch(error => {
-        console.log("*********ERRORS**********", error);
+        console.log('*********ERRORS**********', error);
         console.log({ error: error.response.data.message });
         this.setState({
           error: error.response.data.message
@@ -47,7 +48,7 @@ class StudentSignin extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: "/StudentProfile",
+            pathname: '/StudentPage',
             state: {
               email: this.state.email
             }
@@ -57,26 +58,50 @@ class StudentSignin extends Component {
     }
     return (
       <div>
-        <h4>{this.state.error}</h4>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            value={this.state.email}
-            onChange={this.handleChange}
-            name="email"
-            type="text"
-            placeholder="email"
-          />
-          <input
-            value={this.state.password}
-            onChange={this.handleChange}
-            name="password"
-            type="password"
-            placeholder="Password"
-          />
-          <button>submit</button>
-          <a href="/"> Already have an account</a>
-        </form>
+        <Form success onSubmit={this.handleSubmit}>
+          <Form.Field>
+            <label>Email</label>
+            <input
+              value={this.state.email}
+              onChange={this.handleChange}
+              name="email"
+              type="text"
+              placeholder="joe@mail.com"
+            />
+          </Form.Field>
+          <Form.Field>
+            <label>Password: </label>
+            <input
+              value={this.state.password}
+              onChange={this.handleChange}
+              name="password"
+              type="password"
+              placeholder="Password"
+            />
+          </Form.Field>
+          <Button>Submit</Button>
+        </Form>
       </div>
+      // <div>
+      //   <form onSubmit={this.handleSubmit}>
+      //     <input
+      //       value={this.state.email}
+      //       onChange={this.handleChange}
+      //       name="email"
+      //       type="text"
+      //       placeholder="email"
+      //     />
+      //     <input
+      //       value={this.state.password}
+      //       onChange={this.handleChange}
+      //       name="password"
+      //       type="password"
+      //       placeholder="Password"
+      //     />
+      //     <button>submit</button>
+      //     <a href="/"> Already have an account</a>
+      //   </form>
+      // </div>
     );
   }
 }

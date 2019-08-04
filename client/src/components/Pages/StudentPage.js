@@ -8,17 +8,15 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import Link from '@material-ui/core/Link';
 import StudentLoginModal from '../Modals/StudentSinginModal.js';
 import StudentSignUpModal from '../Modals/StudentSignUpModal.js';
 import StudentProfileModal from '../Modals/StudentProfileModal.js';
 import StudentRegisterModal from '../Modals/StudentRegisterModal.js';
 import CampusEvents from '../Events/CampusEvents.js';
+import SLoginPage from './PupilLoginPage.js';
 
 const drawerWidth = 240;
 
@@ -72,7 +70,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column'
   },
   fixedHeight: {
-    height: 240
+    height: 600
   }
 }));
 
@@ -121,10 +119,10 @@ export default function Studenetpage() {
         <div style={{ marginTop: '3vh' }} />
         <StudentProfileModal />
 
-        <div style={{ marginTop: '3vh' }} />
+        {/* <div style={{ marginTop: '3vh' }} />
         <StudentLoginModal />
         <div style={{ marginTop: '3vh' }} />
-        <StudentSignUpModal />
+        <StudentSignUpModal /> */}
         <div style={{ marginTop: '3vh' }} />
         <Divider />
         <div style={{ marginTop: '3vh' }} />
@@ -134,19 +132,24 @@ export default function Studenetpage() {
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
+              <Paper
+                className={fixedHeightPaper}
+                style={{ backgroundColor: '#9bd4e4' }}
+              >
                 <CampusEvents />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
+
             <Grid item xs={12} md={4} lg={3}>
-              <Paper className={fixedHeightPaper}>
+              <Paper
+                className={fixedHeightPaper}
+                style={{ backgroundColor: '#9bd4e4' }}
+              >
                 <h1>This is the second area</h1>
               </Paper>
             </Grid>
-            {/* Recent Orders */}
+
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <h1>This is the third area of the Grid</h1>
