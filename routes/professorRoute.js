@@ -33,6 +33,9 @@ router.post(
   profauthorizationMiddleware,
   professorController.profsignin
 );
+
+//prof profile
+router.get("/profprofile/:id", professorController.profprofile);
 // create a new course Should not create duplicates ...
 router.post(
   "/createcourse",

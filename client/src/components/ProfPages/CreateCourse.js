@@ -33,14 +33,28 @@ function CreateCourse() {
           prereq: coursecreate.prereq,
           prof_id: coursecreate.prof_id
         }
-      }).then(res => console.log(res.data));
+      }).then(res => {
+        console.log(res.data);
+        res.status(200).json({ message: res.data });
+      });
+      //Clear form after submit *** THIS IS NOT WORKING ********
+      setcoursecreate({
+        courseName: "",
+        availableseats: "",
+        startdate: "",
+        enddate: "",
+        level: "",
+        prereq: "",
+        prof_id: ""
+      });
     } catch (error) {
       console.log(error);
+      return;
     }
   };
   return (
     <div>
-      <p>Blah</p>
+      <p>Blah{coursecreate.courseName}</p>
       <form onSubmit={handlSubmit}>
         <input
           type="text"
@@ -80,7 +94,7 @@ function CreateCourse() {
         <input
           name="prof_id"
           value={coursecreate.prof_id}
-          placeholder=" Cant populate this"
+          // placeholder=" Cant populate this"
           onChange={e =>
             setcoursecreate({ ...coursecreate, prof_id: e.target.value })
           }
