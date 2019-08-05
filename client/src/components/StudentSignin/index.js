@@ -79,7 +79,7 @@ class StudentSignin extends Component {
               placeholder="Password"
             />
           </Form.Field>
-          <Button>Submit</Button>
+          <Button primary>Submit</Button>
         </Form>
       </div>
       // <div>

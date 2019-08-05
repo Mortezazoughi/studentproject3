@@ -8,6 +8,7 @@ import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
 import StudentSignin from '../StudentSignin';
 import StudentSignup from '../StudentSignup';
 
@@ -26,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 
   title: {
     flexGrow: 1,
-    fontSize: '3rem'
+    fontSize: '6rem'
   },
 
   appBarSpacer: theme.mixins.toolbar,
@@ -42,30 +43,41 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     padding: theme.spacing(2),
-    display: 'inline-block',
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
     backgroundColor: '#aeecf7'
   },
   fixedHeight: {
     height: 240
+  },
+  button: {
+    margin: theme.spacing(1)
   }
 }));
 
 function SLoginPage() {
   const [ShowForm, setShowForm] = useState(true);
-  const buttonText = ShowForm
-    ? 'Do Not Have An Account? '
-    : 'Already Have Account';
+  const buttonText = ShowForm ? 'Sign Up' : 'Already Have Account';
 
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={classes.appBar}>
+      <AppBar
+        position="absolute"
+        style={{
+          height: '12%',
+          backgroundImage: 'url(./main-page-background4.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <Toolbar className={classes.toolbar}>
           <Typography
             component="h1"
-            variant="h4"
+            variant="h6"
             color="inherit"
             noWrap
             className={classes.title}
@@ -74,37 +86,31 @@ function SLoginPage() {
           </Typography>
         </Toolbar>
       </AppBar>
-
-      <main className={classes.content}>
+      <main className={classes.content} style={{ marginTop: '0.5vh' }}>
         <div className={classes.appBarSpacer} />
 
         <Container maxWidth="lg" className={classes.container}>
           <Grid container spacing={3}>
-            <Grid item sm={12}>
-              <Paper />
-            </Grid>
-            <Paper className={classes.paper}>
-              <Grid item sm={6}>
-                <Paper className={classes.paper}>
-                  <img src={logo} alt="Logo" style={{ width: '25%' }} />
-                </Paper>
-              </Grid>
-              <Grid item sm={6}>
-                <Paper className={classes.paper}>
-                  <p>
-                    Please enter your information and click the button at the
-                    bottom of the form to submit the form.
-                  </p>
-                </Paper>
-              </Grid>
-
-              <button onClick={() => setShowForm(!ShowForm)}>
-                {buttonText}
-              </button>
-              {ShowForm ? <StudentSignin /> : <StudentSignup />}
-            </Paper>
             <Grid item xs={2}>
               <Paper />
+            </Grid>
+            <Grid item xs={8}>
+              <Paper className={classes.paper}>
+                <img
+                  src={logo}
+                  alt="Logo"
+                  style={{ width: '20%', marginLeft: '41%' }}
+                />
+                <Button
+                  variant="contained"
+                  color="primary"
+                  className={classes.button}
+                  onClick={() => setShowForm(!ShowForm)}
+                >
+                  {buttonText}
+                </Button>
+                {ShowForm ? <StudentSignin /> : <StudentSignup />}
+              </Paper>
             </Grid>
           </Grid>
         </Container>

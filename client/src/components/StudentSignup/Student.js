@@ -83,7 +83,7 @@ function Student(props) {
       <Form.Field>
         <Checkbox label="I agree to the Terms and Conditions" />
       </Form.Field>
-      <Button>Register</Button>
+      <Button primary>Register</Button>
     </Form>
 
     // <form onSubmit={props.handleSubmit}>

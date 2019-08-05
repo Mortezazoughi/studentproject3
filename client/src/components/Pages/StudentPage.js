@@ -1,11 +1,11 @@
 import React from 'react';
 import clsx from 'clsx';
+import { Button } from 'semantic-ui-react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
@@ -39,7 +39,8 @@ const useStyles = makeStyles(theme => ({
   },
 
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    fontSize: '6rem'
   },
   drawerPaper: {
     backgroundColor: '#3f51b5',
@@ -81,7 +82,15 @@ export default function Studenetpage() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar)}>
+      <AppBar
+        position="absolute"
+        style={{
+          height: '12%',
+          backgroundImage: 'url(./main-page-background4.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      >
         <Toolbar className={classes.toolbar}>
           <Typography
             component="h1"
@@ -90,7 +99,7 @@ export default function Studenetpage() {
             noWrap
             className={classes.title}
           >
-            <h1>Apogee University</h1>
+            Apogee University
           </Typography>
         </Toolbar>
       </AppBar>
@@ -112,17 +121,12 @@ export default function Studenetpage() {
 				<List>{secondaryListItems}</List> */}
 
         <div style={{ marginTop: '3vh' }} />
-        <Button href="/" style={{ color: '#fff' }}>
+        <Button href="/" inverted>
           Home
         </Button>
 
         <div style={{ marginTop: '3vh' }} />
         <StudentProfileModal />
-
-        {/* <div style={{ marginTop: '3vh' }} />
-        <StudentLoginModal />
-        <div style={{ marginTop: '3vh' }} />
-        <StudentSignUpModal /> */}
         <div style={{ marginTop: '3vh' }} />
         <Divider />
         <div style={{ marginTop: '3vh' }} />
