@@ -66,10 +66,23 @@ const professorController = {
     // userid is value coming from WebAuthentication.js
     res.json(userid);
   },
+  //get profile info
+  profprofile: async (req, res) => {
+    let results;
+    try {
+      results = await db.Professor.findOne({
+        where: {
+          id: req.params.id
+        }
+      });
+      res.status(200).json(results);
+    } catch (error) {
+      res.status(500).json({ message: error });
+      return;
+    }
+  },
   //Create new course
   createcourse: async (req, res) => {
-    // console.log(req.body);
-    console.log("******BODY IS***** ", req.body);
     const { courseName } = req.body;
     //check if course already exists
     const coursecheck = await db.Course.findOne({
@@ -159,7 +172,6 @@ const professorController = {
     }
   },
   allstudentsregistered: async (req, res) => {
-    console.log("***** HERE*****");
     console.log(req.body);
     console.log(req.params.id);
     let results;
