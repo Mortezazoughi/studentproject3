@@ -10,8 +10,9 @@ class StudentProfile extends Component {
     toSignIn: false
   };
   componentDidMount() {
+    this.studentData();
     this.mycoursesandprof();
-    this.registeredCourses();
+    // this.registeredCourses();
   }
   studentData = () => {
     const userid = localStorage.getItem("id");
@@ -38,7 +39,7 @@ class StudentProfile extends Component {
       method: "GET"
     })
       .then(res => {
-        // console.log(res.data);
+        console.log("**** inside registered courses", res.data);
         this.setState({
           classes: res.data
         });
@@ -54,9 +55,7 @@ class StudentProfile extends Component {
       method: "GET"
     })
       .then(res => {
-        // console.log(res.data);
-        console.log(res.data[3].Course.courseName);
-        console.log(res.data[3].Course.level);
+        console.log(typeof res.data);
         this.setState({
           classes: res.data
         });
@@ -67,11 +66,18 @@ class StudentProfile extends Component {
     // console.log(this.state.classes);
     return (
       <div>
-        <p>First Name: {this.state.student.firstName}</p>
-        <p>Lirst Name: {this.state.student.lastName}</p>
+        <div>
+          <p>First Name: {this.state.student.firstName}</p>
+          <p>Lirst Name: {this.state.student.lastName}</p>
 
-        <p> email: {this.state.student.email}</p>
-        <p> phone: {this.state.student.phoneNumber}</p>
+          <p> email: {this.state.student.email}</p>
+          <p> phone: {this.state.student.phoneNumber}</p>
+        </div>
+        <div>
+          {this.state.classes.map(myclass => (
+            <p> BLah {myclass.courseName}</p>
+          ))}
+        </div>
       </div>
     );
   }

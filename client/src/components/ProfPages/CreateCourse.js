@@ -34,7 +34,7 @@ function CreateCourse() {
           prof_id: coursecreate.prof_id
         }
       }).then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         res.status(200).json({ message: res.data });
       });
       //Clear form after submit *** THIS IS NOT WORKING ********

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import API from "../../utils/API";
+import Form from "./Form";
 
 import axios from "axios";
 // import ProfSignUpForm from "./ProfSignUpForm";
+
 
 function ProfSignup() {
   const [profinfo, setprofinfo] = useState({
@@ -37,13 +39,13 @@ function ProfSignup() {
           confirmpassword: profinfo.confirmpassword
         }
       });
+
+      // set localStorage
+      localStorage.setItem("profid", results.data.id);
     } catch (error) {
       console.log(error);
     }
 
-    console.log(results.data.id);
-    // set localStorage
-    localStorage.setItem("profid", results.data.id);
     // set todash flag to true
     settoDash({
       toDash: true
@@ -52,57 +54,11 @@ function ProfSignup() {
   };
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="enter First Name"
-          onChange={e =>
-            setprofinfo({ ...profinfo, firstName: e.target.value })
-          }
-          name={profinfo.firstName}
-        />
-        <input
-          type="text"
-          placeholder="enter last Name"
-          onChange={e => setprofinfo({ ...profinfo, lastName: e.target.value })}
-          name={profinfo.lasttName}
-        />
-        <input
-          type="text"
-          placeholder="enter Phone Number"
-          onChange={e =>
-            setprofinfo({ ...profinfo, phoneNumber: e.target.value })
-          }
-          name={profinfo.phoneNumber}
-        />
-        <input
-          type="text"
-          placeholder="enter email"
-          onChange={e => setprofinfo({ ...profinfo, email: e.target.value })}
-          name={profinfo.email}
-        />
-        <input
-          type="text"
-          placeholder="enter Campus"
-          onChange={e => setprofinfo({ ...profinfo, campus: e.target.value })}
-          name={profinfo.campus}
-        />
-        <input
-          type="password"
-          placeholder="enter password"
-          onChange={e => setprofinfo({ ...profinfo, password: e.target.value })}
-          name={profinfo.lasttName}
-        />
-        <input
-          type="password"
-          placeholder="Confirm Password"
-          onChange={e =>
-            setprofinfo({ ...profinfo, confirmpassword: e.target.value })
-          }
-          name={profinfo.lasttName}
-        />
-        <button> Register</button>
-      </form>
+      <Form
+        handleSubmit={handleSubmit}
+        setprofinfo={setprofinfo}
+        profinfo={profinfo}
+      />
     </div>
   );
 }

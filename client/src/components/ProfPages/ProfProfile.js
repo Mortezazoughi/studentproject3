@@ -7,8 +7,7 @@ function ProfProfile() {
     getprofinfo(storedprofid);
   }, []);
 
-  const [profinforeturned, setprofinforeturned] = useState({});
-  console.log("*****PROF INFO RETURNED", profinforeturned.profinforeturned);
+  const [profinforeturned, setprofinforeturned] = useState();
 
   const getprofinfo = async id => {
     let results;
@@ -18,12 +17,13 @@ function ProfProfile() {
         method: "GET",
         url: URL
       });
+
+      setprofinforeturned(results.data);
+
+      console.log("*****PROF INFO RETURNED", profinforeturned);
     } catch (error) {
       console.log(error);
     }
-    setprofinforeturned({
-      profinforeturned: results.data
-    });
 
     // console.log(results.data);
     return;
@@ -32,9 +32,13 @@ function ProfProfile() {
   return (
     //   console.log(typeof profinforeturned)
     <div>
-      <p>Blah</p>
-      <p> XXXXXXX {profinforeturned.firstName}</p>
-      <p>Blah</p>
+      {profinforeturned ? (
+        <div>
+          <p>Blah</p>
+          <p> XXXXXXX {profinforeturned.firstName}</p>
+          <p>Blah</p>
+        </div>
+      ) : null}
     </div>
   );
 }

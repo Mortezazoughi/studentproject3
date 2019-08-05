@@ -18,7 +18,7 @@ class SearchAllCourses extends Component {
   componentDidMount() {
     API.searchallcourses()
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         this.setState({ AllCourses: res.data });
       })
       .catch(err => console.log(err));

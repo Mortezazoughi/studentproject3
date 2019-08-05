@@ -55,6 +55,9 @@ function App() {
             <li>
               <Link to="/allstudentsregistered"> RegisteredStudents</Link>
             </li>
+            <li>
+              <Link to="/courseregister"> Register for class</Link>
+            </li>
             <hr />
           </ul>
         </div>
