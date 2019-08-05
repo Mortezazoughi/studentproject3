@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Navbar from '../src/components/Navbar/Navbar';
 import CourseRegister from '../src/components/CourseRegister/CourseRegister';
 import ProfSignin from '../src/components/ProfPages/ProfSignin';
 import ProfSignup from './components/ProfPages/ProfSignup';
@@ -14,10 +13,12 @@ import CreateCourse from './components/ProfPages/CreateCourse';
 import SignOut from './components/SignOut';
 import MainPage from './components/Pages/MainPage.js';
 import StudentPage from './components/Pages/StudentPage.js';
+import ProfPage from './components/Pages/ProfPage.js';
 import RegisteredStudents from './components/ProfPages/RegisteredStudents.js';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import SLoginPage from './components/Pages/PupilLoginPage.js';
+import PLoginPage from './components/Pages/ProfLoginPage.js';
 
 function App() {
   return (
@@ -74,6 +75,8 @@ function App() {
           <Route exact path="/" component={MainPage} />
           <Route exact path="/StudentPage" component={StudentPage} />
           <Route exact path="/StudentLogin" component={SLoginPage} />
+          <Route exact path="/ProfLogin" component={PLoginPage} />
+          <Route exact path="/ProfPage" component={ProfPage} />
           <Route
             exact
             path="/allstudentsregistered"

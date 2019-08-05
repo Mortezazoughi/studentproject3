@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 
 class SignOu extends Component {
   state = {};
 
   componentWillMount() {
-    localStorage.clear("id");
+    localStorage.clear('id');
   }
   render() {
     return (

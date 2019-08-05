@@ -117,7 +117,7 @@ export default function MainPage() {
             </li>
 
             <li>
-              <a href="#" style={{ fontSize: '3rem' }}>
+              <a href="./ProfLogin" style={{ fontSize: '3rem' }}>
                 {' | '} Faculty
               </a>
             </li>
