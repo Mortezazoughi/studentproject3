@@ -1,7 +1,21 @@
-import React, { Component, Redirect } from "react";
-import jwt from "jsonwebtoken";
-import Axios from "axios";
-import Auth from "../Auth";
+import React, { Component, Redirect } from 'react';
+import jwt from 'jsonwebtoken';
+import Axios from 'axios';
+import Auth from '../Auth';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary
+  }
+}));
 
 class StudentProfile extends Component {
   state = {
@@ -11,18 +25,19 @@ class StudentProfile extends Component {
   };
   componentDidMount() {
     this.mycoursesandprof();
-    this.registeredCourses();
+    this.studentData();
+    // this.registeredCourses();
   }
   studentData = () => {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
 
     const URL = `http://localhost:8080/studentinfo/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
-        // console.log(res.data);
+        // console.log('This is for res.data', res.data);
         this.setState({
           student: res.data
         });
@@ -31,14 +46,14 @@ class StudentProfile extends Component {
   };
   // *************NEED THIS TO WORK**************
   registeredCourses = () => {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
     const URL = `http://localhost:8080/registeredcourses/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
-        // console.log(res.data);
+        console.log('This is registered courses data', res.data);
         this.setState({
           classes: res.data
         });
@@ -47,16 +62,18 @@ class StudentProfile extends Component {
   };
 
   mycoursesandprof = () => {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
     const URL = `http://localhost:8080/mycoursesandprof/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
-        // console.log(res.data);
-        console.log(res.data[3].Course.courseName);
-        console.log(res.data[3].Course.level);
+        console.log('This is mycoursesandprof', res.data);
+
+        // console.log(res.data[3].Course.courseName);
+        // console.log(res.data[3].Course.level);
+
         this.setState({
           classes: res.data
         });
@@ -64,14 +81,44 @@ class StudentProfile extends Component {
       .catch(err => console.log(err));
   };
   render() {
-    // console.log(this.state.classes);
-    return (
-      <div>
-        <p>First Name: {this.state.student.firstName}</p>
-        <p>Lirst Name: {this.state.student.lastName}</p>
+    let ob = this.state.classes;
+    // console.log('This is the classes array', ob);
+    let arr = [];
+    if (ob)
+      for (var i = 0; i < ob.length; i++) {
+        arr.push(ob[i].Course.courseName);
+      }
+    else {
+      console.log('nothng here');
+    }
 
-        <p> email: {this.state.student.email}</p>
-        <p> phone: {this.state.student.phoneNumber}</p>
+    return (
+      <div className={makeStyles.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
+            <Paper
+              className={makeStyles.paper}
+              style={{ backgroundColor: '#ecebd7' }}
+            >
+              <p>First Name: {this.state.student.firstName}</p>
+              <p>Last Name: {this.state.student.lastName}</p>
+              <p> email: {this.state.student.email}</p>
+              <p> phone: {this.state.student.phoneNumber}</p>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
+            <Paper
+              className={makeStyles.paper}
+              style={{ backgroundColor: '#ecebd7' }}
+            >
+              <p> Courses Registered this semester: </p>
+
+              {arr.map((course, i) => (
+                <p key={i}>{course}</p>
+              ))}
+            </Paper>
+          </Grid>
+        </Grid>
       </div>
     );
   }
