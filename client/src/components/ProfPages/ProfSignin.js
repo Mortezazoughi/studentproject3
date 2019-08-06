@@ -6,13 +6,20 @@ function ProfSignin() {
     email: "",
     password: ""
   });
+  const [anyerrrors, setanyerrrors] = useState({
+    errorsFlag: false,
+    actualErrors: ""
+  });
   const handleSubmit = async e => {
     e.preventDefault();
+    setanyerrrors({
+      errorsFlag: false,
+      actualErrors: ""
+    });
     let results;
-
     try {
       const URL = `http://localhost:8080/profsignin`;
-      let results = await axios({
+      results = await axios({
         url: URL,
         method: "POST",
         data: {
@@ -20,14 +27,17 @@ function ProfSignin() {
           password: profsignin.password
         }
       });
-      console.log("******SEND BACK DATA********", results.data);
       localStorage.setItem("profid", results.data);
     } catch (error) {
-      console.log(error);
+      setanyerrrors({
+        errorsFlag: true,
+        actualErrors: error.response.data.message
+      });
     }
   };
   return (
     <div>
+      <div> {anyerrrors.actualErrors}</div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
