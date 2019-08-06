@@ -26,11 +26,7 @@ class StudentProfile extends Component {
   componentDidMount() {
     this.studentData();
     this.mycoursesandprof();
-<<<<<<< HEAD
-    this.studentData();
-=======
-
->>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
+    // this.studentData();
     // this.registeredCourses();
   }
   studentData = () => {
