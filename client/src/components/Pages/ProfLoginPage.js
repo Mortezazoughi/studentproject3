@@ -9,8 +9,8 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import StudentSignin from '../StudentSignin';
-import StudentSignup from '../StudentSignup';
+import ProfSignin from '../ProfPages/ProfSignin.js';
+import ProfSignup from '../ProfPages/ProfSignup';
 
 import logo from './blue-glass-ball.png';
 
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function SLoginPage() {
+function PLoginPage() {
   const [ShowForm, setShowForm] = useState(true);
   const buttonText = ShowForm ? 'Sign Up' : 'Already Have Account';
 
@@ -109,7 +109,7 @@ function SLoginPage() {
                 >
                   {buttonText}
                 </Button>
-                {ShowForm ? <StudentSignin /> : <StudentSignup />}
+                {ShowForm ? <ProfSignin /> : <ProfSignup />}
               </Paper>
             </Grid>
           </Grid>
@@ -119,4 +119,4 @@ function SLoginPage() {
   );
 }
 
-export default SLoginPage;
+export default PLoginPage;

@@ -11,10 +11,8 @@ import Divider from '@material-ui/core/Divider';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-// import StudentLoginModal from '../Modals/StudentSinginModal.js';
-// import StudentSignUpModal from '../Modals/StudentSignUpModal.js';
-import StudentProfileModal from '../Modals/StudentProfileModal.js';
-import StudentRegisterModal from '../Modals/StudentRegisterModal.js';
+import ProfProfileModal from '../Modals/ProfProfileModal.js';
+import ProfCreateCourseModal from '../Modals/ProfCreateCourseModal.js';
 import CampusEvents from '../Events/CampusEvents.js';
 
 const drawerWidth = 240;
@@ -74,7 +72,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function Studenetpage() {
+export default function ProfPage() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
@@ -84,7 +82,7 @@ export default function Studenetpage() {
       <AppBar
         position="absolute"
         style={{
-          height: '12%',
+          height: '16%',
           backgroundImage: 'url(./main-page-background4.jpg)',
           backgroundSize: 'cover',
           backgroundPosition: 'center'
@@ -109,8 +107,9 @@ export default function Studenetpage() {
         }}
       >
         <Divider />
-        <div style={{ marginTop: '25%', fontSize: '2rem' }}>
-          <p>Welcome</p>
+        <div style={{ marginTop: '25%' }}>
+          <p style={{ fontSize: '3rem' }}>Welcome</p>
+          <p style={{ fontSize: '2rem' }}>Professor</p>
         </div>
         <div style={{ marginTop: '5vh' }} />
 
@@ -120,11 +119,11 @@ export default function Studenetpage() {
         </Button>
 
         <div style={{ marginTop: '3vh' }} />
-        <StudentProfileModal />
+        <ProfProfileModal />
         <div style={{ marginTop: '3vh' }} />
         <Divider />
         <div style={{ marginTop: '3vh' }} />
-        <StudentRegisterModal />
+        <ProfCreateCourseModal />
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />

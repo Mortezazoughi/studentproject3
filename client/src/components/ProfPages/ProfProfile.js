@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React, { useState, useEffect } from 'react';
+import Axios from 'axios';
 
 function ProfProfile() {
   useEffect(() => {
-    const storedprofid = localStorage.getItem("profid");
+    const storedprofid = localStorage.getItem('profid');
     getprofinfo(storedprofid);
   }, []);
 
@@ -14,13 +14,13 @@ function ProfProfile() {
     try {
       const URL = `http://localhost:8080/profprofile/${id}`;
       results = await Axios({
-        method: "GET",
+        method: 'GET',
         url: URL
       });
 
       setprofinforeturned(results.data);
 
-      console.log("*****PROF INFO RETURNED", profinforeturned);
+      console.log('*****PROF INFO RETURNED', profinforeturned);
     } catch (error) {
       console.log(error);
     }
@@ -28,7 +28,6 @@ function ProfProfile() {
   };
 
   return (
-
     <div>
       {profinforeturned ? (
         <div>

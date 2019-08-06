@@ -1,7 +1,21 @@
-import React, { Component, Redirect } from "react";
-import jwt from "jsonwebtoken";
-import Axios from "axios";
-import Auth from "../Auth";
+import React, { Component, Redirect } from 'react';
+import jwt from 'jsonwebtoken';
+import Axios from 'axios';
+import Auth from '../Auth';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary
+  }
+}));
 
 class StudentProfile extends Component {
   state = {
@@ -12,15 +26,20 @@ class StudentProfile extends Component {
   componentDidMount() {
     this.studentData();
     this.mycoursesandprof();
+<<<<<<< HEAD
+    this.studentData();
+=======
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
     // this.registeredCourses();
   }
   studentData = () => {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
 
     const URL = `http://localhost:8080/studentinfo/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
         this.setState({
@@ -30,14 +49,20 @@ class StudentProfile extends Component {
       .catch(err => console.log(err));
   };
   registeredCourses = () => {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
     const URL = `http://localhost:8080/registeredcourses/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
+<<<<<<< HEAD
+        console.log('This is registered courses data', res.data);
+=======
+
         console.log("**** inside registered courses", res.data);
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
         this.setState({
           classes: res.data
         });
@@ -46,14 +71,20 @@ class StudentProfile extends Component {
   };
 
   mycoursesandprof = () => {
-    const userid = localStorage.getItem("id");
+    const userid = localStorage.getItem('id');
     const URL = `http://localhost:8080/mycoursesandprof/${userid}`;
     Axios({
       url: URL,
-      method: "GET"
+      method: 'GET'
     })
       .then(res => {
+<<<<<<< HEAD
+        console.log('This is mycoursesandprof', res.data);
+=======
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
+
         console.log(typeof res.data);
+
         this.setState({
           classes: res.data
         });
@@ -61,20 +92,52 @@ class StudentProfile extends Component {
       .catch(err => console.log(err));
   };
   render() {
-    return (
-      <div>
-        <div>
-          <p>First Name: {this.state.student.firstName}</p>
-          <p>Lirst Name: {this.state.student.lastName}</p>
+    let ob = this.state.classes;
+    // console.log('This is the classes array', ob);
+    let arr = [];
+    if (ob)
+      for (var i = 0; i < ob.length; i++) {
+        arr.push(ob[i].Course.courseName);
+      }
+    else {
+      console.log('nothng here');
+    }
 
-          <p> email: {this.state.student.email}</p>
-          <p> phone: {this.state.student.phoneNumber}</p>
-        </div>
-        <div>
-          {this.state.classes.map(myclass => (
-            <p> BLah {myclass.courseName}</p>
-          ))}
-        </div>
+    return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
+      <div className={makeStyles.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
+            <Paper
+              className={makeStyles.paper}
+              style={{ backgroundColor: '#ecebd7' }}
+            >
+              <p>First Name: {this.state.student.firstName}</p>
+              <p>Last Name: {this.state.student.lastName}</p>
+              <p> email: {this.state.student.email}</p>
+              <p> phone: {this.state.student.phoneNumber}</p>
+            </Paper>
+          </Grid>
+          <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
+            <Paper
+              className={makeStyles.paper}
+              style={{ backgroundColor: '#ecebd7' }}
+            >
+              <p> Courses Registered this semester: </p>
+
+              {arr.map((course, i) => (
+                <p key={i}>{course}</p>
+              ))}
+            </Paper>
+          </Grid>
+        </Grid>
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
       </div>
     );
   }

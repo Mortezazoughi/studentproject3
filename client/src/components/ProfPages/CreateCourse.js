@@ -1,40 +1,42 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
+import Axios from 'axios';
 
 function CreateCourse() {
   const [coursecreate, setcoursecreate] = useState({
-    courseName: "",
-    availableseats: "",
-    startdate: "",
-    enddate: "",
-    level: "",
-    prereq: "",
-    prof_id: ""
+    courseName: '',
+    availableseats: '',
+    startdate: '',
+    enddate: '',
+    level: '',
+    prereq: '',
+    prof_id: ''
   });
 
   //handle errors
   const [anyerrrors, setanyerrrors] = useState({
     errorsFlag: false,
-    actualErrors: ""
+    actualErrors: ''
   });
 
   //grab and set prof_id from localstorage
   useEffect(() => {
-    coursecreate.prof_id = localStorage.getItem("profid");
+    coursecreate.prof_id = localStorage.getItem('profid');
   }, [coursecreate.prof_id]);
   const handlSubmit = async e => {
     e.preventDefault();
     //Reset form and errors
     setanyerrrors({
       errorsFlag: false,
-      actualErrors: ""
+      actualErrors: ''
     });
 
     let results;
     try {
-      URL = "http://localhost:8080/createcourse";
+      URL = 'http://localhost:8080/createcourse';
       results = await Axios({
-        method: "post",
+        method: 'post',
         url: URL,
         data: {
           courseName: coursecreate.courseName,
@@ -49,13 +51,13 @@ function CreateCourse() {
       console.log({ message: results });
 
       setcoursecreate({
-        courseName: "",
-        availableseats: "",
-        startdate: "",
-        enddate: "",
-        level: "",
-        prereq: "",
-        prof_id: ""
+        courseName: '',
+        availableseats: '',
+        startdate: '',
+        enddate: '',
+        level: '',
+        prereq: '',
+        prof_id: ''
       });
     } catch (error) {
       setanyerrrors({
@@ -67,9 +69,99 @@ function CreateCourse() {
   };
   return (
     <div>
-      <div>BLAH {anyerrrors.actualErrors}</div>
+      {/* <p>Blah{coursecreate.courseName}</p> */}
+      <Form onSubmit={handlSubmit} style={{ backgroundColor: '#a8e5ee' }}>
+        <Form.Field Required>
+          <label>Course title</label>
+          <input
+            name={coursecreate.courseName}
+            placeholder="Enter Course Title"
+            onChange={e =>
+              setcoursecreate({
+                ...coursecreate,
+                courseName: e.target.value
+              })
+            }
+            type="text"
+          />
+        </Form.Field>
+        <Form.Field Required>
+          <label>Available Seats</label>
+          <input
+            value={coursecreate.availableseats}
+            name="availableseats"
+            placeholder="Enter Available Seats"
+            onChange={e =>
+              setcoursecreate({
+                ...coursecreate,
+                availableseats: e.target.value
+              })
+            }
+          />
+        </Form.Field>
+        <Form.Field Required>
+          <label>Course Level</label>
+          <input
+            value={coursecreate.level}
+            name="level"
+            placeholder="Enter phone"
+            onChange={e =>
+              setcoursecreate({ ...coursecreate, level: e.target.value })
+            }
+          />
+        </Form.Field>
 
-      <form onSubmit={handlSubmit}>
+        <Form.Field Required>
+          <label>PreRequisite</label>
+          <input
+            value={coursecreate.prereq}
+            name="prereq"
+            placeholder=" Required Prerequistes "
+            onChange={e =>
+              setcoursecreate({ ...coursecreate, prereq: e.target.value })
+            }
+          />
+        </Form.Field>
+        <Form.Field>
+          <input
+            type="hidden"
+            value={coursecreate.prof_id}
+            name="prof_id"
+            // placeholder="Enter Your ID"
+            onChange={e =>
+              setcoursecreate({ ...coursecreate, prof_id: e.target.value })
+            }
+          />
+        </Form.Field>
+        <Form.Field Required>
+          <label>Start Date </label>
+          <input
+            value={coursecreate.startdate}
+            name="startdate"
+            placeholder="Start Date"
+            onChange={e =>
+              setcoursecreate({ ...coursecreate, startdate: e.target.value })
+            }
+          />
+        </Form.Field>
+        <Form.Field Required>
+          <label>End Date: </label>
+          <input
+            value={coursecreate.enddate}
+            name="enddate"
+            placeholder=" End Date"
+            onChange={e =>
+              setcoursecreate({ ...coursecreate, enddate: e.target.value })
+            }
+          />
+        </Form.Field>
+        <Form.Field Required>
+          <Checkbox label="I agree to the Terms and Conditions" />
+        </Form.Field>
+        <Button primary>Submit</Button>
+      </Form>
+
+      {/* <form onSubmit={handlSubmit}>
         <input
           type="text"
           name={coursecreate.courseName}
@@ -130,7 +222,7 @@ function CreateCourse() {
           }
         />
         <button>Submit</button>
-      </form>
+      </form> */}
     </div>
   );
 }
