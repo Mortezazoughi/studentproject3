@@ -1,10 +1,10 @@
-import React, { Component, Redirect } from 'react';
-import jwt from 'jsonwebtoken';
-import Axios from 'axios';
-import Auth from '../Auth';
-import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Grid from '@material-ui/core/Grid';
+import React, { Component, Redirect } from "react";
+import jwt from "jsonwebtoken";
+import Axios from "axios";
+import Auth from "../Auth";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'center',
+    textAlign: "center",
     color: theme.palette.text.secondary
   }
 }));
@@ -30,12 +30,12 @@ class StudentProfile extends Component {
     // this.registeredCourses();
   }
   studentData = () => {
-    const userid = localStorage.getItem('id');
+    const userid = localStorage.getItem("id");
 
     const URL = `http://localhost:8080/studentinfo/${userid}`;
     Axios({
       url: URL,
-      method: 'GET'
+      method: "GET"
     })
       .then(res => {
         this.setState({
@@ -45,20 +45,14 @@ class StudentProfile extends Component {
       .catch(err => console.log(err));
   };
   registeredCourses = () => {
-    const userid = localStorage.getItem('id');
+    const userid = localStorage.getItem("id");
     const URL = `http://localhost:8080/registeredcourses/${userid}`;
     Axios({
       url: URL,
-      method: 'GET'
+      method: "GET"
     })
       .then(res => {
-<<<<<<< HEAD
-        console.log('This is registered courses data', res.data);
-=======
-
-        console.log("**** inside registered courses", res.data);
-
->>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
+        console.log("This is registered courses data", res.data);
         this.setState({
           classes: res.data
         });
@@ -67,17 +61,14 @@ class StudentProfile extends Component {
   };
 
   mycoursesandprof = () => {
-    const userid = localStorage.getItem('id');
+    const userid = localStorage.getItem("id");
     const URL = `http://localhost:8080/mycoursesandprof/${userid}`;
     Axios({
       url: URL,
-      method: 'GET'
+      method: "GET"
     })
       .then(res => {
-<<<<<<< HEAD
-        console.log('This is mycoursesandprof', res.data);
-=======
->>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
+        console.log("This is mycoursesandprof", res.data);
 
         console.log(typeof res.data);
 
@@ -96,20 +87,16 @@ class StudentProfile extends Component {
         arr.push(ob[i].Course.courseName);
       }
     else {
-      console.log('nothng here');
+      console.log("nothng here");
     }
 
     return (
-<<<<<<< HEAD
-=======
-
->>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
       <div className={makeStyles.root}>
         <Grid container spacing={3}>
-          <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
+          <Grid item xs={6} style={{ fontSize: "1.5rem" }}>
             <Paper
               className={makeStyles.paper}
-              style={{ backgroundColor: '#ecebd7' }}
+              style={{ backgroundColor: "#ecebd7" }}
             >
               <p>First Name: {this.state.student.firstName}</p>
               <p>Last Name: {this.state.student.lastName}</p>
@@ -117,10 +104,10 @@ class StudentProfile extends Component {
               <p> phone: {this.state.student.phoneNumber}</p>
             </Paper>
           </Grid>
-          <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
+          <Grid item xs={6} style={{ fontSize: "1.5rem" }}>
             <Paper
               className={makeStyles.paper}
-              style={{ backgroundColor: '#ecebd7' }}
+              style={{ backgroundColor: "#ecebd7" }}
             >
               <p> Courses Registered this semester: </p>
 
@@ -130,10 +117,6 @@ class StudentProfile extends Component {
             </Paper>
           </Grid>
         </Grid>
-<<<<<<< HEAD
-=======
-
->>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
       </div>
     );
   }
