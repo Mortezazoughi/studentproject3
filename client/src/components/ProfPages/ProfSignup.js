@@ -1,8 +1,11 @@
+
 import React, { useState } from 'react';
 import API from '../../utils/API';
 import { Button, Checkbox, Form } from 'semantic-ui-react';
 import axios from 'axios';
+
 // import ProfSignUpForm from "./ProfSignUpForm";
+
 
 function ProfSignup() {
   const [profinfo, setprofinfo] = useState({
@@ -37,13 +40,18 @@ function ProfSignup() {
           confirmpassword: profinfo.confirmpassword
         }
       });
+
+      // set localStorage
+      localStorage.setItem("profid", results.data.id);
     } catch (error) {
       console.log(error);
     }
 
+
     console.log(results.data.id);
     // set localStorage
     localStorage.setItem('profid', results.data.id);
+
     // set todash flag to true
     settoDash({
       toDash: true
@@ -53,6 +61,7 @@ function ProfSignup() {
   return (
     <div>
       <Form
+
         success
         onSubmit={handleSubmit}
         style={{ backgroundColor: '#a8e5ee' }}
@@ -187,6 +196,12 @@ function ProfSignup() {
         />
         <button> Register</button>
       </form> */}
+
+        handleSubmit={handleSubmit}
+        setprofinfo={setprofinfo}
+        profinfo={profinfo}
+      />
+
     </div>
   );
 }

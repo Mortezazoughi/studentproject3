@@ -20,10 +20,14 @@ function ProfProfile() {
 
       setprofinforeturned(results.data);
 
-      console.log('*****PROF INFO RETURNED', profinforeturned);
+
+      console.log("*****PROF INFO RETURNED", profinforeturned);
     } catch (error) {
       console.log(error);
     }
+
+    // console.log(results.data);
+
     return;
   };
 

@@ -24,8 +24,9 @@ class StudentProfile extends Component {
     toSignIn: false
   };
   componentDidMount() {
-    this.mycoursesandprof();
     this.studentData();
+    this.mycoursesandprof();
+
     // this.registeredCourses();
   }
   studentData = () => {
@@ -53,7 +54,9 @@ class StudentProfile extends Component {
       method: 'GET'
     })
       .then(res => {
-        console.log('This is registered courses data', res.data);
+
+        console.log("**** inside registered courses", res.data);
+
         this.setState({
           classes: res.data
         });
@@ -69,10 +72,8 @@ class StudentProfile extends Component {
       method: 'GET'
     })
       .then(res => {
-        console.log('This is mycoursesandprof', res.data);
 
-        // console.log(res.data[3].Course.courseName);
-        // console.log(res.data[3].Course.level);
+        console.log(typeof res.data);
 
         this.setState({
           classes: res.data
@@ -93,6 +94,7 @@ class StudentProfile extends Component {
     }
 
     return (
+
       <div className={makeStyles.root}>
         <Grid container spacing={3}>
           <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
@@ -119,6 +121,7 @@ class StudentProfile extends Component {
             </Paper>
           </Grid>
         </Grid>
+
       </div>
     );
   }

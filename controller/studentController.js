@@ -267,7 +267,6 @@ const studentController = {
       return;
     }
   },
-
   mycoursesandprof: async (req, res) => {
     let result;
     try {
