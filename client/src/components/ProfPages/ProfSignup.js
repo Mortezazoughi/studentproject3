@@ -49,6 +49,7 @@ function ProfSignup() {
     console.log(results.data.id);
     // set localStorage
     localStorage.setItem('profid', results.data.id);
+
     // set todash flag to true
     settoDash({
       toDash: true

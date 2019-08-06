@@ -26,7 +26,11 @@ class StudentProfile extends Component {
   componentDidMount() {
     this.studentData();
     this.mycoursesandprof();
+<<<<<<< HEAD
     this.studentData();
+=======
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
     // this.registeredCourses();
   }
   studentData = () => {
@@ -52,7 +56,13 @@ class StudentProfile extends Component {
       method: 'GET'
     })
       .then(res => {
+<<<<<<< HEAD
         console.log('This is registered courses data', res.data);
+=======
+
+        console.log("**** inside registered courses", res.data);
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
         this.setState({
           classes: res.data
         });
@@ -68,10 +78,12 @@ class StudentProfile extends Component {
       method: 'GET'
     })
       .then(res => {
+<<<<<<< HEAD
         console.log('This is mycoursesandprof', res.data);
+=======
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
 
-        // console.log(res.data[3].Course.courseName);
-        // console.log(res.data[3].Course.level);
+        console.log(typeof res.data);
 
         this.setState({
           classes: res.data
@@ -92,6 +104,10 @@ class StudentProfile extends Component {
     }
 
     return (
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
       <div className={makeStyles.root}>
         <Grid container spacing={3}>
           <Grid item xs={6} style={{ fontSize: '1.5rem' }}>
@@ -118,6 +134,10 @@ class StudentProfile extends Component {
             </Paper>
           </Grid>
         </Grid>
+<<<<<<< HEAD
+=======
+
+>>>>>>> fdb1c2195530ccd7c4692bb7ee99e80e493a485d
       </div>
     );
   }
