@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import React, { Component } from "react";
+import { Button, Form } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 class StudentSignin extends Component {
   state = {
-    email: '',
-    password: '',
-    id: '',
+    email: "",
+    password: "",
+    id: "",
     toDashboard: false,
-    error: []
+    error: ""
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -17,25 +17,29 @@ class StudentSignin extends Component {
   };
   handleSubmit = e => {
     e.preventDefault();
+    this.setState({
+      email: "",
+      password: "",
+      id: "",
+      toDashboard: false,
+      error: ""
+    });
+
     axios({
-      method: 'post',
-      url: 'http://localhost:8080/signIn',
+      method: "post",
+      url: "http://localhost:8080/signIn",
       data: {
         email: this.state.email,
         pass: this.state.password
       }
     })
       .then(res => {
-        // console.log("I am data", res.data);
-        // localStorage.setItem("token", res.data.token);
-        localStorage.setItem('id', res.data);
+        localStorage.setItem("id", res.data);
         this.setState({
           toDashboard: true
         });
       })
       .catch(error => {
-        console.log('*********ERRORS**********', error);
-        console.log({ error: error.response.data.message });
         this.setState({
           error: error.response.data.message
         });
@@ -48,7 +52,7 @@ class StudentSignin extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: '/StudentPage',
+            pathname: "/StudentPage",
             state: {
               email: this.state.email
             }
@@ -58,6 +62,7 @@ class StudentSignin extends Component {
     }
     return (
       <div>
+        <div>{this.state.error}</div>
         <Form success onSubmit={this.handleSubmit}>
           <Form.Field Required>
             <label>Email</label>

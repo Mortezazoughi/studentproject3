@@ -13,12 +13,24 @@ function CreateCourse() {
     prereq: '',
     prof_id: ''
   });
+
+  //handle errors
+  const [anyerrrors, setanyerrrors] = useState({
+    errorsFlag: false,
+    actualErrors: ''
+  });
+
   //grab and set prof_id from localstorage
   useEffect(() => {
     coursecreate.prof_id = localStorage.getItem('profid');
   }, [coursecreate.prof_id]);
   const handlSubmit = async e => {
     e.preventDefault();
+    //Reset form and errors
+    setanyerrrors({
+      errorsFlag: false,
+      actualErrors: ''
+    });
 
     let results;
     try {
@@ -35,11 +47,9 @@ function CreateCourse() {
           prereq: coursecreate.prereq,
           prof_id: coursecreate.prof_id
         }
-      }).then(res => {
-        // console.log(res.data);
-        res.status(200).json({ message: res.data });
       });
-      //Clear form after submit *** THIS IS NOT WORKING ********
+      console.log({ message: results });
+
       setcoursecreate({
         courseName: '',
         availableseats: '',
@@ -50,8 +60,10 @@ function CreateCourse() {
         prof_id: ''
       });
     } catch (error) {
-      console.log('Inside catch');
-      alert('Course Already Exists');
+      setanyerrrors({
+        errorsFlag: true,
+        actualErrors: error.response.data.message
+      });
       return;
     }
   };

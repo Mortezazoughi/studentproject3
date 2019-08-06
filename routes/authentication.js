@@ -51,7 +51,6 @@ const profauthorizationMiddleware = async (req, res, next) => {
   if (!match) {
     res.status(404).json({ message: "Either email or password is incorrect" });
   }
-  console.log("****BDSD***", user.dataValues.id);
   userid = user.dataValues.id;
   next();
 };

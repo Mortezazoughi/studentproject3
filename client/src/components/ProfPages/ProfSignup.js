@@ -17,6 +17,7 @@ function ProfSignup() {
   });
   //redirect to Dashboard
   const [toDash, settoDash] = useState(false);
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -41,8 +42,8 @@ function ProfSignup() {
 
       // set localStorage
       localStorage.setItem('profid', results.data.id);
-    } catch (error) {
-      console.log(error);
+    } catch (errors) {
+      console.error(errors);
     }
 
     console.log(results.data.id);

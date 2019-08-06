@@ -8,7 +8,7 @@ function RegisteredStudents() {
     axios
       .get(`http://localhost:8080/allstudentsregistered/${prof_id}`)
       .then(res => console.log(res.data))
-      .catch(err => console.log("*****Client error***", err));
+      .catch(err => console.log("*****Client error****", err));
   }, []);
   return (
     <div>
