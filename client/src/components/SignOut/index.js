@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 class SignOu extends Component {
   state = {};
 
@@ -9,7 +9,10 @@ class SignOu extends Component {
   render() {
     return (
       <div>
-        <p>YOU ARE SIGNED OUT</p>
+        <Router>
+          <Link to="/" />
+          <p>YOU ARE SIGNED OUT</p>
+        </Router>
       </div>
     );
   }

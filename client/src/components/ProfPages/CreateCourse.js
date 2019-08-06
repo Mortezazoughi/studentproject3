@@ -50,7 +50,8 @@ function CreateCourse() {
         prof_id: ''
       });
     } catch (error) {
-      console.log(error);
+      console.log('Inside catch');
+      alert('Course Already Exists');
       return;
     }
   };
@@ -77,11 +78,11 @@ function CreateCourse() {
           />
         </Form.Field>
         <Form.Field>
-          <label>Last Name</label>
+          <label>Available Seats</label>
           <input
             value={coursecreate.availableseats}
             name="availableseats"
-            placeholder="Enter last name"
+            placeholder="Enter Available Seats"
             onChange={e =>
               setcoursecreate({
                 ...coursecreate,
@@ -114,11 +115,12 @@ function CreateCourse() {
           />
         </Form.Field>
         <Form.Field>
-          <label>ID </label>
           <input
+            style={{ backgroundColor: 'inherit' }}
+            disabled
             value={coursecreate.prof_id}
             name="prof_id"
-            placeholder="Enter Your ID"
+            // placeholder="Enter Your ID"
             onChange={e =>
               setcoursecreate({ ...coursecreate, prof_id: e.target.value })
             }
@@ -136,7 +138,7 @@ function CreateCourse() {
           />
         </Form.Field>
         <Form.Field>
-          <label>Confirm Password: </label>
+          <label>End Date: </label>
           <input
             value={coursecreate.enddate}
             name="enddate"
