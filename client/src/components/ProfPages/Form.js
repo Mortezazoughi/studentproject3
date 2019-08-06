@@ -1,68 +1,11 @@
-import React, { useState } from 'react';
-import API from '../../utils/API';
-// import { Button, Checkbox, Form } from 'semantic-ui-react';
-import axios from 'axios';
-import SignupForm from './Form.js';
-// import ProfSignUpForm from "./ProfSignUpForm";
+import React from 'react';
+import { Button, Checkbox, Form } from 'semantic-ui-react';
 
-function ProfSignup() {
-  const [profinfo, setprofinfo] = useState({
-    firstName: '',
-    lastName: '',
-    phoneNumber: '',
-    email: '',
-    campus: '',
-    password: '',
-    confirmpassword: ''
-  });
-  //redirect to Dashboard
-  const [toDash, settoDash] = useState(false);
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    // API.profsignup()
-
-    let results;
-    try {
-      const URL = 'http://localhost:8080/profsignup';
-      results = await axios({
-        method: 'post',
-        url: URL,
-        data: {
-          firstName: profinfo.firstName,
-          lastName: profinfo.lastName,
-          phoneNumber: profinfo.phoneNumber,
-          email: profinfo.email,
-          campus: profinfo.campus,
-          password: profinfo.password,
-          confirmpassword: profinfo.confirmpassword
-        }
-      });
-
-      // set localStorage
-      localStorage.setItem('profid', results.data.id);
-    } catch (error) {
-      console.log(error);
-    }
-
-    console.log(results.data.id);
-    // set localStorage
-    localStorage.setItem('profid', results.data.id);
-    // set todash flag to true
-    settoDash({
-      toDash: true
-    });
-    console.log(toDash);
-  };
+function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
   return (
     <div>
-      <SignupForm />
-      {/* <Form
-        success
-        onSubmit={handleSubmit}
-        style={{ backgroundColor: '#a8e5ee' }}
-      >
-        <Form.Field>
+      <Form onSubmit={handleSubmit} style={{ backgroundColor: '#a8e5ee' }}>
+        <Form.Field Required>
           <label>First Name</label>
           <input
             name={profinfo.firstName}
@@ -73,7 +16,7 @@ function ProfSignup() {
             type="text"
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Last Name</label>
           <input
             name={profinfo.lasttName}
@@ -81,31 +24,35 @@ function ProfSignup() {
             onChange={e =>
               setprofinfo({ ...profinfo, lastName: e.target.value })
             }
-            type="text"
+            name={profinfo.lasttName}
           />
+          type="text" />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Phone Number</label>
           <input
             name={profinfo.phoneNumber}
             placeholder="Enter Phone Number"
             onChange={e =>
-              setprofinfo({ ...profinfo, phoneNumber: e.target.value })
+              setprofinfo({
+                ...profinfo,
+                phoneNumber: e.target.value
+              })
             }
             type="text"
           />
         </Form.Field>
 
-        <Form.Field>
+        <Form.Field Required>
           <label>Email</label>
           <input
             name={profinfo.email}
             placeholder="Enter Email"
             onChange={e => setprofinfo({ ...profinfo, email: e.target.value })}
-            type="email"
+            type="text"
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Campus: </label>
           <input
             name={profinfo.campus}
@@ -114,7 +61,7 @@ function ProfSignup() {
             type="text"
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Password: </label>
           <input
             name={profinfo.lasttName}
@@ -125,13 +72,16 @@ function ProfSignup() {
             type="password"
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Confirm Password: </label>
           <input
             name={profinfo.lasttName}
             placeholder=" Confirm Password"
             onChange={e =>
-              setprofinfo({ ...profinfo, confirmpassword: e.target.value })
+              setprofinfo({
+                ...profinfo,
+                confirmpassword: e.target.value
+              })
             }
             type="password"
           />
@@ -140,7 +90,7 @@ function ProfSignup() {
           <Checkbox label="I agree to the Terms and Conditions" />
         </Form.Field>
         <Button primary>Register</Button>
-      </Form> */}
+      </Form>
       {/* <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -160,7 +110,10 @@ function ProfSignup() {
           type="text"
           placeholder="enter Phone Number"
           onChange={e =>
-            setprofinfo({ ...profinfo, phoneNumber: e.target.value })
+            setprofinfo({
+              ...profinfo,
+              phoneNumber: e.target.value
+            })
           }
           name={profinfo.phoneNumber}
         />
@@ -186,18 +139,17 @@ function ProfSignup() {
           type="password"
           placeholder="Confirm Password"
           onChange={e =>
-            setprofinfo({ ...profinfo, confirmpassword: e.target.value })
+            setprofinfo({
+              ...profinfo,
+              confirmpassword: e.target.value
+            })
           }
           name={profinfo.lasttName}
         />
         <button> Register</button>
       </form> */}
-      handleSubmit={handleSubmit}
-      setprofinfo={setprofinfo}
-      profinfo={profinfo}
-      />
     </div>
   );
 }
 
-export default ProfSignup;
+export default SignupForm;

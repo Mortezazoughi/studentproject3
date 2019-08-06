@@ -24,6 +24,7 @@ class StudentProfile extends Component {
     toSignIn: false
   };
   componentDidMount() {
+    this.studentData();
     this.mycoursesandprof();
     this.studentData();
     // this.registeredCourses();

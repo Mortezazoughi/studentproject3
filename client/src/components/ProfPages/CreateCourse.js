@@ -36,7 +36,7 @@ function CreateCourse() {
           prof_id: coursecreate.prof_id
         }
       }).then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         res.status(200).json({ message: res.data });
       });
       //Clear form after submit *** THIS IS NOT WORKING ********
@@ -58,12 +58,8 @@ function CreateCourse() {
   return (
     <div>
       {/* <p>Blah{coursecreate.courseName}</p> */}
-      <Form
-        success
-        onSubmit={handlSubmit}
-        style={{ backgroundColor: '#a8e5ee' }}
-      >
-        <Form.Field>
+      <Form onSubmit={handlSubmit} style={{ backgroundColor: '#a8e5ee' }}>
+        <Form.Field Required>
           <label>Course title</label>
           <input
             name={coursecreate.courseName}
@@ -77,7 +73,7 @@ function CreateCourse() {
             type="text"
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Available Seats</label>
           <input
             value={coursecreate.availableseats}
@@ -91,7 +87,7 @@ function CreateCourse() {
             }
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Course Level</label>
           <input
             value={coursecreate.level}
@@ -103,7 +99,7 @@ function CreateCourse() {
           />
         </Form.Field>
 
-        <Form.Field>
+        <Form.Field Required>
           <label>PreRequisite</label>
           <input
             value={coursecreate.prereq}
@@ -116,8 +112,7 @@ function CreateCourse() {
         </Form.Field>
         <Form.Field>
           <input
-            style={{ backgroundColor: 'inherit' }}
-            disabled
+            type="hidden"
             value={coursecreate.prof_id}
             name="prof_id"
             // placeholder="Enter Your ID"
@@ -126,7 +121,7 @@ function CreateCourse() {
             }
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>Start Date </label>
           <input
             value={coursecreate.startdate}
@@ -137,7 +132,7 @@ function CreateCourse() {
             }
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <label>End Date: </label>
           <input
             value={coursecreate.enddate}
@@ -148,7 +143,7 @@ function CreateCourse() {
             }
           />
         </Form.Field>
-        <Form.Field>
+        <Form.Field Required>
           <Checkbox label="I agree to the Terms and Conditions" />
         </Form.Field>
         <Button primary>Submit</Button>

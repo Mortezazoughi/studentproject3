@@ -8,7 +8,7 @@ function Student(props) {
       onSubmit={props.handleSubmit}
       style={{ backgroundColor: '#a8e5ee' }}
     >
-      <Form.Field>
+      <Form.Field Required>
         <label>First Name</label>
         <input
           value={props.firstName}
@@ -18,7 +18,7 @@ function Student(props) {
           type="text"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field Required>
         <label>Last Name</label>
         <input
           value={props.lastName}
@@ -28,7 +28,7 @@ function Student(props) {
           type="text"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field Required>
         <label>Phone Number</label>
         <input
           value={props.phoneNumber}
@@ -39,7 +39,7 @@ function Student(props) {
         />
       </Form.Field>
 
-      <Form.Field>
+      <Form.Field Required>
         <label>Email</label>
         <input
           value={props.email}
@@ -50,7 +50,7 @@ function Student(props) {
           placeholder="Joe@gmail.com"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field Required>
         <label>Campus: </label>
         <input
           value={props.campus}
@@ -60,7 +60,7 @@ function Student(props) {
           type="text"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field Required>
         <label>Password: </label>
         <input
           value={props.password}
@@ -70,7 +70,7 @@ function Student(props) {
           type="password"
         />
       </Form.Field>
-      <Form.Field>
+      <Form.Field Required>
         <label>Confirm Password: </label>
         <input
           value={props.confirmPassword}
