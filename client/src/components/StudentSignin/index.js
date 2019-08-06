@@ -40,6 +40,7 @@ class StudentSignin extends Component {
         });
       })
       .catch(error => {
+        console.log(error.response.data.message);
         this.setState({
           error: error.response.data.message
         });
@@ -64,7 +65,7 @@ class StudentSignin extends Component {
       <div>
         <div>{this.state.error}</div>
         <Form success onSubmit={this.handleSubmit}>
-          <Form.Field Required>
+          <Form.Field>
             <label>Email</label>
             <input
               value={this.state.email}
@@ -74,7 +75,7 @@ class StudentSignin extends Component {
               placeholder="joe@mail.com"
             />
           </Form.Field>
-          <Form.Field Required>
+          <Form.Field>
             <label>Password: </label>
             <input
               value={this.state.password}
@@ -84,7 +85,7 @@ class StudentSignin extends Component {
               placeholder="Password"
             />
           </Form.Field>
-          <Button primary>Submit</Button>
+          <Button>Submit</Button>
         </Form>
       </div>
       // <div>
