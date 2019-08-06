@@ -64,8 +64,16 @@ const professorController = {
 
   profsignin: async (req, res) => {
     // userid is value coming from WebAuthentication.js
-    res.json(userid);
+    let results;
+    try {
+      results = userid;
+      res.json(userid);
+    } catch (error) {
+      res.status(500).json({ message: error });
+      return;
+    }
   },
+  
   //get profile info
   profprofile: async (req, res) => {
     let results;
@@ -106,7 +114,7 @@ const professorController = {
       res
         .status(500)
         // .json({ message: "Something went wrong with the request", erorr });
-        .json({ message: error });
+        .json({ message: "Please fill out all the fields" });
       return;
     }
   },

@@ -24,13 +24,11 @@ function ProfProfile() {
     } catch (error) {
       console.log(error);
     }
-
-    // console.log(results.data);
     return;
   };
 
   return (
-    //   console.log(typeof profinforeturned)
+
     <div>
       {profinforeturned ? (
         <div>

@@ -5,7 +5,6 @@ import Form from "./Form";
 import axios from "axios";
 // import ProfSignUpForm from "./ProfSignUpForm";
 
-
 function ProfSignup() {
   const [profinfo, setprofinfo] = useState({
     firstName: "",
@@ -18,6 +17,7 @@ function ProfSignup() {
   });
   //redirect to Dashboard
   const [toDash, settoDash] = useState(false);
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -42,8 +42,8 @@ function ProfSignup() {
 
       // set localStorage
       localStorage.setItem("profid", results.data.id);
-    } catch (error) {
-      console.log(error);
+    } catch (errors) {
+      console.error(errors);
     }
 
     // set todash flag to true

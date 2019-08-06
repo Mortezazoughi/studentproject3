@@ -23,14 +23,12 @@ class StudentProfile extends Component {
       method: "GET"
     })
       .then(res => {
-        // console.log(res.data);
         this.setState({
           student: res.data
         });
       })
       .catch(err => console.log(err));
   };
-  // *************NEED THIS TO WORK**************
   registeredCourses = () => {
     const userid = localStorage.getItem("id");
     const URL = `http://localhost:8080/registeredcourses/${userid}`;
@@ -63,7 +61,6 @@ class StudentProfile extends Component {
       .catch(err => console.log(err));
   };
   render() {
-    // console.log(this.state.classes);
     return (
       <div>
         <div>
