@@ -29,7 +29,6 @@ class StudentProfile extends Component {
   }
   studentData = () => {
     const userid = localStorage.getItem("id");
-
     if (!userid) return this.props.history.push("/StudentLogin");
 
     const URL = `http://localhost:8080/studentinfo/${userid}`;
@@ -53,7 +52,6 @@ class StudentProfile extends Component {
       method: "GET"
     })
       .then(res => {
-        console.log("This is registered courses data", res.data);
         this.setState({
           classes: res.data
         });
@@ -69,10 +67,6 @@ class StudentProfile extends Component {
       method: "GET"
     })
       .then(res => {
-        console.log("This is mycoursesandprof", res.data);
-
-        // console.log(typeof res.data);
-
         this.setState({
           classes: res.data
         });

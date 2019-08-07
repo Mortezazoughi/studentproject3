@@ -138,7 +138,6 @@ const studentController = {
 
     //check if student is already registered
     let studentcheck;
-
     try {
       studentcheck = await db.StudentCourse.findOne({
         where: {
@@ -147,8 +146,6 @@ const studentController = {
         }
       });
     } catch (error) {
-      console.log(error);
-
       res.status(500).json({ message: "Server error" });
       return;
     }
@@ -172,9 +169,7 @@ const studentController = {
       return;
     }
     //decrease seat count
-    console.log("available Before seats", classAvailable);
     classAvailable -= 1;
-    console.log("available After seats", classAvailable);
 
     try {
       const updateseatcount = await db.Course.update(
@@ -208,24 +203,6 @@ const studentController = {
     }
   },
   searchprof: async (req, res) => {
-    //   let result;
-    //   try {
-    //     const id = req.params.id;
-    //     result = await db.Course.findAll({
-    //       include: [
-    //         {
-    //           model: db.Professor,
-    //           attributes: {
-    //             include: ["firstName"]
-    //           }
-    //         }
-    //       ]
-    //     });
-    //     res.json(result);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // },
     let result;
     try {
       result = await db.Course.findAll({
@@ -288,17 +265,6 @@ const studentController = {
             ]
           }
         ]
-        // ,
-        // include: [
-        //   {
-        //     model: db.Course,
-        //     include: [
-        //       {
-        //         model: db.Professor
-        //       }
-        //     ]
-        //   }
-        // ]
       });
       console.log(result);
       res.json(result);
@@ -307,24 +273,4 @@ const studentController = {
     }
   }
 };
-
-// User.findAll({
-// include: [
-//   {
-//     model: Tool,
-//     as: "Instruments",
-//     include: [
-//       {
-//         model: Teacher,
-//         where: {
-//           school: "Woodstock Music School"
-//         },
-//         required: false
-//       }
-//     ]
-//   }
-// ];
-// }).then(function(users) {
-//   /* ... */
-// });
 module.exports = studentController;
