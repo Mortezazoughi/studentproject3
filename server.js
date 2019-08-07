@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'production') {
   console.log('running in prod');
   app.use(express.static('client/build'));
 }
+app.use(express.static('client/build'));
 
 // configure the app to use bodyParser()
 app.use(
@@ -24,6 +25,12 @@ app.use(
 );
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use(userRoute, profRoute);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'client/build/index.html'));
+});
 
 // setup db connection and express router connection
 db.sequelize
@@ -37,6 +44,5 @@ db.sequelize
   });
 
 // import routes
-app.use(userRoute, profRoute);
 
 // Testing basic authx

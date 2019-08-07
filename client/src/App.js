@@ -15,7 +15,7 @@ import MainPage from './components/Pages/MainPage.js';
 import StudentPage from './components/Pages/StudentPage.js';
 import ProfPage from './components/Pages/ProfPage.js';
 import RegisteredStudents from './components/ProfPages/RegisteredStudents.js';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import SLoginPage from './components/Pages/PupilLoginPage.js';
 import PLoginPage from './components/Pages/ProfLoginPage.js';
@@ -23,8 +23,7 @@ import PLoginPage from './components/Pages/ProfLoginPage.js';
 function App() {
   return (
     <React.Fragment>
-      <Router>
-        {/* <div>
+      {/* <div>
           <ul>
             <li>
               <Link to="/profsignup"> Prof sign up</Link>
@@ -63,30 +62,29 @@ function App() {
           </ul>
         </div> */}
 
-        <Switch>
-          <Route exact path="/profsignup" component={ProfSignup} />
-          <Route exact path="/profsignin" component={ProfSignin} />
-          <Route exact path="/profprofile" component={ProfProfile} />
-          <Route exact path="/studentsignin" component={StudentSignin} />
-          <Route exact path="/studentsignup" component={StudentSignup} />
-          <Route exact path="/courseregister" component={CourseRegister} />
-          <Route exact path="/SearchAllCourses" component={SearchAllCourses} />
-          <Route exact path="/SearchTitle" component={SearchTitle} />
-          <Route exact path="/CreateCourse" component={CreateCourse} />
-          <Route exact path="/StudentProfile" component={StudentProfile} />
-          <Route exact path="/SignOut" component={SignOut} />
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/StudentPage" component={StudentPage} />
-          <Route exact path="/StudentLogin" component={SLoginPage} />
-          <Route exact path="/ProfLogin" component={PLoginPage} />
-          <Route exact path="/ProfPage" component={ProfPage} />
-          <Route
-            exact
-            path="/allstudentsregistered"
-            component={RegisteredStudents}
-          />
-        </Switch>
-      </Router>
+      <Switch>
+        <Route exact path="/profsignup" component={ProfSignup} />
+        <Route exact path="/profsignin" component={ProfSignin} />
+        <Route exact path="/profprofile" component={ProfProfile} />
+        <Route exact path="/studentsignin" component={StudentSignin} />
+        <Route exact path="/studentsignup" component={StudentSignup} />
+        <Route exact path="/courseregister" component={CourseRegister} />
+        <Route exact path="/SearchAllCourses" component={SearchAllCourses} />
+        <Route exact path="/SearchTitle" component={SearchTitle} />
+        <Route exact path="/CreateCourse" component={CreateCourse} />
+        <Route exact path="/StudentProfile" component={StudentProfile} />
+        <Route exact path="/SignOut" component={SignOut} />
+        <Route exact path="/" component={MainPage} />
+        <Route exact path="/StudentPage" component={StudentPage} />
+        <Route exact path="/StudentLogin" component={SLoginPage} />
+        <Route exact path="/ProfLogin" component={PLoginPage} />
+        <Route exact path="/ProfPage" component={ProfPage} />
+        <Route
+          exact
+          path="/allstudentsregistered"
+          component={RegisteredStudents}
+        />
+      </Switch>
       {/* <Grid container spacing={1} /> */}
     </React.Fragment>
   );

@@ -111,13 +111,13 @@ export default function MainPage() {
 
           <ul className={classes.ul}>
             <li>
-              <a href="./StudentLogin" style={{ fontSize: '3rem' }}>
+              <a href="/StudentLogin" style={{ fontSize: '3rem' }}>
                 Students {'  |  '}
               </a>
             </li>
 
             <li>
-              <a href="./ProfLogin" style={{ fontSize: '3rem' }}>
+              <a href="/ProfLogin" style={{ fontSize: '3rem' }}>
                 {' | '} Faculty
               </a>
             </li>
