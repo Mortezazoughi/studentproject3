@@ -96,7 +96,7 @@ export default function ProfPage() {
             noWrap
             className={classes.title}
           >
-            Apogee University
+            <a href="/">Apogee University</a>
           </Typography>
         </Toolbar>
       </AppBar>

@@ -6,6 +6,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
+import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -18,6 +19,9 @@ const useStyles = makeStyles(theme => ({
   table: {
     minWidth: 650,
     fontWeight: 600
+  },
+  Button: {
+    margin: theme.spacing(1)
   }
 }));
 
@@ -66,7 +70,7 @@ class CourseRegister extends Component {
       });
     }
   };
-  registarClass = async c_id => {
+  registerClass = async c_id => {
     const studentId = JSON.parse(localStorage.getItem('id'));
     let results;
     try {
@@ -87,13 +91,10 @@ class CourseRegister extends Component {
     }
   };
   renderTableData = () => {
-    return this.state.availableCourses.map(eachCourse => (
+    return (
       <Paper className={makeStyles.root}>
         <Table className={makeStyles.table}>
           <TableHead>
-            <TableRow>
-              <TableCell>{this.state.error}</TableCell>
-            </TableRow>
             <TableRow>
               <TableCell style={{ fontWeight: 900 }}>Name</TableCell>
               <TableCell align="right" style={{ fontWeight: 900 }}>
@@ -111,48 +112,37 @@ class CourseRegister extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            <TableRow key={eachCourse.id}>
-              <TableCell component="th" scope="row">
-                {eachCourse.courseName}
-              </TableCell>
-              <TableCell align="right">{eachCourse.level}</TableCell>
-              <TableCell align="right">{eachCourse.prereq}</TableCell>
-              <TableCell align="right">{eachCourse.availableseats}</TableCell>
-              <TableCell align="right">
-                {
-                  <button onClick={() => this.registarClass(eachCourse.id)}>
-                    Register
-                  </button>
-                }
-              </TableCell>
-            </TableRow>
+            {this.state.availableCourses.map(eachCourse => (
+              <TableRow key={eachCourse.id}>
+                <TableCell scope="row">{eachCourse.courseName}</TableCell>
+                <TableCell align="right">{eachCourse.level}</TableCell>
+                <TableCell align="right">{eachCourse.prereq}</TableCell>
+                <TableCell align="right">{eachCourse.availableseats}</TableCell>
+                <TableCell align="right">
+                  {
+                    <button
+                      style={{ backgroundColor: '#2196f3', color: 'white' }}
+                      onClick={() => this.registerClass(eachCourse.id)}
+                    >
+                      Register
+                    </button>
+                  }
+                </TableCell>
+              </TableRow>
+            ))}
           </TableBody>
         </Table>
       </Paper>
-      // <div key={eachCourse.id}>
-      //   <tr>
-      //     <td>{eachCourse.id}</td>
-      //     <td>{eachCourse.courseName}</td>
-
-      //     <td>{eachCourse.level}</td>
-      //     <td>{eachCourse.prereq}</td>
-      //     <td>{eachCourse.availableseats}</td>
-      //     <td>
-      //       <button onClick={() => this.registarClass(eachCourse.id)}>
-      //         Register
-      //       </button>
-      //     </td>
-      //   </tr>
-      // </div>
-    ));
+    );
   };
   render() {
     console.log('inside render', this.state.errors);
     return (
       <div>
         <div>
-          <h1 id="title">Register for class</h1>
-          <h4>{this.state.errors}</h4>
+          <h4 style={{ fontSize: '1.5rem', color: 'red' }}>
+            {this.state.errors}
+          </h4>
           <table id="students">
             <tbody>{this.renderTableData()}</tbody>
           </table>

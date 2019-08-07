@@ -82,7 +82,7 @@ function PLoginPage() {
             noWrap
             className={classes.title}
           >
-            Apogee University
+            <a href="/">Apogee University</a>
           </Typography>
         </Toolbar>
       </AppBar>

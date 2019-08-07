@@ -63,7 +63,9 @@ class StudentSignin extends Component {
     }
     return (
       <div>
-        <div>{this.state.error}</div>
+        <div style={{ fontSize: '1.5rem', color: 'red' }}>
+          {this.state.error}
+        </div>
         <Form success onSubmit={this.handleSubmit}>
           <Form.Field required>
             <label>Email</label>
@@ -85,7 +87,7 @@ class StudentSignin extends Component {
               placeholder="Password"
             />
           </Form.Field>
-          <Button>Submit</Button>
+          <Button primary>Submit</Button>
         </Form>
       </div>
       // <div>

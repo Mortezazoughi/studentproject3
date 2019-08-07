@@ -104,7 +104,7 @@ export default function MainPage() {
             noWrap
             className={classes.title}
           >
-            Apogee University
+            <a href="/">Apogee University</a>
           </Typography>
 
           {/* <StudentLoginModal /> */}
