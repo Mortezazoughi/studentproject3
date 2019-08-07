@@ -1,35 +1,35 @@
-import React, { useState } from 'react';
-import { Button, Form } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+import React, { useState } from "react";
+import { Button, Form } from "semantic-ui-react";
+import { Redirect } from "react-router-dom";
+import axios from "axios";
 
 function ProfSignin() {
   const [profsignin, setprofsignin] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: ""
   });
   const [anyerrrors, setanyerrrors] = useState({
     errorsFlag: false,
-    actualErrors: ''
+    actualErrors: ""
   });
   const handleSubmit = async e => {
     e.preventDefault();
     setanyerrrors({
       errorsFlag: false,
-      actualErrors: ''
+      actualErrors: ""
     });
     let results;
     try {
       const URL = `http://localhost:8080/profsignin`;
       results = await axios({
         url: URL,
-        method: 'POST',
+        method: "POST",
         data: {
           email: profsignin.email,
           password: profsignin.password
         }
       });
-      localStorage.setItem('profid', results.data);
+      localStorage.setItem("profid", results.data);
     } catch (error) {
       setanyerrrors({
         errorsFlag: true,
@@ -39,6 +39,7 @@ function ProfSignin() {
   };
   return (
     <div>
+      <p> {anyerrrors.actualErrors}</p>
       <Form onSubmit={handleSubmit}>
         <Form.Field required>
           <label>Email</label>
@@ -64,26 +65,6 @@ function ProfSignin() {
         </Form.Field>
         <Button primary>Submit</Button>
       </Form>
-
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="enter email"
-          onChange={e =>
-            setprofsignin({ ...profsignin, email: e.target.value })
-          }
-          name={profsignin.email}
-        />
-        <input
-          type="password"
-          placeholder="enter Password"
-          onChange={e =>
-            setprofsignin({ ...profsignin, password: e.target.value })
-          }
-          name={profsignin.password}
-        />
-        <button>Submit</button>
-      </form> */}
     </div>
   );
 }
