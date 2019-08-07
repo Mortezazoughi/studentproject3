@@ -5,6 +5,7 @@ import Auth from "../Auth";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
+import {withRouter} from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -25,12 +26,11 @@ class StudentProfile extends Component {
   };
   componentDidMount() {
     this.studentData();
-    this.mycoursesandprof();
-    // this.studentData();
-    // this.registeredCourses();
   }
   studentData = () => {
     const userid = localStorage.getItem("id");
+
+    if ( !userId ) return this.props.history.push('/login');
 
     const URL = `http://localhost:8080/studentinfo/${userid}`;
     Axios({
@@ -41,6 +41,8 @@ class StudentProfile extends Component {
         this.setState({
           student: res.data
         });
+
+        this.mycoursesandprof();
       })
       .catch(err => console.log(err));
   };
@@ -70,7 +72,7 @@ class StudentProfile extends Component {
       .then(res => {
         console.log("This is mycoursesandprof", res.data);
 
-        console.log(typeof res.data);
+        // console.log(typeof res.data);
 
         this.setState({
           classes: res.data
@@ -122,4 +124,4 @@ class StudentProfile extends Component {
   }
 }
 
-export default StudentProfile;
+export default withRouter(StudentProfile);
