@@ -6,7 +6,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -32,6 +31,7 @@ class CourseRegister extends Component {
   };
 
   async componentWillMount() {
+    // this.setState(this.state.availableCourses);
     const URL = 'http://localhost:8080/searchallcourses';
     let results;
     try {
@@ -43,34 +43,14 @@ class CourseRegister extends Component {
       console.log({ error: error });
       this.setState({ errors: error });
     }
-    // console.log("logged outpur", results.data);
     this.setState({
       availableCourses: results.data
     });
+    this.forceUpdate();
     return results;
   }
-  handleSubmit = async e => {
-    e.preventDefault();
 
-    let results;
-    try {
-      // const URL = `http://localhost:8080/${course_id}`;
-      results = await Axios({
-        url: URL,
-        method: 'POST',
-        data: {
-          course_id: this.state.course_id
-        }
-      }).catch(err => console.log('erors from client', err));
-    } catch (error) {
-      console.log('inside errorsz', error);
-      console.log(error);
-      this.setState({
-        errors: error
-      });
-    }
-  };
-  registerClass = async c_id => {
+  registarClass = async c_id => {
     const studentId = JSON.parse(localStorage.getItem('id'));
     let results;
     try {
@@ -136,7 +116,6 @@ class CourseRegister extends Component {
     );
   };
   render() {
-    console.log('inside render', this.state.errors);
     return (
       <div>
         <div>
@@ -147,10 +126,6 @@ class CourseRegister extends Component {
             <tbody>{this.renderTableData()}</tbody>
           </table>
         </div>
-        {/* <RegisterForm
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        /> */}
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Redirect } from 'react';
 import jwt from 'jsonwebtoken';
 import Axios from 'axios';
 import Auth from '../Auth';
@@ -30,7 +30,6 @@ class StudentProfile extends Component {
   }
   studentData = () => {
     const userid = localStorage.getItem('id');
-
     if (!userid) return this.props.history.push('/StudentLogin');
 
     const URL = `http://localhost:8080/studentinfo/${userid}`;
@@ -42,7 +41,7 @@ class StudentProfile extends Component {
         this.setState({
           student: res.data
         });
-        console.log('This is wher to get courses');
+        this.mycoursesandprof();
       })
       .catch(err => console.log(err));
   };
@@ -54,7 +53,6 @@ class StudentProfile extends Component {
       method: 'GET'
     })
       .then(res => {
-        console.log('This is registered courses data', res.data);
         this.setState({
           classes: res.data
         });
