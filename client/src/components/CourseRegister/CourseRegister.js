@@ -116,7 +116,6 @@ class CourseRegister extends Component {
     return (
       <div>
         <div>
-          <h1 id="title">Register for class</h1>
           <h4>{this.state.errors}</h4>
           <table id="students">
             <tbody>{this.renderTableData()}</tbody>
