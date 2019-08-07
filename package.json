@@ -39,7 +39,8 @@
     "start": "node server.js",
     "client": "npm start --prefix client",
     "heroku-postbuild": "cd client && npm install && npm run build",
-    "prodtest": "cross-env NODE_ENV=production node server.js"
+    "prodtest": "cross-env NODE_ENV=production node server.js",
+    "build": "cd ./client && npm run build"
   },
   "keywords": [],
   "author": "",
