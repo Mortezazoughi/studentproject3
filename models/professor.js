@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Professor = sequelize.define(
-    "Professor",
+    'Professor',
     {
       firstName: {
         type: DataTypes.STRING,
@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: {
             args: 2,
-            msg: "First Name must have a minimum of two characters"
+            msg: 'First Name must have a minimum of two characters'
           }
         }
       },
@@ -19,14 +19,15 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           len: {
             args: 2,
-            msg: "Last Name must have a minimum of two characters"
+            msg: 'Last Name must have a minimum of two characters'
           }
         }
       },
       phoneNumber: {
         type: DataTypes.INTEGER,
         validate: {
-          isNumeric: true
+          isNumeric: true,
+          msg: 'Value must be a valid phone number'
           // notNull: true
         }
       },
@@ -35,11 +36,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           isEmail: {
-            msg: "Email must be valid"
+            msg: 'Email must be valid'
           },
           len: {
             arg: [6, 20],
-            msg: "Email must have a length of 6 -20 characters"
+            msg: 'Email must have a length of 6 -20 characters'
           }
         }
       },
@@ -73,8 +74,8 @@ module.exports = (sequelize, DataTypes) => {
   Professor.associate = function(models) {
     // associations can be defined here
     Professor.hasMany(models.Course, {
-      foreignKey: "prof_id",
-      onDelete: "cascade"
+      foreignKey: 'prof_id',
+      onDelete: 'cascade'
     });
   };
   return Professor;

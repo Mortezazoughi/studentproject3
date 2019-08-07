@@ -5,7 +5,7 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
   return (
     <div>
       <Form onSubmit={handleSubmit} style={{ backgroundColor: '#a8e5ee' }}>
-        <Form.Field Required>
+        <Form.Field required>
           <label>First Name</label>
           <input
             name={profinfo.firstName}
@@ -16,7 +16,7 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
             type="text"
           />
         </Form.Field>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Last Name</label>
           <input
             name={profinfo.lasttName}
@@ -25,10 +25,10 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
               setprofinfo({ ...profinfo, lastName: e.target.value })
             }
             name={profinfo.lasttName}
+            type="text"
           />
-          type="text" />
         </Form.Field>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Phone Number</label>
           <input
             name={profinfo.phoneNumber}
@@ -43,7 +43,7 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
           />
         </Form.Field>
 
-        <Form.Field Required>
+        <Form.Field required>
           <label>Email</label>
           <input
             name={profinfo.email}
@@ -52,7 +52,7 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
             type="text"
           />
         </Form.Field>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Campus: </label>
           <input
             name={profinfo.campus}
@@ -61,7 +61,7 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
             type="text"
           />
         </Form.Field>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Password: </label>
           <input
             name={profinfo.lasttName}
@@ -72,7 +72,7 @@ function SignupForm({ handleSubmit, profinfo, setprofinfo, ...props }) {
             type="password"
           />
         </Form.Field>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Confirm Password: </label>
           <input
             name={profinfo.lasttName}

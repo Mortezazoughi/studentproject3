@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Button, Form } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
-import axios from "axios";
+import React, { Component } from 'react';
+import { Button, Form } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios';
 
 class StudentSignin extends Component {
   state = {
-    email: "",
-    password: "",
-    id: "",
+    email: '',
+    password: '',
+    id: '',
     toDashboard: false,
-    error: ""
+    error: ''
   };
   handleChange = e => {
     const { name, value } = e.target;
@@ -18,23 +18,23 @@ class StudentSignin extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.setState({
-      email: "",
-      password: "",
-      id: "",
+      email: '',
+      password: '',
+      id: '',
       toDashboard: false,
-      error: ""
+      error: ''
     });
 
     axios({
-      method: "post",
-      url: "http://localhost:8080/signIn",
+      method: 'post',
+      url: 'http://localhost:8080/signIn',
       data: {
         email: this.state.email,
         pass: this.state.password
       }
     })
       .then(res => {
-        localStorage.setItem("id", res.data);
+        localStorage.setItem('id', res.data);
         this.setState({
           toDashboard: true
         });
@@ -53,7 +53,7 @@ class StudentSignin extends Component {
         // <Redirect to="/StudentProfile" />
         <Redirect
           to={{
-            pathname: "/StudentPage",
+            pathname: '/StudentPage',
             state: {
               email: this.state.email
             }
@@ -65,7 +65,7 @@ class StudentSignin extends Component {
       <div>
         <div>{this.state.error}</div>
         <Form success onSubmit={this.handleSubmit}>
-          <Form.Field>
+          <Form.Field required>
             <label>Email</label>
             <input
               value={this.state.email}
@@ -75,7 +75,7 @@ class StudentSignin extends Component {
               placeholder="joe@mail.com"
             />
           </Form.Field>
-          <Form.Field>
+          <Form.Field required>
             <label>Password: </label>
             <input
               value={this.state.password}

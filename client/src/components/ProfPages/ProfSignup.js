@@ -13,7 +13,8 @@ function ProfSignup() {
     email: '',
     campus: '',
     password: '',
-    confirmpassword: ''
+    confirmpassword: '',
+    errors: []
   });
   //redirect to Dashboard
   const [toDash, settoDash] = useState(false);
@@ -43,12 +44,15 @@ function ProfSignup() {
       // set localStorage
       localStorage.setItem('profid', results.data.id);
     } catch (errors) {
-      console.error(errors);
+      console.error(errors.response.data.message);
+      setprofinfo({
+        errors: [...errors.response.data.message.split('Validation error:')]
+      });
     }
 
-    console.log(results.data.id);
-    // set localStorage
-    localStorage.setItem('profid', results.data.id);
+    // console.log(results.data.id);
+    // // set localStorage
+    // localStorage.setItem('profid', results.data.id);
 
     // set todash flag to true
     settoDash({
@@ -58,7 +62,16 @@ function ProfSignup() {
   };
   return (
     <div>
-      <SignupForm />
+      {profinfo.errors.length
+        ? profinfo.errors.map(error => (
+            <p>{error.replace(/\,|SequelizeValidationError:/gi, '')}</p>
+          ))
+        : ''}
+      <SignupForm
+        handleSubmit={handleSubmit}
+        setprofinfo={setprofinfo}
+        profinfo={profinfo}
+      />
       {/* <Form
         success
         onSubmit={handleSubmit}
@@ -194,10 +207,6 @@ function ProfSignup() {
         />
         <button> Register</button>
       </form> */}
-      handleSubmit={handleSubmit}
-      setprofinfo={setprofinfo}
-      profinfo={profinfo}
-      />
     </div>
   );
 }

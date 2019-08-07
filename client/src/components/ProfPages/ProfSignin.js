@@ -40,7 +40,7 @@ function ProfSignin() {
   return (
     <div>
       <Form onSubmit={handleSubmit}>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Email</label>
           <input
             onChange={e =>
@@ -51,7 +51,7 @@ function ProfSignin() {
             placeholder="joe@mail.com"
           />
         </Form.Field>
-        <Form.Field Required>
+        <Form.Field required>
           <label>Password: </label>
           <input
             onChange={e =>
