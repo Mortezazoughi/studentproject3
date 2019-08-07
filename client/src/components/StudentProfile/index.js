@@ -70,7 +70,7 @@ class StudentProfile extends Component {
       .then(res => {
         console.log("This is mycoursesandprof", res.data);
 
-        console.log(typeof res.data);
+        // console.log(typeof res.data);
 
         this.setState({
           classes: res.data
