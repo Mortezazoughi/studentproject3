@@ -50,7 +50,7 @@ class CourseRegister extends Component {
     return results;
   }
 
-  registarClass = async c_id => {
+  registerClass = async c_id => {
     const studentId = JSON.parse(localStorage.getItem('id'));
     let results;
     try {

@@ -71,6 +71,18 @@ const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 600
+  },
+  ul: {
+    display: 'flex',
+    verticalAlign: 'middle',
+    fontSize: '2em',
+    fontWeight: 'normal',
+    listStyleType: 'none'
+  },
+  li: {
+    display: 'inline',
+    color: 'textPrimary',
+    paddingRight: '10%'
   }
 }));
 
@@ -100,6 +112,13 @@ export default function Studenetpage() {
           >
             <a href="/">Apogee University</a>
           </Typography>
+          <ul className={classes.ul}>
+            <li>
+              <a href="/" style={{ fontSize: '2rem' }}>
+                Home
+              </a>
+            </li>
+          </ul>
         </Toolbar>
       </AppBar>
       <Drawer

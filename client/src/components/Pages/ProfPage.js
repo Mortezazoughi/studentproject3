@@ -31,6 +31,18 @@ const useStyles = makeStyles(theme => ({
     padding: '0 8px',
     ...theme.mixins.toolbar
   },
+  ul: {
+    display: 'flex',
+    verticalAlign: 'middle',
+    fontSize: '2em',
+
+    fontWeight: 'normal',
+    listStyleType: 'none'
+  },
+  li: {
+    display: 'inline',
+    color: 'textPrimary'
+  },
   appBar: {
     zIndex: theme.zIndex.drawer + 1
   },
@@ -98,6 +110,13 @@ export default function ProfPage() {
           >
             <a href="/">Apogee University</a>
           </Typography>
+          <ul className={classes.ul}>
+            <li>
+              <a href="/" style={{ fontSize: '2rem' }}>
+                Home
+              </a>
+            </li>
+          </ul>
         </Toolbar>
       </AppBar>
       <Drawer

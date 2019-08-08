@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
-import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
-function ProfSignin() {
+function ProfSignin(props) {
   const [profsignin, setprofsignin] = useState({
     email: '',
     password: ''
@@ -30,6 +30,7 @@ function ProfSignin() {
         }
       });
       localStorage.setItem('profid', results.data);
+      props.history.push('/ProfPage');
     } catch (error) {
       setanyerrrors({
         errorsFlag: true,
@@ -64,28 +65,8 @@ function ProfSignin() {
         </Form.Field>
         <Button primary>Submit</Button>
       </Form>
-
-      {/* <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="enter email"
-          onChange={e =>
-            setprofsignin({ ...profsignin, email: e.target.value })
-          }
-          name={profsignin.email}
-        />
-        <input
-          type="password"
-          placeholder="enter Password"
-          onChange={e =>
-            setprofsignin({ ...profsignin, password: e.target.value })
-          }
-          name={profsignin.password}
-        />
-        <button>Submit</button>
-      </form> */}
     </div>
   );
 }
 
-export default ProfSignin;
+export default withRouter(ProfSignin);
