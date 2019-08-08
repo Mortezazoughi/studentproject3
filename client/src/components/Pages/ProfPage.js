@@ -133,7 +133,7 @@ export default function ProfPage() {
           style={{ marginTop: '5%' }}
         >
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={7}>
+            <Grid item xs={12} md={4} lg={5}>
               <Paper
                 className={fixedHeightPaper}
                 style={{ backgroundColor: '#9bd4e4' }}
@@ -142,95 +142,148 @@ export default function ProfPage() {
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={6} lg={5}>
+            <Grid item xs={12} md={8} lg={7}>
               <Paper
                 className={fixedHeightPaper}
                 style={{ backgroundColor: '#9bd4e4' }}
               >
                 <div style={{ backgroundColor: '#ecebd7' }}>
-                  <p>
-                    <span style={{ fontSize: '2rem', color: 'blue' }}>
-                      Stop sharing YOUR existence. Put away the Instagram and
-                      enjoy the view!
-                    </span>
-                    <p style={{ fontSize: '1.5rem' }}>
-                      By Kaylee Johnson Campus News
-                    </p>
+                  <p style={{ fontSize: '2.5rem', color: '#dd2c00' }}>
+                    New Faculty Orientation Features Advice from Students
                   </p>
-                  <p style={{ fontSize: '1rem' }}>
-                    I appear deeply pompous and disingenuous; no matter how hard
-                    I try to be self-actualized, I flippantly fixate on lousy
-                    photo angles and corny captions, as if any of it actually
-                    matters. Look at my Instagram and you will see pictures of
-                    me smiling on exoctic beaches in Mexico, petting stray dogs,
-                    and swimming in breathtaking cenotes, but you will not see
-                    the stories attached to them; none of them are candid or
-                    authentic. I was in a constant state of apathy throughout
-                    the entire trip, so those photos of me laughing on the beach
-                    were painstakingly staged. Looking at the photos now, I see
-                    dread and pressure in my eyes. It is the pressure that
-                    leaves me perplexed, not the dread. All talented artists
-                    have deep dread embedded in their eyes; they see the world
-                    for the sick, soulless place that it truly is. But why do I
-                    feel pressure to smile and put on a carefree bimbo facade
-                    for my meaningless social media followers? Time is blurry in
-                    general, but on social media it is nonexistent and everybody
-                    seems to be drunk off of the power of floating through
-                    society without being affected by the illusion of time, when
-                    in reality the clockmaster is just momentarily humoring
-                    them; he is sadistic and they are pathetically gullible. Two
-                    subgroups of people viewed my Instagram stories while I was
-                    in Mexico, in a flimsy red bathing suit that exposed my
-                    perky breasts and untamed blond wavy hair: men that I had
-                    once had feelings for, exes or almost lovers that maddened
-                    me with their artistic mania and manipulation. Months of
-                    mind games left me staring at my bathroom ceiling while I
-                    lay nakedly in rose water baths trying to reconfigure my
-                    identity time and time again; soaking in their resonating
-                    lines like X-rated alphabet soup with traces of
-                    hallucinogenic drugs, the secret ingredient, courtesy of the
-                    chefs who were constantly pouring bleach into my porridge;
-                    pruney fingers exhausted from stroking egos of broken men.
-                    The other subgroup of viewers were shameless men that had
-                    bullied me ruthlessly in high school, yet feel no guilt
-                    gawking at pictures of me as a bold adult. They are stuck in
-                    time; homecoming junior year. They are eternally seventeen,
-                    and I am twisted in their warped schema of their glory days;
-                    a timid teenager with a flower in my hair and a leather
-                    journal in my hand; an archetype. I visited Chichen Itza,
-                    one of the seven wonders of the world, while in Mexico,
-                    hoping to feel some arousal of splendor, like the family
-                    wearing matching plaid outfits with mouths agape on the tour
-                    brochure. In reality, the parking lot of the historic Mayan
-                    ruins archaeological site was filled with tour buses of
-                    grotesque, greedy tourists carrying electric fans and
-                    smartphones; completely out of touch with their
-                    surroundings. The beautiful site with history oozing out of
-                    it has been bastardized by “influencers” and social media
-                    addicts wearing Coachella-esque outfits, trying to take the
-                    perfect selfie for their robo followers. They too feel that
-                    heavy, toxic pressure to prove that they are well-traveled
-                    and enjoying their lives and not crying about an ex,
-                    drowning in student loan debt, or dealing with mental health
-                    problems; raw reality is just too much to handle on the
-                    internet, a place that thrives off of lies, sexuality, and
-                    escapism. If I post a picture of myself in a sheer shirt, it
-                    will get twice as many likes as a picture of me reading a
-                    newspaper. And the man that messages me at three o’clock in
-                    the morning to tell me that I am a fantastic writer and a
-                    “wild soul,” is not looking to talk about politics and
-                    literature; everything has soft, but sexual undertones on
-                    the internet after midnight. Lust with caution. If you want
-                    to really enjoy your travels, turn off your phone. Social
-                    media and narcissistic societal traditions have conditioned
-                    you to believe that you are going to want to look back at
-                    pictures of yourself years from now, and maybe you will, but
-                    everything is done in excess now, and it is not only
-                    unnecessary, it is unhealthy. Think about the purpose of the
-                    photos before you take them: are they for you to remember
-                    your experience, or to gain silicone validation from
-                    strangers on the internet? And if you see confusion and
-                    hollowness in your eyes while taking selfies, stop.
+                  <p style={{ fontSize: '1.6rem' }}>
+                    As director of our faculty support center, one of my
+                    responsibilities is to coordinate an orientation program for
+                    new faculty. Years ago we decapitated the “talking head”
+                    format of traditional orientation sessions and now try to
+                    provide interactive sessions that introduce our new
+                    colleagues to both our campus policies and our campus
+                    culture. While the transition of most topics to the
+                    interactive format has been easy, the session on the course
+                    syllabus has remained relatively dry—until this year.
+                  </p>
+                  <p style={{ fontSize: '1.6rem' }}>
+                    On most campuses there are a number of required policy
+                    statements that must be included on all syllabi (e.g.,
+                    disability accommodations, email policy, plagiarism policy,
+                    and classroom decorum). All these requirements, while
+                    necessary, support the traditional “contract” analogy of a
+                    course syllabus. To return the personal touch to the
+                    syllabus, our new faculty orientation session on the course
+                    syllabus now features a Voices of Our Students video.
+                  </p>
+                  <p style={{ fontSize: '1.6rem' }}>
+                    The video, actually created by one of our student interns,
+                    provides a preview of student expectations through student
+                    responses to a variety of prompts such as, “What one word
+                    describes the most important characteristic for a professor?
+                    Who is your favorite professor and why? What advice would
+                    you give to a new professor?” Examples of student responses
+                    are provided below.
+                  </p>
+                  <p style={{ fontSize: '1.6rem' }}>
+                    When asked to give one word to describe a great professor,
+                    our students replied:
+                  </p>
+                  <p style={{ fontSize: '1.6rem' }}>
+                    .Honest
+                    <br /> .Available
+                    <br /> .Enthusiastic
+                    <br /> .Understanding
+                    <br /> .Relatable
+                    <br />
+                    .Engaging
+                    <br /> .Invested
+                    <br /> .Energetic
+                    <br /> .Concerned
+                    <br /> .Entertaining When asked why a professor was their
+                    favorite, students offered a variety of reasons, such as:
+                    <br /> .He motivates students every class meeting via video,
+                    lecture, guest speaker, etc.
+                    <br />
+                    .She incorporates open discussion after the lecture.
+                    <br /> .She always makes the lecture entertaining and the
+                    class enjoyable.
+                    <br /> .He is very straightforward—you know what to expect.
+                    He connects what we’re learning to the real world.
+                    <br /> .She is available to help outside the classroom.
+                    <br /> .He treats each student as a person, not a number.
+                    She takes a personal interest in students beyond the
+                    classroom.
+                    <br /> .He provides study tips and helps students when they
+                    struggle.
+                    <br /> .She provides detailed feedback when you miss points.
+                    <br />
+                    .She goes the extra mile to make sure you know what you need
+                    to know.
+                    <br /> .She uses challenging assignments to push students
+                    beyond their comfort zone.
+                    <br /> .He believes in students and helps them succeed!
+                    <br /> .Students then offered faculty the following advice
+                    on
+                    <br />
+                    how to become someone’s favorite professor:
+                    <br /> .Use real-world examples in the classroom.
+                    <br /> .Show students that you value them as people.
+                    <br /> .Recognize and accommodate different learning styles.
+                    <br /> .Be personal—share your story with students.
+                    <br /> .Get feedback from students.
+                    <br /> .Be available.
+                    <br /> .Help struggling students.
+                    <br /> .Be relatable—students want to connect with
+                    professors on some level.
+                    <br /> .Keep communication open.
+                    <br /> .Offer virtual office hours if you teach online.
+                    <br /> Do what you say and say what you do Hearing students’
+                    responses to these prompts provides a natural segue to many
+                    key elements of a course syllabus—office hours, course
+                    requirements, classroom engagement, and student-professor
+                    relationships—that we cover during faculty orientation. We
+                    continue the conversation by stating, “Now that you’ve heard
+                    students’ expectations, let’s talk about how you will meet
+                    theirs and communicate yours!” The discussion is lively (and
+                    often amusing) as faculty rebut some of the students’
+                    comments. They’ve even suggested we produce a Voices of
+                    Professors video and share it at student orientation! What
+                    used to be a session of reading through the requirements is
+                    now more of an open discussion on creative ways to
+                    communicate expectations and engage with our students. Ideas
+                    that surfaced during a recent discussion included: Using the
+                    first day of class to model expectations. The use of a
+                    content-based ice-breaker activity in which every student
+                    has to speak sends the message that students are expected to
+                    contribute in every class and that every class will be rich
+                    with content. Using the first day of class to model
+                    consequences. A colleague described an activity where one
+                    student is selected to leave the room and then asked to
+                    contribute to the discussion immediately upon returning to
+                    the classroom. Of course, the student has no clue as to what
+                    had been said, which serves as a powerful way to demonstrate
+                    the importance of attendance and the impact of missing
+                    class. Creating a short video or podcast and posting it on
+                    the course website in the learning management system
+                    (Blackboard, Moodle, etc.). Asking a successful student from
+                    a previous semester to share tips on what to expect and how
+                    to be successful—this could be via email, video, or guest
+                    appearance. Leading an open discussion on the first day of
+                    class to give current students some input on select syllabus
+                    items. Repercussions of not “doing what you say” and failing
+                    to follow course guidelines also bubble up in the
+                    conversation and give credence to the university-required
+                    components of a syllabus. Potential repercussions include:
+                    Loss of respect from students Poor attendance Disengaged
+                    students Poor performance from students Poor student
+                    evaluations at the end of the course Student complaints that
+                    reach the department head and upper administration Grade
+                    challenges Poor annual evaluations from colleagues and/or
+                    department head Developing a “do not take this professor”
+                    reputation Incorporating the Voices of Our Students video
+                    within the traditional session on course syllabi in new
+                    faculty orientation has been a big success. It has prompted
+                    rich discussions and helped faculty regain interest in and
+                    ownership of their course syllabi. Now the creation of
+                    course syllabi feels more like an opportunity than a
+                    requirement.
                   </p>
                 </div>
               </Paper>
