@@ -4,6 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import CourseRegister from '../CourseRegister/CourseRegister.js';
 const StudentRegister = () => (
   <Modal
+    closeIcon
     trigger={<Button inverted>Class Registration</Button>}
     centered={true}
     style={{ marginTop: '3%' }}

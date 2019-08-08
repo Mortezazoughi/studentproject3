@@ -4,6 +4,7 @@ import 'semantic-ui-css/semantic.min.css';
 import CreateCourse from '../ProfPages/CreateCourse.js';
 const ProfCreateCourseModal = () => (
   <Modal
+    closeIcon
     trigger={<Button inverted> Create A Course</Button>}
     centered={true}
     style={{ marginTop: '5%' }}

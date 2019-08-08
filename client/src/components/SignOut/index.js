@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import MainPage from '../Pages/MainPage.js';
+import {
+  BrowserRouter as Router,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom';
 class SignOu extends Component {
   state = {};
 
@@ -9,10 +15,10 @@ class SignOu extends Component {
   render() {
     return (
       <div>
-        <Router>
-          <Link to="/" />
-          <p>YOU ARE SIGNED OUT</p>
-        </Router>
+        <Switch>
+          <Redirect from="/SignOut" to="/" />
+          <Route exact path="/" component={MainPage} />
+        </Switch>
       </div>
     );
   }

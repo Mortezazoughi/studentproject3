@@ -1,9 +1,32 @@
-import React, { useState, useEffect } from "react";
-import Axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Axios from 'axios';
 
-function ProfProfile() {
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary
+  },
+  table: {
+    minWidth: 650,
+    fontWeight: 600
+  }
+}));
+
+export default function ProfProfile() {
   useEffect(() => {
-    const storedprofid = localStorage.getItem("profid");
+    const storedprofid = localStorage.getItem('profid');
     getprofinfo(storedprofid);
     getallmycourses(storedprofid);
     // allstudentsregistered(storedprofid);
@@ -18,7 +41,7 @@ function ProfProfile() {
     try {
       const URL = `http://localhost:8080/profprofile/${id}`;
       results = await Axios({
-        method: "GET",
+        method: 'GET',
         url: URL
       });
 
@@ -35,7 +58,7 @@ function ProfProfile() {
     const URL = `http://localhost:8080/getmycourse/${id}`;
     try {
       results = await Axios({
-        method: "GET",
+        method: 'GET',
         url: URL
       });
       setprofcourses(results.data);
@@ -51,7 +74,7 @@ function ProfProfile() {
 
     try {
       results = await Axios({
-        method: "GET",
+        method: 'GET',
         url: URL
       });
       console.log(results.data[0]);
@@ -63,18 +86,83 @@ function ProfProfile() {
   };
   console.log(allmystudents);
   return (
-    <div>
-      <div>
-        {profinforeturned ? (
+    <div className={useStyles.root}>
+      <Grid container spacing={3}>
+        <Grid item xs={4} style={{ fontSize: '1.2rem' }}>
+          <Paper
+            className={useStyles.paper}
+            style={{ backgroundColor: '#ecebd7' }}
+          >
+            {profinforeturned ? (
+              <div>
+                <p>First Name: {profinforeturned.firstName}</p>
+                <p>Last Name: {profinforeturned.lastName}</p>
+                <p> email: {profinforeturned.email}</p>
+                <p> phone: {profinforeturned.phoneNumber}</p>
+              </div>
+            ) : null}
+            ;
+          </Paper>
+        </Grid>
+        <Grid item xs={8} style={{ fontSize: '1.5rem' }}>
+          <Paper
+            className={useStyles.paper}
+            style={{ backgroundColor: '#ecebd7' }}
+          >
+            <p> Courses Teaching this semester: </p>
+            <div>
+              <Table className={useStyles.table}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell align="right" style={{ fontWeight: '900' }}>
+                      Course Name
+                    </TableCell>
+                    <TableCell align="right" style={{ fontWeight: '900' }}>
+                      Course Level
+                    </TableCell>
+                    <TableCell align="right" style={{ fontWeight: '900' }}>
+                      Available Seats
+                    </TableCell>
+                    <TableCell align="right" style={{ fontWeight: '900' }}>
+                      Course Start Date
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {profcourses.map(mycourse => (
+                    <TableRow>
+                      <TableCell scope="row">{mycourse.courseName}</TableCell>
+                      <TableCell align="right">{mycourse.level}</TableCell>
+                      <TableCell align="right">
+                        {mycourse.availableseats}
+                      </TableCell>
+                      <TableCell align="right">{mycourse.startdate}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              {/* {profcourses.map(mycourse => (
+                <div>
+                  <p>Course Name: {mycourse.courseName}</p>
+                  <p> Course Level: {mycourse.level}</p>
+                  <p>Available Seats: {mycourse.availableseats}</p>
+                  <p>Course Start Date: {mycourse.startdate}</p>
+                </div>
+              ))} */}
+            </div>
+          </Paper>
+        </Grid>
+      </Grid>
+      {/* {profinforeturned ? (
           <div>
             <p> First Name:{profinforeturned.firstName}</p>
             <p> Last Name: {profinforeturned.firstName}</p>
             <p> Email: {profinforeturned.email}</p>
             <p> Campus {profinforeturned.campus}</p>
-          </div>
+            </div>
         ) : null}
-      </div>
-      <div>
+      
+      
         {profcourses.map(mycourse => (
           <div>
             <p>Course Name: {mycourse.courseName}</p>
@@ -83,17 +171,14 @@ function ProfProfile() {
             <p>Pre-requisites: {mycourse.prereq}</p>
             <p>Course Start Date: {mycourse.startdate}</p>
             <p>Course End Date: {mycourse.enddate}</p>
-          </div>
+            </div>
         ))}
-      </div>
-      <div>
+      
+      
         {allmystudents.map(allcourses => (
           <p>Meh:{allcourses.firstName}</p>
         ))}
-        <p>BLah{allmystudents.firstName}</p>
-      </div>
+        <p>BLah{allmystudents.firstName}</p> */}
     </div>
   );
 }
-
-export default ProfProfile;
