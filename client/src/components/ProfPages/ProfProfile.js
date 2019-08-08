@@ -6,11 +6,13 @@ function ProfProfile() {
     const storedprofid = localStorage.getItem("profid");
     getprofinfo(storedprofid);
     getallmycourses(storedprofid);
+    allstudentsregistered(storedprofid);
   }, []);
 
   const [profinforeturned, setprofinforeturned] = useState();
   const [profcourses, setprofcourses] = useState([]);
-
+  const [allmystudents, setallmystudents] = useState([]);
+  //get prof info
   const getprofinfo = async id => {
     let results;
     try {
@@ -27,7 +29,7 @@ function ProfProfile() {
     }
     return;
   };
-
+  //get all courses taught by prof
   const getallmycourses = async id => {
     let results;
     const URL = `http://localhost:8080/getmycourse/${id}`;
@@ -42,7 +44,22 @@ function ProfProfile() {
       return;
     }
   };
+  //get all students signed up for my courses
+  const allstudentsregistered = async id => {
+    let results;
+    const URL = ` http://localhost:8080/allstudentsregistered/${id}}`;
 
+    try {
+      results = await Axios({
+        method: "GET",
+        url: URL
+      });
+      setallmystudents(results.data);
+    } catch (error) {
+      console.log(error);
+      return;
+    }
+  };
   return (
     <div>
       <div>
