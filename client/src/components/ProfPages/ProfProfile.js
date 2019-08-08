@@ -6,7 +6,7 @@ function ProfProfile() {
     const storedprofid = localStorage.getItem("profid");
     getprofinfo(storedprofid);
     getallmycourses(storedprofid);
-    allstudentsregistered(storedprofid);
+    // allstudentsregistered(storedprofid);
   }, []);
 
   const [profinforeturned, setprofinforeturned] = useState();
@@ -54,12 +54,14 @@ function ProfProfile() {
         method: "GET",
         url: URL
       });
+      console.log(results.data[0]);
       setallmystudents(results.data);
     } catch (error) {
       console.log(error);
       return;
     }
   };
+  console.log(allmystudents);
   return (
     <div>
       <div>
@@ -75,15 +77,21 @@ function ProfProfile() {
       <div>
         {profcourses.map(mycourse => (
           <div>
-            <p>{mycourse.courseName}</p>
-            <p>{mycourse.level}</p>
-            <p>{mycourse.availableseats}</p>
-            <p>{mycourse.prereq}</p>
-            <p>{mycourse.startdate}</p>
-            <p>{mycourse.enddate}</p>
+            <p>Course Name: {mycourse.courseName}</p>
+            <p> Course Level: {mycourse.level}</p>
+            <p>Available Seats: {mycourse.availableseats}</p>
+            <p>Pre-requisites: {mycourse.prereq}</p>
+            <p>Course Start Date: {mycourse.startdate}</p>
+            <p>Course End Date: {mycourse.enddate}</p>
           </div>
         ))}
       </div>
+      {/* <div>
+        {allmystudents.map(allcourses => (
+          <p>Meh:{allcourses.firstName}</p>
+        ))}
+        <p>BLah{allmystudents.firstName}</p>
+      </div> */}
     </div>
   );
 }
