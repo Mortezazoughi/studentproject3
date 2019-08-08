@@ -86,12 +86,12 @@ function ProfProfile() {
           </div>
         ))}
       </div>
-      {/* <div>
+      <div>
         {allmystudents.map(allcourses => (
           <p>Meh:{allcourses.firstName}</p>
         ))}
         <p>BLah{allmystudents.firstName}</p>
-      </div> */}
+      </div>
     </div>
   );
 }
