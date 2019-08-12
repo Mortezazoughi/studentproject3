@@ -61,7 +61,6 @@ const professorController = {
       }
     }
   },
-
   profsignin: async (req, res) => {
     // userid is value coming from WebAuthentication.js
     let results;
@@ -73,7 +72,6 @@ const professorController = {
       return;
     }
   },
-  
   //get profile info
   profprofile: async (req, res) => {
     let results;

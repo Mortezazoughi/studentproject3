@@ -71,6 +71,18 @@ const useStyles = makeStyles(theme => ({
   },
   fixedHeight: {
     height: 600
+  },
+  ul: {
+    display: 'flex',
+    verticalAlign: 'middle',
+    fontSize: '2em',
+    fontWeight: 'normal',
+    listStyleType: 'none'
+  },
+  li: {
+    display: 'inline',
+    color: 'textPrimary',
+    paddingRight: '10%'
   }
 }));
 
@@ -98,8 +110,15 @@ export default function Studenetpage() {
             noWrap
             className={classes.title}
           >
-            Apogee University
+            <a href="/">Apogee University</a>
           </Typography>
+          <ul className={classes.ul}>
+            <li>
+              <a href="/" style={{ fontSize: '2rem' }}>
+                Home
+              </a>
+            </li>
+          </ul>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -134,7 +153,7 @@ export default function Studenetpage() {
           style={{ marginTop: '5%' }}
         >
           <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={7}>
+            <Grid item xs={12} md={4} lg={5}>
               <Paper
                 className={fixedHeightPaper}
                 style={{ backgroundColor: '#9bd4e4' }}
@@ -143,95 +162,110 @@ export default function Studenetpage() {
               </Paper>
             </Grid>
 
-            <Grid item xs={12} md={6} lg={5}>
+            <Grid item xs={12} md={8} lg={7}>
               <Paper
                 className={fixedHeightPaper}
                 style={{ backgroundColor: '#9bd4e4' }}
               >
                 <div style={{ backgroundColor: '#ecebd7' }}>
-                  <p>
-                    <span style={{ fontSize: '2rem', color: 'blue' }}>
-                      Stop sharing YOUR existence. Put away the Instagram and
-                      enjoy the view!
-                    </span>
-                    <p style={{ fontSize: '1.5rem' }}>
-                      By Kaylee Johnson Campus News
-                    </p>
+                  <p style={{ fontSize: '2.5rem', color: '#dd2c00' }}>
+                    Time Management Tips for College Students
                   </p>
                   <p style={{ fontSize: '1rem' }}>
-                    I appear deeply pompous and disingenuous; no matter how hard
-                    I try to be self-actualized, I flippantly fixate on lousy
-                    photo angles and corny captions, as if any of it actually
-                    matters. Look at my Instagram and you will see pictures of
-                    me smiling on exoctic beaches in Mexico, petting stray dogs,
-                    and swimming in breathtaking cenotes, but you will not see
-                    the stories attached to them; none of them are candid or
-                    authentic. I was in a constant state of apathy throughout
-                    the entire trip, so those photos of me laughing on the beach
-                    were painstakingly staged. Looking at the photos now, I see
-                    dread and pressure in my eyes. It is the pressure that
-                    leaves me perplexed, not the dread. All talented artists
-                    have deep dread embedded in their eyes; they see the world
-                    for the sick, soulless place that it truly is. But why do I
-                    feel pressure to smile and put on a carefree bimbo facade
-                    for my meaningless social media followers? Time is blurry in
-                    general, but on social media it is nonexistent and everybody
-                    seems to be drunk off of the power of floating through
-                    society without being affected by the illusion of time, when
-                    in reality the clockmaster is just momentarily humoring
-                    them; he is sadistic and they are pathetically gullible. Two
-                    subgroups of people viewed my Instagram stories while I was
-                    in Mexico, in a flimsy red bathing suit that exposed my
-                    perky breasts and untamed blond wavy hair: men that I had
-                    once had feelings for, exes or almost lovers that maddened
-                    me with their artistic mania and manipulation. Months of
-                    mind games left me staring at my bathroom ceiling while I
-                    lay nakedly in rose water baths trying to reconfigure my
-                    identity time and time again; soaking in their resonating
-                    lines like X-rated alphabet soup with traces of
-                    hallucinogenic drugs, the secret ingredient, courtesy of the
-                    chefs who were constantly pouring bleach into my porridge;
-                    pruney fingers exhausted from stroking egos of broken men.
-                    The other subgroup of viewers were shameless men that had
-                    bullied me ruthlessly in high school, yet feel no guilt
-                    gawking at pictures of me as a bold adult. They are stuck in
-                    time; homecoming junior year. They are eternally seventeen,
-                    and I am twisted in their warped schema of their glory days;
-                    a timid teenager with a flower in my hair and a leather
-                    journal in my hand; an archetype. I visited Chichen Itza,
-                    one of the seven wonders of the world, while in Mexico,
-                    hoping to feel some arousal of splendor, like the family
-                    wearing matching plaid outfits with mouths agape on the tour
-                    brochure. In reality, the parking lot of the historic Mayan
-                    ruins archaeological site was filled with tour buses of
-                    grotesque, greedy tourists carrying electric fans and
-                    smartphones; completely out of touch with their
-                    surroundings. The beautiful site with history oozing out of
-                    it has been bastardized by “influencers” and social media
-                    addicts wearing Coachella-esque outfits, trying to take the
-                    perfect selfie for their robo followers. They too feel that
-                    heavy, toxic pressure to prove that they are well-traveled
-                    and enjoying their lives and not crying about an ex,
-                    drowning in student loan debt, or dealing with mental health
-                    problems; raw reality is just too much to handle on the
-                    internet, a place that thrives off of lies, sexuality, and
-                    escapism. If I post a picture of myself in a sheer shirt, it
-                    will get twice as many likes as a picture of me reading a
-                    newspaper. And the man that messages me at three o’clock in
-                    the morning to tell me that I am a fantastic writer and a
-                    “wild soul,” is not looking to talk about politics and
-                    literature; everything has soft, but sexual undertones on
-                    the internet after midnight. Lust with caution. If you want
-                    to really enjoy your travels, turn off your phone. Social
-                    media and narcissistic societal traditions have conditioned
-                    you to believe that you are going to want to look back at
-                    pictures of yourself years from now, and maybe you will, but
-                    everything is done in excess now, and it is not only
-                    unnecessary, it is unhealthy. Think about the purpose of the
-                    photos before you take them: are they for you to remember
-                    your experience, or to gain silicone validation from
-                    strangers on the internet? And if you see confusion and
-                    hollowness in your eyes while taking selfies, stop.
+                    <p style={{ color: 'blue', fontSize: '2rem' }}>
+                      Time Management Tips
+                    </p>
+                    <p style={{ fontSize: '1.2rem' }}>
+                      Many universities offer time management techniques that
+                      can help college students succeed in their classes. These
+                      tips include eliminating procrastination, better
+                      organizing daily activities, reducing anxiety and
+                      increasing motivation and confidence. Dartmouth College
+                      and Pennsylvania State University have outlined several
+                      time management tips on their school websites.
+                    </p>
+                    <p
+                      style={{
+                        color: 'blue',
+                        fontSize: '2rem'
+                      }}
+                    >
+                      Get Organized
+                    </p>
+                    <p style={{ fontSize: '1.2rem' }}>
+                      When developing time management techniques in college,
+                      it's important that students first understand their goals
+                      and then set out to develop and follow a routine schedule.
+                      Without these factors, it may be hard for students to get
+                      motivated to employ their time management strategies.
+                      Students may download or purchase a scheduler; a weekly,
+                      monthly and yearly planner; and worksheets pertaining to
+                      the distribution and organization of one's tasks. This
+                      will help them avoid waiting until the last minute and
+                      having to cram. Many universities recommend that students
+                      take the time to plan each school day. Making a daily list
+                      of tasks to accomplish can help students to concentrate on
+                      tasks one at a time. Individuals should be specific when
+                      setting goals. For example, a student might want to set
+                      the goal of reviewing his or her lecture notes each day
+                      after classes. It can also be helpful to schedule fixed
+                      blocks of time to study with clear start and stop times,
+                      as well as specified break periods. Students can start
+                      with more difficult subjects first and also work on
+                      assignments or tests that are due first.
+                    </p>
+                    <p
+                      style={{
+                        color: 'blue',
+                        fontSize: '2rem'
+                      }}
+                    >
+                      Use Mental Exercises
+                    </p>
+                    <p style={{ fontSize: '1.2rem' }}>
+                      Students should devise ways to build on their success,
+                      keeping their long-term goals in mind when pursuing better
+                      time management. Mental awareness can help with this.
+                      Individuals should try to be mindful of when they're
+                      falling into unproductive patterns and should identify
+                      specific triggers or distractions that lead to
+                      procrastination. Meditation and exercise might also help
+                      some people clear their heads and help them build
+                      confidence and focus when studying.
+                    </p>
+                    <p
+                      style={{
+                        color: 'blue',
+                        fontSize: '2rem'
+                      }}
+                    />
+                    <p style={{ fontSize: '1.2rem' }}>
+                      Seek Help Students may look for advice from teachers,
+                      coaches, mentors or peers on better time management
+                      strategies. Individuals can also work with other
+                      classmates who are on top of their assignments and willing
+                      to provide reminders or encouragement.
+                    </p>
+                    <p
+                      style={{
+                        color: 'blue',
+                        fontSize: '2rem'
+                      }}
+                    >
+                      Avoid Common Time Wasters
+                    </p>{' '}
+                    <p style={{ fontSize: '1.2rem' }}>
+                      Common threats to good time management habits are external
+                      distractions. Students should seek to eliminate or at
+                      least lessen these common distractions. Some common time
+                      wasters include: Television Social media and Internet use
+                      Phone conversations Running errands Commuting
+                      Extracurricular activities Time management is key to
+                      academic success and organizing and planning one's day and
+                      tasks using mental exercises, seeking help and avoiding
+                      time wasters are some helpful time management strategies
+                      for college students.
+                    </p>
                   </p>
                 </div>
               </Paper>

@@ -27,7 +27,10 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.INTEGER,
         validate: {
           isNumeric: true,
-          msg: 'Value must be a valid phone number'
+          min: {
+            args: 10,
+            msg: 'You must provide a valid number with area code included.'
+          }
           // notNull: true
         }
       },
@@ -36,11 +39,12 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           isEmail: {
-            msg: 'Email must be valid'
+            args: true,
+            msg: 'Email must be valid address.'
           },
           len: {
-            arg: [6, 20],
-            msg: 'Email must have a length of 6 -20 characters'
+            args: [6, Infinity],
+            msg: 'Email must be at least 6 characters in length.'
           }
         }
       },
@@ -54,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: {
-            arg: 6
+            args: 6
           }
         }
       },
@@ -63,7 +67,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         validate: {
           len: {
-            arg: 6
+            args: 6
           }
         }
       },

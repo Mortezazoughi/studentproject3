@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 module.exports = (sequelize, DataTypes) => {
-  const Course = sequelize.define("Course", {
+  const Course = sequelize.define('Course', {
     courseName: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -13,14 +13,14 @@ module.exports = (sequelize, DataTypes) => {
     startdate: {
       allowNull: false,
       type: DataTypes.DATE,
-      validates: {
+      validate: {
         isDate: true
       }
     },
     enddate: {
       allowNull: false,
       type: DataTypes.DATE,
-      validates: {
+      validate: {
         isDate: true
       }
     },
@@ -54,10 +54,10 @@ module.exports = (sequelize, DataTypes) => {
   });
   Course.associate = function(models) {
     Course.belongsTo(models.Professor, {
-      foreignKey: "prof_id"
+      foreignKey: 'prof_id'
     });
     Course.hasMany(models.StudentCourse, {
-      foreignKey: "course_id"
+      foreignKey: 'course_id'
     });
   };
   return Course;

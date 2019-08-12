@@ -3,7 +3,12 @@ import { Button, Header, Modal } from 'semantic-ui-react';
 import 'semantic-ui-css/semantic.min.css';
 import CourseRegister from '../CourseRegister/CourseRegister.js';
 const StudentRegister = () => (
-  <Modal trigger={<Button inverted>Class Registration</Button>} centered={true}>
+  <Modal
+    closeIcon
+    trigger={<Button inverted>Class Registration</Button>}
+    centered={true}
+    style={{ marginTop: '3%' }}
+  >
     <Modal.Header style={{ backgroundColor: '#0784b5' }}>
       Class Registration
     </Modal.Header>
